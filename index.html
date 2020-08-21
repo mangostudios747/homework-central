@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en" class="bg-light">
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-164209898-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-164209898-1');
+    </script>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Homework Central</title>
+    <meta name="apple-mobile-web-app-title" content="Homework Central"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <link rel="icon" href="favicon.png"/>
+    <meta name="description" content="An app for keeping track of everything at Gunn High School."/>
+    <link rel="apple-touch-icon" href="/favicon.png"/>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
+    <link rel="canonical" href="https://homeworkcentral.web.app"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="colors/purple.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" integrity="sha512-mSYUmp1HYZDFaVKK//63EcZq4iFWFjxSL+Z3T/aCt4IO9Cejm03q3NKKYN6pFQzY0SBOr8h+eCIAZHPXcpZaNw==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="theme.css"/>
+    <link rel="manifest" href="/manifest.json">
+    <script src="https://kit.fontawesome.com/30a0cbcf71.js" crossorigin="anonymous"></script>
+    <style>
+        [v-cloak] {
+            display:none
+        }
+
+        .text-light:not([href]):hover {
+            color: var(--grey1) !important;
+        }
+
+
+
+    </style>
+</head>
+<body class="bg-light" data-theme="light">
+<div class="tab-content" v-cloak>
+    <div class="bg-light tab-pane fade view pt-5" aria-labelledby="pills-about-tab" id="pills-about" role="tabpanel" style="width:100%;margin-bottom: 15vh">
+        <div class="container">
+            <h1 class="text-center">Utilities</h1>
+            <p>Stuff that's coming soon:</p>
+            <ul>
+                <li>Barcode and map (stashed, since you won't need them for a while)</li>
+                <li>Clubs list - working with SEC and getting permissions to make it auto-update every time Mrs.Hall edits the spreadsheet</li>
+                <li>Passing period progress bar. Don't be late to class!</li>
+
+            </ul>
+            <p>If there's something I haven't mentioned that you want, just mention it in the <a href="voice">form here.</a></p>
+
+        </div>
+    </div>
+    <div class="bg-light tab-pane fade view show active pt-2" aria-labelledby="pills-about-tab" id="pills-schedule" role="tabpanel" style="width:100%;margin-bottom:30vh">
+        <div class="container">
+            <div class="topnav sticky-top bg-light pt-3" style="opacity: 0.8">
+        <h1 class="text-center" v-cloak>{{niceHours(hours) }}:{{doubleZero(minutes)}}:{{doubleZero(seconds)}}</h1>
+            <h1 class="text-center " ><a class="btn text-center btn-lg" style="cursor: pointer" onclick="app.focusedDate = app.focusedDate.addDays(-1)"><i class="fas fa-chevron-left"></i></a><input id="dp" style="height: 0;width: 0;opacity: 0;position:absolute" data-provide="datepicker"/><label v-cloak for="dp" class="text-primary text-center h3">{{["Sun","Mon","Tues","Wed","Thurs","Fri","Sat"][focusedDate.getDay()]}}, {{["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sept","Oct","Nov","Dec"][focusedDate.getMonth()]}} {{focusedDate.getDate()}}</label><a style="cursor: pointer" class="btn text-center btn-lg" onclick="app.focusedDate = app.focusedDate.addDays(1)"><i class="fas fa-chevron-right"></i></a></h1>
+            </div>
+
+
+                        <template v-for="period in focusedSched||[]" >
+                            <div class="card text-white my-2 py-0" tabindex="0" :class="'bg-'+(dclasses.filter(function(c){return c.hcname==period.name})[0] || {color:'dark'}).color" style="border-radius: 1.5rem">
+                                <div class="card-body">
+                                    <p class="h4 ">
+                                        <a class="stretched-link text-decoration-none text-light" :href="(dclasses.filter(function(c){return c.hcname==period.name})[0] || {zoom:null}).zoom">{{(dclasses.filter(function(c){return c.hcname==period.name})[0] || period).name}}</a>
+                                        <span class="badge badge-light badge-pill" :class="'text-'+(dclasses.filter(function(c){return c.hcname==period.name})[0] || {color:'dark'}).color"><script>function(){const l = (dclasses.filter(function(c){return c.hcname==period.name})[0] || {assignments:[]}).assignments.length;if (l==0){return 0} else {return ""}}}</script></span>
+                                    </p>
+                                    {{(dclasses.filter(function(c){return c.hcname==period.name})[0] || period).teacher}}
+
+                                    <p class="text-white">{{niceHours(period.start[0])}}:{{doubleZero(period.start[1])}} to {{niceHours(period.end[0])}}:{{doubleZero(period.end[1])}}</p>
+                                    <div class="progress" v-if="((period.start[0]==(hours) && period.start[1]<=minutes)||(period.start[0]<hours)) && ((period.end[0]>hours)||(period.end[0]==(hours) && period.end[1]>=minutes)) && focusedDate.getDate()==time.getDate() && focusedDate.getMonth()==time.getMonth()">
+                                        <div class="progress-bar " :class="'progress-bar-striped progress-bar-animated list-group-item-'+(dclasses.filter(function(c){return c.hcname==period.name})[0] || {color:'dark'}).color" role="progressbar" :style="'width: '+100*(((hours-period.start[0])*60)+(minutes-period.start[1]))/(((period.end[0]-period.start[0])*60)+(period.end[1]-period.start[1]))+'%'"  aria-valuemin="0" aria-valuemax="100">{{(((period.end[0]-period.start[0])*60)+(period.end[1]-period.start[1])) - (((hours-period.start[0])*60)+(minutes-period.start[1]))}} min left</div>
+
+                                    </div>
+                                </div>
+                            </div></template>
+                        <div v-if="focusedSched==undefined" class="container column">
+                            <div class=" text-dark my-3 text-center">
+                                <i class="fas fa-couch fa-10x"></i>
+                            </div>
+                            <div class="row text-center my-3"><p class="text-center display-6">No Classes Today!<br/> Sleep on the couch?</p></div>
+                        </div>
+                        <div class="container justify-content-center mx-auto row pb-1 " style="padding-left: 1em;padding-right: 1em;margin-left:auto;margin-right:auto">
+                            <div v-for="int in [0,1,2,3,4,5,6]" class="col  text-center py-1  mini-block " tabindex="0" :onclick="'app.focusedDate = app.focusedDate.addDays('+(int-focusedDate.getDay())+')'" style="max-width:80px!important;margin-left:0.13rem;margin-right:0.13rem">
+                                <div class="row"><span class="text-center">{{['S','M','T','W','H','F','S'][int]}}</span></div>
+                                <div style="">
+                                <div v-for="p in getSched(focusedDate.addDays(int-focusedDate.getDay()),schedule)" style="margin-top:0.1rem;margin-bottom:0.1rem" class="row card card-body p-1   text-center" :class="'bg-'+(dclasses.filter(function(c){return c.hcname==p.name})[0] || {color:'dark'}).color"></div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+
+
+        </div>
+    </div>
+
+    <div class="bg-light tab-pane text-dark fade  home-view view pt-5" aria-labelledby="pills-home-tab" id="pills-home" role="tabpanel" style="min-height:110vh;width:100%">
+    <div class="container-fluid container" >
+        <p class="display-4">Homework Central</p>
+        <hr/>
+        <h1 class="display-6">My Classes</h1>
+        <div v-if="classes.length==0 && dclasses.length==0" class="column mt-4 text-muted" style="border: 3px dashed #000000; border-radius: 2rem"><div class="row"><svg width="5em" height="5em" viewBox="0 0 16 16" class="mt-3 bi bi-binoculars-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4.5 1A1.5 1.5 0 0 0 3 2.5V3h4v-.5A1.5 1.5 0 0 0 5.5 1h-1zM7 4v1h2V4h4v.882a.5.5 0 0 0 .276.447l.895.447A1.5 1.5 0 0 1 15 7.118V13H9v-1.5a.5.5 0 0 1 .146-.354l.854-.853V9.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v.793l.854.853A.5.5 0 0 1 7 11.5V13H1V7.118a1.5 1.5 0 0 1 .83-1.342l.894-.447A.5.5 0 0 0 3 4.882V4h4zM1 14v.5A1.5 1.5 0 0 0 2.5 16h3A1.5 1.5 0 0 0 7 14.5V14H1zm8 0v.5a1.5 1.5 0 0 0 1.5 1.5h3a1.5 1.5 0 0 0 1.5-1.5V14H9zm4-11H9v-.5A1.5 1.5 0 0 1 10.5 1h1A1.5 1.5 0 0 1 13 2.5V3z"/>
+        </svg></div><div class="row text-center py-3"><h5>We looked far and wide, but couldn't find any of your classes. <a data-toggle="modal" data-target="#ncm" style->Add one</a>?</h5></div></div>
+        <course-block v-bind:key="course.name" v-for="(course, index) in classes" :completed="course.completed" :index="index" :name="course.name" :teacher="course.teacher" :color="course.color" :assignments="course.assignments"></course-block>
+        <dcourse-block v-bind:key="dcourse.name" v-for="(dcourse, dindex) in dclasses" :completed="dcourse.completed" :index="dindex" :name="dcourse.name" :teacher="dcourse.teacher" :color="dcourse.color" :assignments="dcourse.assignments"></dcourse-block>
+
+        <div data-toggle="modal" data-target="#ncm" style="cursor: pointer;position:fixed;top:1rem;right:1rem;" class="btn bg-dark my-auto mx-auto"><i class="text-white fas fa-lg fa-plus"></i></div>
+    </div>
+</div>
+<div class="bg-light tab-pane fade view pt-5" aria-labelledby="pills-settings-tab" id="pills-settings" role="tabpanel" style="min-height:110vh;width:100%">
+    <div class="container">
+        <h1>Classes</h1>
+        <ul class="list-group mt-3">
+            <li :class="'list-group-item pt-2 text-'+course.color"  v-for="(course, index) in classes"><span class="h3 pt-2">{{course.name}}</span><span class="px-2 text-muted py-2">{{course.teacher}}</span>
+                <button data-toggle="modal" :onclick="'app.focusedClass='+index+';document.getElementById(`eCName`).value=`'+course.name+'`;document.getElementById(`eCColor`).value=`'+course.color+'`;document.getElementById(`eCTeacher`).value=`'+course.teacher+'`'"  data-target="#ecm" class="float-right btn"><i class="fas fa-pen"></i></button>
+                <button :onclick="'app.classes.splice('+index+',1)'" class="float-right btn"><i class="fas fa-trash"></i></button>
+
+            </li>
+            <li :class="'list-group-item pt-2 text-'+dcourse.color"  v-for="(dcourse, dindex) in dclasses"><span class="h3 pt-2">{{dcourse.name}}</span><span class="px-2 text-muted py-2">{{dcourse.teacher}}</span>
+                <button data-toggle="modal" :onclick="'app.focusedClass='+dindex+';document.getElementById(`eDCName`).value=`'+dcourse.name+'`;document.getElementById(`eDCColor`).value=`'+dcourse.color+'`;document.getElementById(`eDCTeacher`).value=`'+dcourse.teacher+'`'"  data-target="#edcm" class="float-right btn"><i class="fas fa-pen"></i></button>
+
+
+            </li>
+        </ul>
+        <hr/>
+        <h1>Settings</h1>
+        <form id="theme-form">
+            <h4>Theme</h4>
+            <div class="custom-control custom-radio">
+                <input type="radio" id="customRadio1" value="dark" name="customRadio" onchange="if (this.checked) {document.body.setAttribute('data-theme','dark');app.setTheme('dark')}" class="custom-control-input">
+                <label class="custom-control-label" for="customRadio1">Dark Mode</label>
+            </div>
+            <div class="custom-control custom-radio">
+                <input type="radio" id="customRadio2" value="light" name="customRadio" checked onchange="if (this.checked) {document.body.setAttribute('data-theme','light');app.setTheme('light')}" class="custom-control-input">
+                <label class="custom-control-label"   for="customRadio2">Light Mode</label>
+            </div>
+        </form>
+        <hr/>
+        <h1 class="">Danger Zone</h1>
+        <button class="btn btn-danger mt-3 " type="button" onclick="localStorage.setItem('classes',null);location.reload()">Reset Data</button>
+    </div>
+</div>
+</div>
+<div class="bg-light container-fluid py-2" style="min-height: 10vh;position: fixed;bottom:0;width: 100%;left: 0;z-index:3">
+    <nav class="nav nav-pills nav-fill" id="main-nav" role="tablist">
+        <a class="flex-sm-fill text-sm-center nav-link" id="pills-about-tab" data-toggle="pill" href="#pills-about" role="tab" aria-controls="pills-about" aria-selected="false"><i class="fas fa-wrench"></i></a>
+        <a class="flex-sm-fill text-sm-center nav-link active" id="pills-schedule-tab" data-toggle="pill" href="#pills-schedule" role="tab" aria-controls="pills-schedule" aria-selected="true"><i class="fas fa-calendar"></i></a>
+
+        <a class="flex-sm-fill text-sm-center nav-link " id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="false"><i class="fas fa-home"></i></a>
+        <a class="flex-sm-fill text-sm-center nav-link" id="pills-settings-tab" data-toggle="pill" href="#pills-settings" role="tab" aria-controls="pills-settings" aria-selected="false"><i class="fas fa-cog"></i></a>
+
+    </nav>
+</div>
+<div class="modal fade" id="eam" tabindex="-1" aria-labelledby="eaml" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="eaml">Edit Assignment</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group py-2">
+                        <label for="eATitle">Name</label>
+                        <input id="eATitle" class="form-control" type="text"/>
+                    </div>
+                    <div class="form-group py-2">
+                        <label for="eDFromNow">Days from now</label>
+                        <input id="eDFromNow" class="form-control" value="1" type="number"/>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" id="eab" onclick="const now = new Date();app.classes[app.focusedClass].assignments.push({name:document.getElementById('eATitle').value,
+                due:now.addDays(parseInt(document.getElementById('eDFromNow').value))});$('#eam').modal('hide');save()" class="btn btn-primary">Create Assignment</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="ndam" tabindex="-1" aria-labelledby="ndaml" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ndaml">New Assignment</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group py-2">
+                        <label for="aDTitle">Name</label>
+                        <input id="aDTitle" class="form-control" type="text"/>
+                    </div>
+                    <div class="form-group py-2">
+                        <label for="dDFromNow">Days from now</label>
+                        <input id="dDFromNow" class="form-control" value="1" type="number"/>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" id="ndab" onclick="const now = new Date();app.dclasses[app.focusedClass].assignments.push({name:document.getElementById('aDTitle').value,
+                due:now.addDays(parseInt(document.getElementById('dDFromNow').value))});$('#ndam').modal('hide');save()" class="btn btn-primary">Create Assignment</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="nam" tabindex="-1" aria-labelledby="naml" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="naml">New Assignment</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group py-2">
+                        <label for="aTitle">Name</label>
+                        <input id="aTitle" class="form-control" type="text"/>
+                    </div>
+                    <div class="form-group py-2">
+                        <label for="dFromNow">Days from now</label>
+                        <input id="dFromNow" class="form-control" value="1" type="number"/>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" id="nab" onclick="const now = new Date();app.classes[app.focusedClass].assignments.push({name:document.getElementById('aTitle').value,
+                due:now.addDays(parseInt(document.getElementById('dFromNow').value))});$('#nam').modal('hide');save()" class="btn btn-primary">Create Assignment</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="ecm" tabindex="-1" aria-labelledby="ecml" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ecml">Update Class Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group py-2">
+                        <label for="eCName">Name</label>
+                        <input id="eCName" class="form-control" type="text"/>
+                    </div>
+                    <div class="form-group py-2">
+                        <label for="eCTeacher">Teacher</label>
+                        <input id="eCTeacher" class="form-control" type="text"/>
+                    </div>
+                    <div class="form-group py-2">
+                        <select class="form-control  form-select" id="eCColor">
+                            <option class="text-purple" value="purple">Purple</option>
+                            <option value="primary" class="text-primary" selected>Blue</option>
+                            <option class="text-success" value="success">Green</option>
+                            <option class="text-info" value="info">Teal</option>
+                            <option class="text-warning" value="warning">Yellow</option>
+                            <option class="text-orange" value="orange">Orange</option>
+                            <option class="text-danger" value="danger">Red</option>
+                            <option class="text-pink" value="pink">Pink</option>
+                        </select>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" onclick="app.classes[app.focusedClass].name=document.getElementById('eCName').value; app.classes[app.focusedClass].teacher= document.getElementById('eCTeacher').value; app.classes[app.focusedClass].color=document.getElementById('eCColor').value;$('#ecm').modal('hide');save()" class="btn btn-primary">Update Class</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="edcm" tabindex="-1" aria-labelledby="edcml" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="edcml">Update Class Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group py-2">
+                        <label for="eDCName">Name</label>
+                        <input id="eDCName" class="form-control" type="text"/>
+                    </div>
+                    <div class="form-group py-2">
+                        <label for="eDCTeacher">Teacher</label>
+                        <input id="eDCTeacher" class="form-control" type="text"/>
+                    </div>
+                    <div class="form-group py-2">
+                        <label for="eDCZoom">Zoom Link</label>
+                        <input id="eDCZoom" class="form-control" type="text"/>
+                    </div>
+                    <div class="form-group py-2">
+                        <select class="form-control  form-select" id="eDCColor">
+                            <option class="text-dark" value="dark">Black</option>
+                            <option class="text-purple" value="purple">Purple</option>
+                            <option value="primary" class="text-primary" selected>Blue</option>
+                            <option class="text-success" value="success">Green</option>
+                            <option class="text-info" value="info">Teal</option>
+                            <option class="text-warning" value="warning">Yellow</option>
+                            <option class="text-orange" value="orange">Orange</option>
+                            <option class="text-danger" value="danger">Red</option>
+                            <option class="text-pink" value="pink">Pink</option>
+                        </select>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" onclick="app.dclasses[app.focusedClass].name=document.getElementById('eDCName').value;app.dclasses[app.focusedClass].zoom= document.getElementById('eDCZoom').value ;app.dclasses[app.focusedClass].teacher= document.getElementById('eDCTeacher').value; app.dclasses[app.focusedClass].color=document.getElementById('eDCColor').value;$('#edcm').modal('hide');save()" class="btn btn-primary">Update Class</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="ncm" tabindex="-1" aria-labelledby="ncml" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ncml">Add a Class</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group py-2">
+                        <label for="cName">Name</label>
+                        <input id="cName" class="form-control" type="text"/>
+                    </div>
+                    <div class="form-group py-2">
+                        <label for="cTeacher">Teacher</label>
+                        <input id="cTeacher" class="form-control" type="text"/>
+                    </div>
+                    <div class="form-group py-2">
+                        <select class="form-control  form-select" id="cColor">
+                            <option class="text-dark" value="dark">Black</option>
+                            <option class="text-purple" value="purple">Purple</option>
+                            <option value="primary" class="text-primary" selected>Blue</option>
+                            <option class="text-success" value="success">Green</option>
+                            <option class="text-info" value="info">Teal</option>
+                            <option class="text-warning" value="warning">Yellow</option>
+                            <option class="text-orange" value="orange">Orange</option>
+                            <option class="text-danger" value="danger">Red</option>
+                            <option class="text-pink" value="pink">Pink</option>
+                        </select>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" onclick="app.classes.push({name:document.getElementById('cName').value, teacher:document.getElementById('cTeacher').value,color:document.getElementById('cColor').value,assignments:[],completed:[]});$('#ncm').modal('hide');save()" class="btn btn-primary">Create Class</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" integrity="sha512-T/tUfKSV1bihCnd+MxKD0Hm1uBBroVYBOYSk1knyvQ9VyZJpc/ALb4P0r6ubwVPSGB2GvjeoMAJJImBG12TiaQ==" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+<script src="https://unpkg.com/vuex@3.5.1/dist/vuex.js"></script>
+<script src="index.js"></script>
+<style>
+    .nav-fill .nav-item, .nav-fill > .nav-link:hover:not(.active):not(.disabled){
+        background-color: rgba(187, 214, 254,0.7);
+    }
+
+    .nav-fill .nav-item, .nav-fill > .nav-link:focus:not(.active):not(.disabled){
+        background-color: rgba(187, 214, 254,0.7);
+    }
+    .nav-fill .nav-item, .nav-fill > .nav-link:hover.active{
+        background-color: #085ad4;
+    }
+
+
+    .nav-fill .nav-item, .nav-fill > .nav-link:not(.active):not(.disabled){
+        background-color: #e9ecef;
+
+    }
+    .nav-fill .nav-item, .nav-fill > .nav-link{
+        background-color: #e9ecef;
+        margin-left:0.18em; margin-right: 0.18em;
+    }
+
+    .datepicker table tr td.active, .datepicker table tr td.active.disabled, .datepicker table tr td.active.disabled:hover, .datepicker table tr td.active:hover {
+        text-shadow: none;
+        background-image: none !important;
+        background-color: var(--bs-primary) !important;
+        color: var(--bs-white)!important;
+    }
+
+    .mini-block{
+        background-color: var(--grey3);
+    }
+
+    @media (max-width: 876px) {
+        .mini-block{
+            border-radius: 40rem;
+        }
+    }
+    @media (min-width: 876.1px) {
+        .mini-block{
+            border-radius: 0.2rem;
+        }
+    }
+
+    .mini-block:hover, .mini-block:focus{
+        background-color: rgba(187, 214, 254,0.7);
+    }
+
+
+
+    .view{
+        margin-bottom:15vh
+    }
+
+    .progress{
+        background-color: #ffffff;
+    }
+
+
+</style>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-database.js"></script>
+<script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+        apiKey: "AIzaSyDjLQAzre_M7puZsitnnXhu7uH6M-JIerc",
+        authDomain: "homeworkcentral.firebaseapp.com",
+        databaseURL: "https://homeworkcentral.firebaseio.com",
+        projectId: "homeworkcentral",
+        storageBucket: "homeworkcentral.appspot.com",
+        messagingSenderId: "709390643857",
+        appId: "1:709390643857:web:7ee7ad222cf5f2ba9f4530"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database()
+</script>
+<script src="loadSchedule.js"></script>
+<script>
+    $('#dp').on('changeDate', function() {
+        app.focusedDate = $("#dp").datepicker("getDate")
+    });
+    $("#carouselExampleControls").on('slid.bs.carousel', function (e) {
+        console.log(e);
+        if (e.direction=="right" && e.to==0){
+            $("#carouselExampleControls").carousel(1);
+            app.focusedDate= app.focusedDate.addDays(-1);
+
+        }
+        else if (e.direction=="left" && e.to==2){
+            $("#carouselExampleControls").carousel(1);
+
+            app.focusedDate=app.focusedDate.addDays(1);
+        }
+    })
+
+
+</script>
+
+</body>
+</html>

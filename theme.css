@@ -1,0 +1,117 @@
+[data-theme="dark"]{
+    --grey2: var(--light);
+    --grey1: var(--dark);
+    --bs-light: var(--dark);
+    --grey3 : rgb(77,82,87);
+    --mute: rgb(187,192,197);
+    --grey4: rgb(97,102,107);
+}
+
+[data-theme="light"]{
+    --grey2: var(--dark);
+    --grey1: var(--light);
+    --bs-light: var(--bs-light);
+    --grey3 : rgb(227,232,237);
+    --mute : rgb(77,82,87);
+    --grey4 : rgb(207,212,217);
+}
+
+
+.bg-light{
+    background-color: var(--grey1) !important;
+    color: var(--grey2)
+}
+
+.text-dark {
+    color: var(--grey2)!important;
+}
+
+.text-light , .text-white {
+    color: var(--grey1)!important;
+}
+
+.mini-block {
+    color:var(--grey2)
+}
+
+.list-group-item {
+    background-color: var(--grey3);
+    border-top-color: rgba(0, 0, 0, 0.125);
+    border-bottom-color: rgba(0, 0, 0, 0.125);
+    color: var(--grey2);
+}
+
+.bg-dark{
+    background-color: var(--grey2) !important;
+    color: var(--grey1) !important;
+}
+
+.btn-dark {
+    background-color: var(--grey2);
+    color: var(--grey1)
+}
+
+.btn-outline-dark {
+    border-color: var(--grey2);
+    color: var(--grey2)
+}
+
+
+
+.btn-dark:hover, .btn-outline-dark:hover {
+    background-color: var(--grey2);
+    color: var(--grey1)
+}
+
+
+.nav-link:not(.active) {
+    color: var(--primary) !important;
+}
+
+.nav-link:not(.active):not(:hover) {
+    background-color: var(--grey3) !important;
+
+}
+
+
+
+.nav-link:not(.active) svg{
+    color: var(--primary) !important;
+}
+
+.btn:not(.btn-dark) svg{
+    color:var(--grey2) ;
+}
+
+.card {
+    background-color: var(--grey3);
+    color: var(--grey1)
+}
+
+.text-muted {
+    color: var(--mute) !important;
+}
+
+
+.btn.btn-dark svg{
+    color: var(--grey1)
+}
+
+
+.modal-content {
+    background-color: var(--grey3)
+}
+
+.modal-header {
+    border-bottom-color: rgba(0,0,0,.125)
+}
+
+.modal-footer {
+    border-top-color: rgba(0,0,0,.125)
+}
+
+.modal-content .form-control {
+    background-color: var(--grey4);
+    border-color: var(--grey4);
+    color: var(--grey2);
+}

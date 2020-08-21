@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Voice Matters!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="apple-mobile-web-app-title" content="Homework Central"/>
+    <link rel="icon" href="/favicon.png"/>
+    <link rel="apple-touch-icon" href="/favicon.png"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/colors/purple.css"/>
+    <link rel="stylesheet" href="/style.css"/>
+    <script src="https://kit.fontawesome.com/30a0cbcf71.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="container" style="margin-top: 30px">
+    <h1 class="display-3">Homework Central</h1>
+    <h3><i>Your Voice Matters!!</i></h3>
+    <hr/>
+    <p>This app is under construction, so I really need your feedback. Anything is accepted - feature requests, bug reports, or just plain feedback.</p>
+    <p>To prevent submitting feedback I've already gotten, check out the <a href="list">feedback people have already given</a>.</p>
+    <form id="feedbackForm">
+        <div class="form-group">
+            <label for="feedBackSubject">Subject</label>
+            <input type="text" class="form-control" id="feedBackSubject">
+        </div>
+
+        <div class="form-group">
+            <label for="feedbackDetails">Details</label>
+            <textarea  class="form-control" id="feedbackDetails"></textarea>
+        </div>
+        <select class="custom-select" id="type">
+            <option value="req">Feature Request</option>
+            <option value="bug">Bug Report</option>
+            <option value="other">Other</option>
+        </select>
+        <div class="alert mt-3 alert-danger" id="danger" role="alert" style="display: none">
+            You must fill all of the fields.
+        </div>
+        <div class="alert mt-3 alert-success" id="success" role="alert" style="display: none">
+            Thanks! Your feedback was recorded. <br/> Submitting the same request multiple times will not affect my programming speed.
+        </div>
+        <button type="submit" class="btn mt-3 btn-primary">Submit</button>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="/bootstrap/js/bootstrap.min.js"></script>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-database.js"></script>
+<script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+        apiKey: "AIzaSyDjLQAzre_M7puZsitnnXhu7uH6M-JIerc",
+        authDomain: "homeworkcentral.firebaseapp.com",
+        databaseURL: "https://homeworkcentral.firebaseio.com",
+        projectId: "homeworkcentral",
+        storageBucket: "homeworkcentral.appspot.com",
+        messagingSenderId: "709390643857",
+        appId: "1:709390643857:web:7ee7ad222cf5f2ba9f4530"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database()
+</script>
+<script>
+
+
+    const feedbackRef = db.ref("feedback");
+    const feedbackForm = document.getElementById("feedbackForm");
+    feedbackForm.addEventListener("submit",ev => {
+        ev.preventDefault();
+        document.getElementById("success").style.display = "none";
+        document.getElementById("danger").style.display = "none";
+        if (document.getElementById("feedBackSubject").value==="" || document.getElementById("feedbackDetails").value===""){
+            document.getElementById("danger").style.display = null
+            return;
+        }
+
+        else {
+            document.getElementById("danger").style.display = "none"
+        }
+
+        feedbackRef.push().set(
+            {
+                Subject: document.getElementById("feedBackSubject").value,
+                Details: document.getElementById("feedbackDetails").value,
+                Done:false,
+                Time: firebase.database.ServerValue.TIMESTAMP,
+                Rejected:false,
+                Type:document.getElementById("type").value
+            }
+        );
+        feedbackForm.reset();
+        console.log("did it")
+        document.getElementById("success").style.display = null
+    })
+</script>
+</body>
+</html>

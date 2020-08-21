@@ -1,0 +1,15 @@
+$theme-text: #343a40;
+$theme-bg: #f8f9fa;
+.view{
+  background-color: $theme-bg;
+  color: $theme-text
+}
+
+:link{
+  text-decoration: none;
+}
+
+.card{
+  margin-top: 2.5rem;
+}
+

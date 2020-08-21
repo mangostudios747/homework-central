@@ -1,0 +1,26 @@
+{
+  "name": "homeworkcentral",
+  "version": "1.0.0",
+  "description": "A scheduling app for Gunn High School",
+  "main": "index.html",
+  "scripts": {
+    "test": "firebase serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saumyasinghal747/homework-central.git"
+  },
+  "keywords": [
+    "firebase",
+    "vue.js",
+    "vue",
+    "html",
+    "javascript"
+  ],
+  "author": "Saumya Singhal",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/saumyasinghal747/homework-central/issues"
+  },
+  "homepage": "https://github.com/saumyasinghal747/homework-central#readme"
+}

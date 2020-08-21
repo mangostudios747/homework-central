@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Requests</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="apple-mobile-web-app-title" content="Homework Central"/>
+    <link rel="icon" href="/favicon.png"/>
+
+    <link rel="apple-touch-icon" href="/favicon.png"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
+
+
+    <link rel="stylesheet" href="/colors/purple.css"/>
+    <link rel="stylesheet" href="/style.css"/>
+    <script src="https://kit.fontawesome.com/30a0cbcf71.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="container" style="margin-top: 30px"><h1>Pending Requests</h1>
+<div class="row">
+    <div class="col"> <label for="progBut" class="btn btn-success"><input value="prog" onchange="refreshSelect()"
+                                                                             id="progBut" type="checkbox"
+                                                                             class="list-group-item-success d-inline-block mr-2 mt-1"
+                                                                             style="height:1rem;width:1rem"/><a>Solved</a></label></div>
+    <div class="col"> <label for="warningBut" class="btn btn-warning"><input value="bug" onchange="refreshSelect()" checked
+                                                                             id="warningBut" type="checkbox"
+                                                                             class="list-group-item-warning d-inline-block mr-2 mt-1"
+                                                                             style="height:1rem;width:1rem"/><a>Bug Report</a></label></div> <div class="col"><label for="primaryBut" class="btn btn-purple"> <input value="req" onchange="refreshSelect()" checked id="primaryBut" type="checkbox" class="list-group-item-primary d-inline-block mr-2 mt-1" style="height:1rem;width:1rem"/><a>Feature Request</a></label></div> <div class="col"><label for="infoBut"  class="btn btn-info"><input value="other" onchange="refreshSelect()" checked id="infoBut" type="checkbox" class="list-group-item-info d-inline-block mr-2 mt-1" style="height:1rem;width:1rem"/><a>Other</a></label></div>
+</div>
+</div>
+<div class="container" id="holder">
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="/bootstrap/js/bootstrap.min.js"></script>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-database.js"></script>
+<script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+        apiKey: "AIzaSyDjLQAzre_M7puZsitnnXhu7uH6M-JIerc",
+        authDomain: "homeworkcentral.firebaseapp.com",
+        databaseURL: "https://homeworkcentral.firebaseio.com",
+        projectId: "homeworkcentral",
+        storageBucket: "homeworkcentral.appspot.com",
+        messagingSenderId: "709390643857",
+        appId: "1:709390643857:web:7ee7ad222cf5f2ba9f4530"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database()
+</script>
+<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.js"></script>
+<script>
+    let $holder;
+    var starCountRef = firebase.database().ref('feedback');
+    starCountRef.on('value', function(snapshot) {
+        document.getElementById("holder").innerHTML = "";
+        const d = snapshot.val();
+        for (var n in d){
+        //console.log(d[n]);
+        let k = document.createElement("DIV");
+        document.getElementById("holder").appendChild(k);
+        const l = d[n];
+        let bg;
+        if (l.Type=="bug"){bg="warning"} else if (l.Type=="req"){bg="purple"} else{bg="info"}
+        k.outerHTML = `<div class="card ${l.Type} ${l.Done? 'done':'prog'}" style="width:100%" >
+  <div class="card-body list-group-item-${bg}">
+    <h5 class="card-title">${l.Subject} ${l.Done? `<span class="badge badge-success">Solved</span>`:``}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">${new Date(l.Time)}</h6>
+    <p class="card-text">${l.Details}</p>
+  </div>
+</div>`
+        }
+
+        $holder = $('#holder').isotope({
+            // options
+            itemSelector: '.card'
+        });
+
+        refreshSelect()
+
+    });
+
+    function refreshSelect(){
+        const buts = ["primaryBut","infoBut","warningBut"];
+        let sel = [];
+        for (var i of buts){
+            const elem = document.getElementById(i);
+            if (elem.checked){
+                sel.push("."+elem.value)
+            }
+        }
+        let s;
+        if (document.getElementById("progBut").checked){
+            s = sel.join(", ")
+        }
+        else {
+            s = sel.join(":not(.done), ") + ":not(.done)"
+        }
+        //console.log(s)
+        $holder.isotope({filter:s})
+    }
+</script>
+</body>
+</html>

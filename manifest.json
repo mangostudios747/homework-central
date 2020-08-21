@@ -1,0 +1,15 @@
+{
+  "name": "Homework Central",
+  "short_name": "HC",
+  "theme_color": "#17a2b8",
+  "background_color": "#17a2b8",
+  "display": "standalone",
+  "orientation": "portrait",
+  "scope": "/",
+  "start_url": "/",
+  "icons": [{
+    "src": "/favicon152.png",
+    "sizes": "512x512",
+    "type": "image/png"
+  }]
+}
