@@ -1,0 +1,56 @@
+[data-mode="ios"]{
+
+}
+
+[data-mode="material"] .list-group-item .btn{
+    box-shadow: none;
+}
+
+[data-mode="material"] .btn-secondary{
+    background-color: var(--bs-secondary) !important;
+
+}
+
+[data-mode="material"] .btn-primary{
+    background-color: var(--primary) !important;
+
+}
+
+[data-mode="material"] h1 a.btn{
+    box-shadow: none;
+
+}
+
+[data-mode="material"] #pills-schedule h1 a.btn {
+    color: var(--grey2) !important;
+
+}
+
+[data-mode="material"] .mini-block {
+    border-radius: 0.2rem
+}
+
+
+[data-mode="material"] .form-control{
+    border-radius: 0
+}
+
+[data-mode="material"] .mini-block .card {
+    border-radius: 0
+}
+
+[data-mode="material"] .nav-pills .nav-link{
+    border-radius: 0
+}
+
+[data-mode="material"] .card h4 .btn {
+    box-shadow: none
+}
+
+[data-mode="material"] #pills-schedule .card {
+    border-radius: 0 !important;
+}
+
+[data-mode="material"] #pills-schedule .btn-lg {
+    padding: 1rem
+}

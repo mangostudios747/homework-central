@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="bg-light">
+<html lang="en" class="bg-light" >
 <head>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-164209898-1"></script>
@@ -22,13 +22,17 @@
     <link rel="apple-touch-icon" href="/favicon.png"/>
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
     <link rel="canonical" href="https://homeworkcentral.web.app"/>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet"/>
+    <link rel="stylesheet"  href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" id="mode" href=""/>
     <link rel="stylesheet" href="colors/purple.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" integrity="sha512-mSYUmp1HYZDFaVKK//63EcZq4iFWFjxSL+Z3T/aCt4IO9Cejm03q3NKKYN6pFQzY0SBOr8h+eCIAZHPXcpZaNw==" crossorigin="anonymous" />
     <link rel="stylesheet" href="style.css"/>
     <link rel="stylesheet" href="theme.css"/>
+    <link rel="stylesheet" href="mode.css"/>
     <link rel="manifest" href="/manifest.json">
-    <script src="https://kit.fontawesome.com/30a0cbcf71.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     <style>
         [v-cloak] {
             display:none
@@ -42,7 +46,7 @@
 
     </style>
 </head>
-<body class="bg-light" data-theme="light">
+<body class="bg-light" data-theme="light" data-mode="ios" >
 <div class="tab-content" v-cloak>
     <div class="bg-light tab-pane fade view pt-5" aria-labelledby="pills-about-tab" id="pills-about" role="tabpanel" style="width:100%;margin-bottom: 15vh">
         <div class="container">
@@ -122,7 +126,7 @@
 <div class="bg-light tab-pane fade view pt-5" aria-labelledby="pills-settings-tab" id="pills-settings" role="tabpanel" style="min-height:110vh;width:100%">
     <div class="container">
         <h1>Classes</h1>
-        <ul class="list-group mt-3">
+        <ul class=" list-group mt-3">
             <li :class="'list-group-item pt-2 text-'+course.color"  v-for="(course, index) in classes"><span class="h3 pt-2">{{course.name}}</span><span class="px-2 text-muted py-2">{{course.teacher}}</span>
                 <button data-toggle="modal" :onclick="'app.focusedClass='+index+';document.getElementById(`eCName`).value=`'+course.name+'`;document.getElementById(`eCColor`).value=`'+course.color+'`;document.getElementById(`eCTeacher`).value=`'+course.teacher+'`'"  data-target="#ecm" class="float-right btn"><i class="fas fa-pen"></i></button>
                 <button :onclick="'app.classes.splice('+index+',1)'" class="float-right btn"><i class="fas fa-trash"></i></button>
@@ -147,13 +151,24 @@
                 <label class="custom-control-label"   for="customRadio2">Light Mode</label>
             </div>
         </form>
+        <form id="mode-form">
+            <h4>Style</h4>
+            <div class="custom-control custom-radio">
+                <input type="radio" id="mode-ios" value="ios" name="customRadio" checked onchange="if (this.checked) {document.getElementById('mode').href='';document.body.setAttribute('data-mode','ios');app.setStyle('ios')}" class="custom-control-input">
+                <label class="custom-control-label" for="mode-ios">Default</label>
+            </div>
+            <div class="custom-control custom-radio">
+                <input type="radio" id="mode-material" value="material" name="customRadio"  onchange="if (this.checked) {document.getElementById('mode').href='https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css';document.body.setAttribute('data-mode','material');app.setStyle('material')}" class="custom-control-input">
+                <label class="custom-control-label"   for="mode-material">Material</label>
+            </div>
+        </form>
         <hr/>
         <h1 class="">Danger Zone</h1>
         <button class="btn btn-danger mt-3 " type="button" onclick="localStorage.setItem('classes',null);location.reload()">Reset Data</button>
     </div>
 </div>
 </div>
-<div class="bg-light container-fluid py-2" style="min-height: 10vh;position: fixed;bottom:0;width: 100%;left: 0;z-index:3">
+<div class="bg-light container-fluid py-2" style="min-height: 6vh;position: fixed;bottom:0;width: 100%;left: 0;z-index:3">
     <nav class="nav nav-pills nav-fill" id="main-nav" role="tablist">
         <a class="flex-sm-fill text-sm-center nav-link" id="pills-about-tab" data-toggle="pill" href="#pills-about" role="tab" aria-controls="pills-about" aria-selected="false"><i class="fas fa-wrench"></i></a>
         <a class="flex-sm-fill text-sm-center nav-link active" id="pills-schedule-tab" data-toggle="pill" href="#pills-schedule" role="tab" aria-controls="pills-schedule" aria-selected="true"><i class="fas fa-calendar"></i></a>
@@ -382,6 +397,7 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
 <script src="moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" integrity="sha512-T/tUfKSV1bihCnd+MxKD0Hm1uBBroVYBOYSk1knyvQ9VyZJpc/ALb4P0r6ubwVPSGB2GvjeoMAJJImBG12TiaQ==" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>

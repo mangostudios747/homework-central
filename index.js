@@ -10,7 +10,8 @@ Vue.component('course-block', {
     props: ["color","name","teacher","assignments","index","completed"],
     template: `<div class="card" >
             <div :class="'card-body text-'+color">
-                <h4 class="card-title">{{name}}</h4>
+                <h4 class="card-title">{{name}}<button data-toggle="modal" :onclick="'app.focusedClass='+index+';document.getElementById(\`eCName\`).value=\`'+name+'\`;document.getElementById(\`eCColor\`).value=\`'+color+'\`;document.getElementById(\`eCTeacher\`).value=\`'+teacher+'\`'"  data-target="#ecm" class="float-right btn"><i class="fas fa-pen"></i></button>
+</h4>
                 <p class="card-text">{{teacher}}</p>
             </div>
             <ul class="list-group list-group-flush">
@@ -46,7 +47,8 @@ Vue.component('dcourse-block', {
     props: ["color","name","teacher","assignments","index","completed"],
     template: `<div class="card" >
             <div :class="'card-body text-'+color">
-                <h4 class="card-title">{{name}}</h4>
+                <h4 class="card-title">{{name}} <button data-toggle="modal" :onclick="'app.focusedClass='+index+';document.getElementById(\`eCName\`).value=\`'+name+'\`;document.getElementById(\`eCColor\`).value=\`'+color+'\`;document.getElementById(\`eCTeacher\`).value=\`'+teacher+'\`'"  data-target="#ecm" class="float-right btn" :class="'text-'+color"><i class="fas fa-pen"></i></button>
+</h4>
                 <p class="card-text">{{teacher}}</p>
             </div>
             <ul class="list-group list-group-flush">
@@ -57,12 +59,10 @@ Vue.component('dcourse-block', {
   <span><label class="" :for="index+'-'+aIndex">{{assignment.name}} </label> <a class="btn" :onclick="'app.focusedAssig = '+ aIndex+';document.getElementById(\`eATitle\`).value= \`'+assignment.name+'\`'"><i class=" text-white fas fa-pen"></i></a></span>
 </div>  </h5><p class="text-white">{{assignment.due.toDateString() }}</p></li>
             </template>
-           <li class="list-group-item dropdown-toggle" data-toggle="collapse" :href="'#completed-'+index" aria-expanded="false" aria-controls="'completed-'+index">
-         Completed  
-</li>
+           <li class="list-group-item dropdown-toggle" data-toggle="collapse" :href="'#dcompleted-'+index" aria-expanded="false" aria-controls="'dcompleted-'+index">Completed</li>
             </ul>
             
-            <ul class="list-group list-group-flush collapse" :id="'completed-'+index" >
+            <ul class="list-group list-group-flush collapse" :id="'dcompleted-'+index" >
                             <li v-if="completed.length==0" class="list-group-item column" ><div class="row text-muted "><i style="height:3rem;width:3rem" class="mx-auto fas fa-tasks"></i></div><div class="row text-center"><p class="text-muted">Nothing done yet!</p></div></li>
 
                             <li v-for="(cAssignment,cIndex) in completed" :class="'list-group-item list-group-item-'+color"><a :onclick="'app.dclasses['+index+'].completed.splice('+cIndex+',1);save()'" style="text-decoration: none;cursor: pointer" class="display-6 mt-4 text-muted close float-right">&times;</a><h5 class="pt-2">  <button type="button" class="btn" :id="index+'-'+cIndex" :onclick="'setTimeout(()=>{app.dclasses['+index+'].assignments.push(app.dclasses['+index+'].completed['+cIndex+']);app.dclasses['+index+'].completed.splice('+cIndex+',1);save();},100)'"><i class="fas fa-check-square"></i></button>
@@ -81,7 +81,8 @@ Vue.component('dcourse-block', {
 var app = new Vue({
     el: '.tab-content',
     data: {
-        theme:"light",
+        theme:importTheme(),
+        style:importStyle(),
         time:new Date(),
         focusedClass: null,
         focusedAssig:null,
@@ -166,6 +167,12 @@ var app = new Vue({
                 color:"dark",
                 teacher:"",
                 completed:[],
+                assignments:[]},
+            {name:"SELF",
+                hcname:"SELF",
+                color:"dark",
+                teacher:"",
+                completed:[],
                 assignments:[]}
         ]
     },
@@ -228,7 +235,12 @@ var app = new Vue({
             }
         },
         setTheme: function (th) {
-            this.theme = th
+            this.theme = th;
+            localStorage.setItem('theme',th)
+        },
+        setStyle: function (th) {
+            this.style = th;
+            localStorage.setItem('style',th)
         }
 
     }
@@ -268,7 +280,39 @@ function importData(){
 
         }
     }
+
     return [raw,raw2]
+}
+
+
+function importTheme(){
+    const theme = localStorage.getItem("theme");
+    if (!theme){
+        return 'light'
+    }
+
+   document.querySelector('[value="light"]').checked=(theme=='light');
+    document.querySelector('[value="dark"]').checked=(theme=='dark');
+    document.body.setAttribute("data-theme",theme)
+
+    return theme
+}
+
+function importStyle(){
+    const style = localStorage.getItem("style");
+    if (!style){
+        return 'ios'
+    }
+    document.querySelector('[value="ios"]').checked=(style=='ios');
+    document.querySelector('[value="material"]').checked=(style=='material');
+    document.body.setAttribute("data-mode",style);
+    if (style=='material'){
+        document.getElementById('mode').href='https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css'
+    }
+    else {
+        document.getElementById('mode').href = ""
+    }
+    return style
 }
 
 
