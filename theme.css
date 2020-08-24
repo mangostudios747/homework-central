@@ -13,7 +13,13 @@
     --bs-light: var(--bs-light);
     --grey3 : rgb(227,232,237);
     --mute : rgb(77,82,87);
-    --grey4 : rgb(207,212,217);
+    --grey4 : rgb(207, 212, 217);
+}
+@media (min-width: 992px){
+    #pills-refdesc.active ~ #pills-ref {
+        display: block !important;
+        opacity: 100;
+    }
 }
 
 
@@ -34,7 +40,7 @@
     color:var(--grey2)
 }
 
-.list-group-item {
+.blank {
     background-color: var(--grey3);
     border-top-color: rgba(0, 0, 0, 0.125);
     border-bottom-color: rgba(0, 0, 0, 0.125);
@@ -115,3 +121,43 @@
     border-color: var(--grey4);
     color: var(--grey2);
 }
+
+.form-control {
+    background-color: var(--grey4);
+    border-color: var(--grey4);
+    color: var(--grey2);
+}
+
+
+.list-group-item-action.blank:hover{
+    background-color: var(--grey1);
+    color: var(--grey2)
+}
+
+.nav-tabs .nav-item {
+    background-color: var(--grey3) !important;
+
+}
+
+.nav-tabs {
+    border-bottom-color: var(--grey3) !important;
+}
+
+.nav-tabs .active{
+    background-color: var(--grey3) !important;
+    border-color: var(--grey3) !important;
+    color: var(--primary) !important;
+}
+
+.nav-tabs .nav-link:not(.active):hover {
+    background-color: var(--grey3);
+    border-color: var(--grey3)
+}
+
+.nav-tabs .nav-link:not(.active) {
+    background-color: var(--grey1) !important;
+    border-color: var(--grey4)
+}
+
+
+

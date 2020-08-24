@@ -62,6 +62,73 @@
 
         </div>
     </div>
+    <div class="bg-light d-lg-none tab-pane fade view" aria-labelledby="pills-refdesc-tab" id="pills-refdesc" role="tabpanel" style="width:100%;margin-bottom: 15vh">
+        <nav class="navbar sticky-top pt-3 mb-4 text-center navbar-light bg-light">
+            <a style="cursor: pointer" class=" text-primary" onclick="$(this.parentElement.parentElement).removeClass('active').removeClass('show');$('#pills-ref').addClass('active').addClass('show')">
+                <i class="material-icons">navigate_before</i></a>
+            <h2 class="mx-auto" id="ref-name"></h2>
+        </nav>
+        <div class="container">
+            <div id="ref-desc"></div>
+        </div>
+
+    </div>
+    <style>
+        @media (min-width: 992px){
+            #pills-refdesc.active ~ #pills-ref {
+                display: block !important;
+                opacity: 100;
+            }
+        }
+
+    </style>
+    <div class="bg-light tab-pane fade  view pt-5" aria-labelledby="pills-ref-tab" id="pills-ref" role="tabpanel" style="margin-bottom: 0">
+
+        <div class="row">
+        <div class="col">
+            <div class="mb-2">
+                <input type="text" placeholder="<i class='fas fa-search'></i>Search" class="form-control form-control-sm" style="
+    background-color: var(--grey4);
+    border-color: var(--grey4);
+    color: var(--grey2);
+"/>
+            </div>
+        <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Clubs</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Staff</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Starred</a>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="home" role="tabpanel" style="height:90vh;overflow: scroll;padding-bottom:10vh" aria-labelledby="home-tab">
+                <div class="list-group">
+                    <a href="#" v-for="club in clubs" class="list-group-item blank list-group-item-action" style="cursor: pointer"  :onclick="`$('#pills-ref').removeClass('active').removeClass('show');$('#pills-refdesc').addClass('active').addClass('show');document.getElementById('ref-lg-name').innerText=document.getElementById('ref-name').innerText='`+club[0].replace('\'','\\\'')+`';document.getElementById('ref-lg-desc').innerHTML=document.getElementById('ref-desc').innerHTML='<p>`+club[1].desc.replace('\'','\\\'')+`</p>'`">{{club[0]}} <i class="float-right material-icons">navigate_next</i></a>
+                </div>
+
+
+            </div>
+            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab" style="height:90vh;overflow: scroll;padding-bottom:10vh">
+                <div class="list-group">
+                    <a href="#" v-for="st in staff" class="list-group-item blank list-group-item-action" :onclick="`$('#pills-ref').removeClass('active').removeClass('show');$('#pills-refdesc').addClass('active').addClass('show');document.getElementById('ref-lg-name').innerText =document.getElementById('ref-name').innerText='`+st[0].replace('\'','\\\'')+`';document.getElementById('ref-lg-desc').innerHTML = document.getElementById('ref-desc').innerHTML='<p>Email: <a href=\\\'mailto:`+st[1].email+`\\\'>`+st[1].email+`</a></p><table class=\\'table\\'>                    <thead>                    <tr>                        <th scope=\\'col\\'>P</th>                        <th scope=\\'col\\'>Sem 1</th>                        <th scope=\\'col\\'>Sem 2</th>                    </tr>                    </thead>                    <tbody>                    <tr>                        <th scope=\\'row\\'>1</th>                        <td>`+(function(){try{return ((staffsched[st[1].email]).semesters.S1[1]||``)} catch{return ``}})()+`</td>                        <td>`+(function(){try{return ((staffsched[st[1].email]).semesters.S2[1]||``)} catch{return ``}})()+`</td>                                          </tr>                    <tr>                        <th scope=\\'row\\'>2</th>                        <td>`+(function(){try{return ((staffsched[st[1].email]).semesters.S1[2]||``)} catch{return ``}})()+`</td>                        <td>`+(function(){try{return ((staffsched[st[1].email]).semesters.S2[2]||``)} catch{return ``}})()+`</td>                              </tr>                    <tr>                        <th scope=\\'row\\'>3</th>                        <td >`+(function(){try{return ((staffsched[st[1].email]).semesters.S1[3]||``)} catch{return ``}})()+`</td>    <td>`+(function(){try{return ((staffsched[st[1].email]).semesters.S2[3]||``)} catch{return ``}})()+`</td>         </tr>    <tr>     <th scope=\\'row\\'>4</th>                        <td >`+(function(){try{return ((staffsched[st[1].email]).semesters.S1[4]||``)} catch{return ``}})()+`</td> <td>`+(function(){try{return ((staffsched[st[1].email]).semesters.S2[4]||``)} catch{return ``}})()+`</td>         </tr>        <tr>     <th scope=\\'row\\'>5</th>                        <td >`+(function(){try{return ((staffsched[st[1].email]).semesters.S1[5]||``)} catch{return ``}})()+`</td> <td>`+(function(){try{return ((staffsched[st[1].email]).semesters.S2[5]||``)} catch{return ``}})()+`</td>         </tr>  <tr>     <th scope=\\'row\\'>6</th>                        <td >`+(function(){try{return ((staffsched[st[1].email]).semesters.S1[6]||``)} catch{return ``}})()+`</td> <td>`+(function(){try{return ((staffsched[st[1].email]).semesters.S2[6]||``)} catch{return ``}})()+`</td>         </tr>   <tr>     <th scope=\\'row\\'>7</th>                        <td >`+(function(){try{return ((staffsched[st[1].email]).semesters.S1[7]||``)} catch{return ``}})()+`</td> <td>`+(function(){try{return ((staffsched[st[1].email]).semesters.S2[7]||``)} catch{return ``}})()+`</td>         </tr>   <tr>     <th scope=\\'row\\'>8</th>                        <td >`+(function(){try{return ((staffsched[st[1].email]).semesters.S1[8]||``)} catch{return ``}})()+`</td> <td>`+(function(){try{return ((staffsched[st[1].email]).semesters.S2[8]||``)} catch{return ``}})()+`</td>         </tr>    <tr>     <th scope=\\'row\\'>SELF</th>                        <td >`+(function(){try{return ((staffsched[st[1].email]).semesters.S1.SELF||``)} catch{return ``}})()+`</td> <td>`+(function(){try{return ((staffsched[st[1].email]).semesters.S2.SELF||``)} catch{return ``}})()+`</td>         </tr>        </tbody>                    </table>'`"
+                    >{{st[0]}} <i class="float-right material-icons">navigate_next</i></a>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab" style="height:90vh;overflow: scroll;padding-bottom:10vh">...</div>
+        </div>
+        </div>
+        <div class="col-8 d-lg-block d-none">
+            <div class="container">
+                <h1 id="ref-lg-name" class="text-center"></h1>
+                <div id="ref-lg-desc" class="container mt-5"><h3 class="text-center text-muted pt-5 mt-5"><i>Select a club or staff member to learn more.</i></h3></div>
+            </div>
+        </div>
+        </div>
+    </div>
     <div class="bg-light tab-pane fade view show active pt-2" aria-labelledby="pills-about-tab" id="pills-schedule" role="tabpanel" style="width:100%;margin-bottom:30vh">
         <div class="container">
             <div class="topnav sticky-top bg-light pt-3" style="opacity: 0.8">
@@ -111,7 +178,7 @@
 
     <div class="bg-light tab-pane text-dark fade  home-view view pt-5" aria-labelledby="pills-home-tab" id="pills-home" role="tabpanel" style="min-height:110vh;width:100%">
     <div class="container-fluid container" >
-        <p class="display-4">Homework Central</p>
+        <h1>Homework Central</h1>
         <hr/>
         <h1 class="display-6">My Classes</h1>
         <div v-if="classes.length==0 && dclasses.length==0" class="column mt-4 text-muted" style="border: 3px dashed #000000; border-radius: 2rem"><div class="row"><svg width="5em" height="5em" viewBox="0 0 16 16" class="mt-3 bi bi-binoculars-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -125,20 +192,26 @@
 </div>
 <div class="bg-light tab-pane fade view pt-5" aria-labelledby="pills-settings-tab" id="pills-settings" role="tabpanel" style="min-height:110vh;width:100%">
     <div class="container">
+        <h1 class="">Information</h1>
+        <p>Stuff that's coming soon:</p>
+        <ul>
+            <li>Barcode and map (stashed, since you won't need them for a while)</li>
+            <li>Clubs list - working with SEC and getting permissions to make it auto-update every time Mrs.Hall edits the spreadsheet</li>
+            <li>Passing period progress bar. Don't be late to class!</li>
+
+        </ul>
+        <p>If there's something I haven't mentioned that you want, just mention it in the <a href="voice">form here.</a></p>
+        <hr/>
         <h1>Classes</h1>
         <ul class=" list-group mt-3">
-            <li :class="'list-group-item pt-2 text-'+course.color"  v-for="(course, index) in classes"><span class="h3 pt-2">{{course.name}}</span><span class="px-2 text-muted py-2">{{course.teacher}}</span>
-                <button data-toggle="modal" :onclick="'app.focusedClass='+index+';document.getElementById(`eCName`).value=`'+course.name+'`;document.getElementById(`eCColor`).value=`'+course.color+'`;document.getElementById(`eCTeacher`).value=`'+course.teacher+'`'"  data-target="#ecm" class="float-right btn"><i class="fas fa-pen"></i></button>
-                <button :onclick="'app.classes.splice('+index+',1)'" class="float-right btn"><i class="fas fa-trash"></i></button>
-
-            </li>
-            <li :class="'list-group-item pt-2 text-'+dcourse.color"  v-for="(dcourse, dindex) in dclasses"><span class="h3 pt-2">{{dcourse.name}}</span><span class="px-2 text-muted py-2">{{dcourse.teacher}}</span>
-                <button data-toggle="modal" :onclick="'app.focusedClass='+dindex+';document.getElementById(`eDCName`).value=`'+dcourse.name+'`;document.getElementById(`eDCColor`).value=`'+dcourse.color+'`;document.getElementById(`eDCTeacher`).value=`'+dcourse.teacher+'`'"  data-target="#edcm" class="float-right btn"><i class="fas fa-pen"></i></button>
-
+            <li :class="'list-group-item blank pt-3 text-'+course.color"  v-for="(course, index) in classes"><span class="h3 pt-2">{{course.name}}</span><span class="px-2 text-muted py-2">{{course.teacher}}</span>
+                <button data-toggle="modal" :class="'text-'+course.color" :onclick="'app.focusedClass='+index+';document.getElementById(`eCName`).value=`'+course.name+'`;document.getElementById(`eCColor`).value=`'+course.color+'`;document.getElementById(`eCTeacher`).value=`'+course.teacher+'`'"  data-target="#ecm" class="float-right btn"><i class="fas fa-pen"></i></button>
+                <button :onclick="'app.classes.splice('+index+',1)'" :class="'text-'+course.color" class="float-right btn"><i class="fas fa-trash"></i></button>
 
             </li>
         </ul>
         <hr/>
+
         <h1>Settings</h1>
         <form id="theme-form">
             <h4>Theme</h4>
@@ -170,8 +243,9 @@
 </div>
 <div class="bg-light container-fluid py-2" style="min-height: 6vh;position: fixed;bottom:0;width: 100%;left: 0;z-index:3">
     <nav class="nav nav-pills nav-fill" id="main-nav" role="tablist">
-        <a class="flex-sm-fill text-sm-center nav-link" id="pills-about-tab" data-toggle="pill" href="#pills-about" role="tab" aria-controls="pills-about" aria-selected="false"><i class="fas fa-wrench"></i></a>
+        <!--<a class="flex-sm-fill text-sm-center nav-link" id="pills-about-tab" data-toggle="pill" href="#pills-about" role="tab" aria-controls="pills-about" aria-selected="false"><i class="fas fa-wrench"></i></a>-->
         <a class="flex-sm-fill text-sm-center nav-link active" id="pills-schedule-tab" data-toggle="pill" href="#pills-schedule" role="tab" aria-controls="pills-schedule" aria-selected="true"><i class="fas fa-calendar"></i></a>
+        <a class="flex-sm-fill text-sm-center nav-link " id="pills-ref-tab" data-toggle="pill" href="#pills-ref" role="tab" aria-controls="pills-ref" aria-selected="false"><i class="fas fa-users"></i></a>
 
         <a class="flex-sm-fill text-sm-center nav-link " id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="false"><i class="fas fa-home"></i></a>
         <a class="flex-sm-fill text-sm-center nav-link" id="pills-settings-tab" data-toggle="pill" href="#pills-settings" role="tab" aria-controls="pills-settings" aria-selected="false"><i class="fas fa-cog"></i></a>
@@ -403,6 +477,7 @@
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
 <script src="https://unpkg.com/vuex@3.5.1/dist/vuex.js"></script>
 <script src="index.js"></script>
+<script type="module" src="clubs/fetch.js"></script>
 <style>
     .nav-fill .nav-item, .nav-fill > .nav-link:hover:not(.active):not(.disabled){
         background-color: rgba(187, 214, 254,0.7);

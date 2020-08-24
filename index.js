@@ -4,7 +4,40 @@ Date.prototype.addDays = function(days) {
     return date;
 }
 
-
+Vue.component('tsched',{
+    props:["email"],
+    template:`
+    <table class="table table-borderless">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Handle</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td colspan="2">Larry the Bird</td>
+      <td>@twitter</td>
+    </tr>
+  </tbody>
+</table>
+    `
+})
 
 Vue.component('course-block', {
     props: ["color","name","teacher","assignments","index","completed"],
@@ -15,20 +48,20 @@ Vue.component('course-block', {
                 <p class="card-text">{{teacher}}</p>
             </div>
             <ul class="list-group list-group-flush">
-                <li v-if="assignments.length==0" class="list-group-item column" ><div class="row text-muted "><i style="height:3rem;width:3rem" class="mx-auto fas fa-tasks"></i></div><div class="row text-center"><p class="text-muted">Nothing to do!</p></div></li>
+                <li v-if="assignments.length==0" class="list-group-item blank column" ><div class="row text-muted "><img height="10rem" src="bootstrap-icons/done.svg"/></div><div class="row text-center"><p class="text-muted">Nothing to do!</p></div></li>
                 <template>
                 <li v-for="(assignment,aIndex) in assignments" :class="'list-group-item list-group-item-'+color"><a :onclick="'app.classes['+index+'].assignments.splice('+aIndex+',1);save()'" style="text-decoration: none;cursor: pointer" class="display-6 mt-4 text-muted close float-right">&times;</a><h5 class="pt-2"><div class="">
   <button type="button" class="btn" :id="index+'-'+aIndex" :onclick="'setTimeout(()=>{app.classes['+index+'].completed.push(app.classes['+index+'].assignments['+aIndex+']);app.classes['+index+'].assignments.splice('+aIndex+',1);save();},100)'"><i class="far text-white fa-square"></i></button>
   <label class="" :for="index+'-'+aIndex">{{assignment.name}} <i class="ml-2 fas fa-pen"></i></label>
 </div>  </h5><p class="text-muted">{{assignment.due.toDateString() }}</p></li>
             </template>
-           <li class="list-group-item dropdown-toggle" data-toggle="collapse" :href="'#completed-'+index" aria-expanded="false" aria-controls="'completed-'+index">
+           <li class="list-group-item blank dropdown-toggle" style="cursor: pointer" data-toggle="collapse" :href="'#completed-'+index" aria-expanded="false" aria-controls="'completed-'+index">
          Completed  
 </li>
             </ul>
             
             <ul class="list-group list-group-flush collapse" :id="'completed-'+index" >
-                            <li v-if="completed.length==0" class="list-group-item column" ><div class="row text-muted "><i style="height:3rem;width:3rem" class="mx-auto fas fa-tasks"></i></div><div class="row text-center"><p class="text-muted">Nothing done yet!</p></div></li>
+                            <li v-if="completed.length==0" class="list-group-item blank column" ><div class="row text-muted "><i style="height:3rem;width:3rem" class="mx-auto fas fa-tasks"></i></div><div class="row text-center"><p class="text-muted">Nothing done yet!</p></div></li>
 
                             <li v-for="(cAssignment,cIndex) in completed" :class="'list-group-item list-group-item-'+color"><a :onclick="'app.classes['+index+'].completed.splice('+cIndex+',1);save()'" style="text-decoration: none;cursor: pointer" class="display-6 mt-4 text-muted close float-right">&times;</a><h5 class="pt-2">  <button type="button" class="btn" :id="index+'-'+cIndex" :onclick="'setTimeout(()=>{app.classes['+index+'].assignments.push(app.classes['+index+'].completed['+cIndex+']);app.classes['+index+'].completed.splice('+cIndex+',1);save();},100)'"><i class="fas fa-check-square"></i></button>
 <s>{{cAssignment.name}}</s> </h5><p class="text-muted">{{cAssignment.due.toDateString() }}</p></li>
@@ -47,23 +80,23 @@ Vue.component('dcourse-block', {
     props: ["color","name","teacher","assignments","index","completed"],
     template: `<div class="card" >
             <div :class="'card-body text-'+color">
-                <h4 class="card-title">{{name}} <button data-toggle="modal" :onclick="'app.focusedClass='+index+';document.getElementById(\`eCName\`).value=\`'+name+'\`;document.getElementById(\`eCColor\`).value=\`'+color+'\`;document.getElementById(\`eCTeacher\`).value=\`'+teacher+'\`'"  data-target="#ecm" class="float-right btn" :class="'text-'+color"><i class="fas fa-pen"></i></button>
+                <h4 class="card-title">{{name}} <button data-toggle="modal" :onclick="'app.focusedClass='+index+';document.getElementById(\`eDCName\`).value=\`'+name+'\`;document.getElementById(\`eDCColor\`).value=\`'+color+'\`;document.getElementById(\`eDCTeacher\`).value=\`'+teacher+'\`'"  data-target="#edcm" class="float-right btn" :class="'text-'+color"><i class="fas fa-pen"></i></button>
 </h4>
                 <p class="card-text">{{teacher}}</p>
             </div>
             <ul class="list-group list-group-flush">
-                <li v-if="assignments.length==0" class="list-group-item column" ><div class="row text-muted "><i style="height:3rem;width:3rem" class="mx-auto fas fa-tasks"></i></div><div class="row text-center"><p class="text-muted">Nothing to do!</p></div></li>
+                <li v-if="assignments.length==0" class="list-group-item blank column" ><div class="row text-muted "><img height="15rem" class="mb-4" src="bootstrap-icons/done.svg"/></div><div class="row text-center"><p class="text-muted">Nothing to do!</p></div></li>
                 <template>
                 <li v-for="(assignment,aIndex) in assignments" :class="'list-group-item text-white bg-'+color"><a :onclick="'app.dclasses['+index+'].assignments.splice('+aIndex+',1);save()'" style="text-decoration: none;cursor: pointer" class="display-6 mt-4 text-muted close float-right">&times;</a><h5 class="pt-2"><div class="">
   <button type="button" class="btn" :id="index+'-'+aIndex" :onclick="'setTimeout(()=>{app.dclasses['+index+'].completed.push(app.dclasses['+index+'].assignments['+aIndex+']);app.dclasses['+index+'].assignments.splice('+aIndex+',1);save();},100)'"><i class="far text-white fa-square"></i></button>
   <span><label class="" :for="index+'-'+aIndex">{{assignment.name}} </label> <a class="btn" :onclick="'app.focusedAssig = '+ aIndex+';document.getElementById(\`eATitle\`).value= \`'+assignment.name+'\`'"><i class=" text-white fas fa-pen"></i></a></span>
 </div>  </h5><p class="text-white">{{assignment.due.toDateString() }}</p></li>
             </template>
-           <li class="list-group-item dropdown-toggle" data-toggle="collapse" :href="'#dcompleted-'+index" aria-expanded="false" aria-controls="'dcompleted-'+index">Completed</li>
+           <li class="list-group-item blank dropdown-toggle" style="cursor: pointer" data-toggle="collapse" :href="'#dcompleted-'+index" aria-expanded="false" aria-controls="'dcompleted-'+index">Completed</li>
             </ul>
             
             <ul class="list-group list-group-flush collapse" :id="'dcompleted-'+index" >
-                            <li v-if="completed.length==0" class="list-group-item column" ><div class="row text-muted "><i style="height:3rem;width:3rem" class="mx-auto fas fa-tasks"></i></div><div class="row text-center"><p class="text-muted">Nothing done yet!</p></div></li>
+                            <li v-if="completed.length==0" class="list-group-item blank column" ><div class="row text-muted "><i style="height:3rem;width:3rem" class="mx-auto fas fa-tasks"></i></div><div class="row text-center"><p class="text-muted">Nothing done yet!</p></div></li>
 
                             <li v-for="(cAssignment,cIndex) in completed" :class="'list-group-item list-group-item-'+color"><a :onclick="'app.dclasses['+index+'].completed.splice('+cIndex+',1);save()'" style="text-decoration: none;cursor: pointer" class="display-6 mt-4 text-muted close float-right">&times;</a><h5 class="pt-2">  <button type="button" class="btn" :id="index+'-'+cIndex" :onclick="'setTimeout(()=>{app.dclasses['+index+'].assignments.push(app.dclasses['+index+'].completed['+cIndex+']);app.dclasses['+index+'].completed.splice('+cIndex+',1);save();},100)'"><i class="fas fa-check-square"></i></button>
 <s>{{cAssignment.name}}</s> </h5><p class="text-muted">{{cAssignment.due.toDateString() }}</p></li>
@@ -85,6 +118,9 @@ var app = new Vue({
         style:importStyle(),
         time:new Date(),
         focusedClass: null,
+        clubs: [],
+        staff:[],
+        staffsched:{},
         focusedAssig:null,
         timemode: 12,
         schedule:[],

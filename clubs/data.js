@@ -1,4 +1,4 @@
-export default {
+export let clubs = {
   "A Capella Club": {
     "desc": "We strive to bring together the musicians at Gunn and sing some fun, lively tunes!This club will be open to singers and non-singers alike; as long as you have an open mind and a passion to learn about music, A Capella is for you.We’ll work on learning a capella (meaning non-instrumental) arrangements of songs and performing them, ideally about twice per semester.",
     "day": "Monday",

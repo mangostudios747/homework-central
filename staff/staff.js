@@ -1,4 +1,4 @@
-{
+export let staff = {
 	"Steve Ames": {
 		"jobTitle": "Teacher",
 		"email": "sames@pausd.org"
