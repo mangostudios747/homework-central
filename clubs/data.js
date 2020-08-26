@@ -117,7 +117,7 @@ export let clubs = {
     "time": "Lunch",
     "room": "F2",
     "president": "Hyewon Ahn and Chitra Mukherjee",
-    "teacher": "Sandra Conklin;",
+    "teacher": "Sandra Conklin",
     "email": "sconklin@pausd.org"
   },
   "Biology Club": {

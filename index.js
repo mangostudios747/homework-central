@@ -123,7 +123,7 @@ var app = new Vue({
         staffsched:{},
         focusedAssig:null,
         timemode: 12,
-        schedule:[],
+        schedule:theSchedule,
         focusedDate: new Date(),
         classes: importData()[0] || [
             // test data
@@ -220,6 +220,7 @@ var app = new Vue({
             return this.time.getMinutes()
         },
         seconds: function(){
+
             return this.time.getSeconds()
         },
         focusedSched: function(){

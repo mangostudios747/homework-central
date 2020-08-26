@@ -50,8 +50,8 @@ const theSchedule = {
             {name:"Period 1", start:[9,0],end:[10,15]},
             {name:"Period 2", start:[10,25],end:[11,40]},
             {name:"Lunch", start:[11,40],end:[12,10]},
-            {name:"Period 3", start:[12,20],end:[13,35]},
-            {name:"Period 4", start:[13,45],end:[15,0]},
+            {name:"Period 3", start:[12,20],end:[13,40]},
+            {name:"Period 4", start:[13,50],end:[15,5]},
 
             {name:"Period 8", start:[15,45],end:[17,0]}
         ],
@@ -59,16 +59,16 @@ const theSchedule = {
             {name:"Period 5", start:[9,40],end:[10,55]},
             {name:"Gunn Together", start:[11,5],end:[11,40]},
             {name:"Lunch", start:[11,40],end:[12,10]},
-            {name:"Period 6", start:[12,20],end:[13,35]},
-            {name:"Period 7", start:[13,45],end:[15,0]},
+            {name:"Period 6", start:[12,20],end:[13,40]},
+            {name:"Period 7", start:[13,50],end:[15,5]},
 
         ],
         [
             {name:"Period 1", start:[9,0],end:[10,15]},
             {name:"Period 2", start:[10,25],end:[11,40]},
             {name:"Lunch", start:[11,40],end:[12,10]},
-            {name:"Period 3", start:[12,20],end:[13,35]},
-            {name:"Period 4", start:[13,45],end:[15,0]},
+            {name:"Period 3", start:[12,20],end:[13,40]},
+            {name:"Period 4", start:[13,50],end:[15,5]},
 
             {name:"Period 8", start:[15,45],end:[17,0]}
         ],
@@ -76,8 +76,8 @@ const theSchedule = {
             {name:"Period 5", start:[9,40],end:[10,55]},
             {name:"SELF", start:[11,5],end:[11,40]},
             {name:"Lunch", start:[11,40],end:[12,10]},
-            {name:"Period 6", start:[12,20],end:[13,35]},
-            {name:"Period 7", start:[13,45],end:[15,0]},
+            {name:"Period 6", start:[12,20],end:[13,40]},
+            {name:"Period 7", start:[13,50],end:[15,5]},
 
         ],
         []

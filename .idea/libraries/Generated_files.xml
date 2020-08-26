@@ -2,19 +2,11 @@
   <library name="Generated files" type="javaScript">
     <properties>
       <sourceFilesUrls>
-        <item url="file://$PROJECT_DIR$/clubs/data.min.js" />
-        <item url="file://$PROJECT_DIR$/clubs/fetch.min.js" />
-        <item url="file://$PROJECT_DIR$/dt-picker/picker.min.js" />
-        <item url="file://$PROJECT_DIR$/loadSchedule.min.js" />
-        <item url="file://$PROJECT_DIR$/staff/staffsched.min.js" />
+        <item url="file://$PROJECT_DIR$/course-catalog/index.min.js" />
       </sourceFilesUrls>
     </properties>
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/clubs/data.min.js" />
-      <root url="file://$PROJECT_DIR$/clubs/fetch.min.js" />
-      <root url="file://$PROJECT_DIR$/dt-picker/picker.min.js" />
-      <root url="file://$PROJECT_DIR$/loadSchedule.min.js" />
-      <root url="file://$PROJECT_DIR$/staff/staffsched.min.js" />
+      <root url="file://$PROJECT_DIR$/course-catalog/index.min.js" />
     </CLASSES>
     <SOURCES />
   </library>

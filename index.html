@@ -33,6 +33,7 @@
     <link rel="stylesheet" href="mode.css"/>
     <link rel="manifest" href="/manifest.json">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <meta name="theme-color" content="#17a2b8"/>
     <style>
         [v-cloak] {
             display:none
@@ -63,7 +64,7 @@
         </div>
     </div>
     <div class="bg-light d-lg-none tab-pane fade view" aria-labelledby="pills-refdesc-tab" id="pills-refdesc" role="tabpanel" style="width:100%;margin-bottom: 15vh">
-        <nav class="navbar sticky-top pt-3 mb-4 text-center navbar-light bg-light">
+        <nav class="navbar fixed-top sticky-top pt-3 mb-4 text-center navbar-light bg-light" >
             <a style="cursor: pointer" class=" text-primary" onclick="$(this.parentElement.parentElement).removeClass('active').removeClass('show');$('#pills-ref').addClass('active').addClass('show')">
                 <i class="material-icons">navigate_before</i></a>
             <h2 class="mx-auto" id="ref-name"></h2>
@@ -86,7 +87,7 @@
 
         <div class="row">
         <div class="col">
-            <div class="mb-2">
+            <div class="mb-2 d-none">
                 <input type="text" placeholder="<i class='fas fa-search'></i>Search" class="form-control form-control-sm" style="
     background-color: var(--grey4);
     border-color: var(--grey4);
@@ -107,14 +108,14 @@
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="home" role="tabpanel" style="height:90vh;overflow: scroll;padding-bottom:10vh" aria-labelledby="home-tab">
                 <div class="list-group">
-                    <a href="#" v-for="club in clubs" class="list-group-item blank list-group-item-action" style="cursor: pointer"  :onclick="`$('#pills-ref').removeClass('active').removeClass('show');$('#pills-refdesc').addClass('active').addClass('show');document.getElementById('ref-lg-name').innerText=document.getElementById('ref-name').innerText='`+club[0].replace('\'','\\\'')+`';document.getElementById('ref-lg-desc').innerHTML=document.getElementById('ref-desc').innerHTML='<p>`+club[1].desc.replace('\'','\\\'')+`</p>'`">{{club[0]}} <i class="float-right material-icons">navigate_next</i></a>
+                    <a href="#" v-for="club in clubs" class="list-group-item blank list-group-item-action" style="cursor: pointer"  :onclick="`$('#pills-ref').removeClass('active').removeClass('show');$('#pills-refdesc').addClass('active').addClass('show');document.getElementById('ref-lg-name').innerText=document.getElementById('ref-name').innerText='`+club[0].replace(/'/g,'\\\'')+`';document.getElementById('ref-lg-desc').innerHTML=document.getElementById('ref-desc').innerHTML='<div class=\\'row\\'><div class=\\'col-xl\\'><table class=\\'table table-`+theme+`\\'><thead><tr><th scope=\\'col\\' class=\\'text-center\\'>About</th>  </tr></thead><tbody><tr><td>`+club[1].desc.replace(/'/g,'\\\'')+`</td></tr></tbody></table></div><div class=\\'col-xl\\'><table class=\\'table table-`+theme+`\\'><thead><tr><th scope=\\'col\\' colspan=\\'2\\' class=\\'text-center\\'>Club Details</th>  </tr></thead><tbody><tr><th scope=\\'row\\'>Day</th><td>`+club[1].day+`</td></tr><tr><th scope=\\'row\\'>Time</th><td>`+club[1].time+`</td></tr><tr><th scope=\\'row\\'>Room</th><td>`+club[1].room+`</td></tr><tr><th scope=\\'row\\'>President</th><td>`+club[1].president+`</td></tr><tr><th scope=\\'row\\'>Teacher</th><td>`+club[1].teacher+`</td></tr><tr><th scope=\\'row\\'>Email</th><td>`+club[1].email+`</td></tr></tbody></table></div></div>'`">{{club[0]}} <i class="float-right material-icons">navigate_next</i></a>
                 </div>
 
 
             </div>
             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab" style="height:90vh;overflow: scroll;padding-bottom:10vh">
                 <div class="list-group">
-                    <a href="#" v-for="st in staff" class="list-group-item blank list-group-item-action" :onclick="`$('#pills-ref').removeClass('active').removeClass('show');$('#pills-refdesc').addClass('active').addClass('show');document.getElementById('ref-lg-name').innerText =document.getElementById('ref-name').innerText='`+st[0].replace('\'','\\\'')+`';document.getElementById('ref-lg-desc').innerHTML = document.getElementById('ref-desc').innerHTML='<p>Email: <a href=\\\'mailto:`+st[1].email+`\\\'>`+st[1].email+`</a></p><table class=\\'table\\'>                    <thead>                    <tr>                        <th scope=\\'col\\'>P</th>                        <th scope=\\'col\\'>Sem 1</th>                        <th scope=\\'col\\'>Sem 2</th>                    </tr>                    </thead>                    <tbody>                    <tr>                        <th scope=\\'row\\'>1</th>                        <td>`+(function(){try{return ((staffsched[st[1].email]).semesters.S1[1]||``)} catch{return ``}})()+`</td>                        <td>`+(function(){try{return ((staffsched[st[1].email]).semesters.S2[1]||``)} catch{return ``}})()+`</td>                                          </tr>                    <tr>                        <th scope=\\'row\\'>2</th>                        <td>`+(function(){try{return ((staffsched[st[1].email]).semesters.S1[2]||``)} catch{return ``}})()+`</td>                        <td>`+(function(){try{return ((staffsched[st[1].email]).semesters.S2[2]||``)} catch{return ``}})()+`</td>                              </tr>                    <tr>                        <th scope=\\'row\\'>3</th>                        <td >`+(function(){try{return ((staffsched[st[1].email]).semesters.S1[3]||``)} catch{return ``}})()+`</td>    <td>`+(function(){try{return ((staffsched[st[1].email]).semesters.S2[3]||``)} catch{return ``}})()+`</td>         </tr>    <tr>     <th scope=\\'row\\'>4</th>                        <td >`+(function(){try{return ((staffsched[st[1].email]).semesters.S1[4]||``)} catch{return ``}})()+`</td> <td>`+(function(){try{return ((staffsched[st[1].email]).semesters.S2[4]||``)} catch{return ``}})()+`</td>         </tr>        <tr>     <th scope=\\'row\\'>5</th>                        <td >`+(function(){try{return ((staffsched[st[1].email]).semesters.S1[5]||``)} catch{return ``}})()+`</td> <td>`+(function(){try{return ((staffsched[st[1].email]).semesters.S2[5]||``)} catch{return ``}})()+`</td>         </tr>  <tr>     <th scope=\\'row\\'>6</th>                        <td >`+(function(){try{return ((staffsched[st[1].email]).semesters.S1[6]||``)} catch{return ``}})()+`</td> <td>`+(function(){try{return ((staffsched[st[1].email]).semesters.S2[6]||``)} catch{return ``}})()+`</td>         </tr>   <tr>     <th scope=\\'row\\'>7</th>                        <td >`+(function(){try{return ((staffsched[st[1].email]).semesters.S1[7]||``)} catch{return ``}})()+`</td> <td>`+(function(){try{return ((staffsched[st[1].email]).semesters.S2[7]||``)} catch{return ``}})()+`</td>         </tr>   <tr>     <th scope=\\'row\\'>8</th>                        <td >`+(function(){try{return ((staffsched[st[1].email]).semesters.S1[8]||``)} catch{return ``}})()+`</td> <td>`+(function(){try{return ((staffsched[st[1].email]).semesters.S2[8]||``)} catch{return ``}})()+`</td>         </tr>    <tr>     <th scope=\\'row\\'>SELF</th>                        <td >`+(function(){try{return ((staffsched[st[1].email]).semesters.S1.SELF||``)} catch{return ``}})()+`</td> <td>`+(function(){try{return ((staffsched[st[1].email]).semesters.S2.SELF||``)} catch{return ``}})()+`</td>         </tr>        </tbody>                    </table>'`"
+                    <a href="#" v-for="st in staff" class="list-group-item blank list-group-item-action" :onclick="`$('#pills-ref').removeClass('active').removeClass('show');$('#pills-refdesc').addClass('active').addClass('show');document.getElementById('ref-lg-name').innerText =document.getElementById('ref-name').innerText='`+st[0].replace(/'/g,'\\\'')+`';document.getElementById('ref-lg-desc').innerHTML = document.getElementById('ref-desc').innerHTML='<p>Email: <a href=\\\'mailto:`+st[1].email+`\\\'>`+st[1].email+`</a></p><table class=\\'table table-`+theme+`\\'>                    <thead>                    <tr>                        <th scope=\\'col\\'>P</th>                        <th scope=\\'col\\'>Sem 1</th>                        <th scope=\\'col\\'>Sem 2</th>                    </tr>                    </thead>                    <tbody>                    <tr>                        <th scope=\\'row\\'>1</th>                        <td>`+(function(){try{return ((staffsched[st[1].email]).semesters.S1[1]||``)} catch{return ``}})()+`</td>                        <td>`+(function(){try{return ((staffsched[st[1].email]).semesters.S2[1]||``)} catch{return ``}})()+`</td>                                          </tr>                    <tr>                        <th scope=\\'row\\'>2</th>                        <td>`+(function(){try{return ((staffsched[st[1].email]).semesters.S1[2]||``)} catch{return ``}})()+`</td>                        <td>`+(function(){try{return ((staffsched[st[1].email]).semesters.S2[2]||``)} catch{return ``}})()+`</td>                              </tr>                    <tr>                        <th scope=\\'row\\'>3</th>                        <td >`+(function(){try{return ((staffsched[st[1].email]).semesters.S1[3]||``)} catch{return ``}})()+`</td>    <td>`+(function(){try{return ((staffsched[st[1].email]).semesters.S2[3]||``)} catch{return ``}})()+`</td>         </tr>    <tr>     <th scope=\\'row\\'>4</th>                        <td >`+(function(){try{return ((staffsched[st[1].email]).semesters.S1[4]||``)} catch{return ``}})()+`</td> <td>`+(function(){try{return ((staffsched[st[1].email]).semesters.S2[4]||``)} catch{return ``}})()+`</td>         </tr>        <tr>     <th scope=\\'row\\'>5</th>                        <td >`+(function(){try{return ((staffsched[st[1].email]).semesters.S1[5]||``)} catch{return ``}})()+`</td> <td>`+(function(){try{return ((staffsched[st[1].email]).semesters.S2[5]||``)} catch{return ``}})()+`</td>         </tr>  <tr>     <th scope=\\'row\\'>6</th>                        <td >`+(function(){try{return ((staffsched[st[1].email]).semesters.S1[6]||``)} catch{return ``}})()+`</td> <td>`+(function(){try{return ((staffsched[st[1].email]).semesters.S2[6]||``)} catch{return ``}})()+`</td>         </tr>   <tr>     <th scope=\\'row\\'>7</th>                        <td >`+(function(){try{return ((staffsched[st[1].email]).semesters.S1[7]||``)} catch{return ``}})()+`</td> <td>`+(function(){try{return ((staffsched[st[1].email]).semesters.S2[7]||``)} catch{return ``}})()+`</td>         </tr>   <tr>     <th scope=\\'row\\'>8</th>                        <td >`+(function(){try{return ((staffsched[st[1].email]).semesters.S1[8]||``)} catch{return ``}})()+`</td> <td>`+(function(){try{return ((staffsched[st[1].email]).semesters.S2[8]||``)} catch{return ``}})()+`</td>         </tr>    <tr>     <th scope=\\'row\\'>SELF</th>                        <td >`+(function(){try{return ((staffsched[st[1].email]).semesters.S1.SELF||``)} catch{return ``}})()+`</td> <td>`+(function(){try{return ((staffsched[st[1].email]).semesters.S2.SELF||``)} catch{return ``}})()+`</td>         </tr>        </tbody>                    </table>'`"
                     >{{st[0]}} <i class="float-right material-icons">navigate_next</i></a>
                 </div>
             </div>
@@ -132,11 +133,11 @@
     <div class="bg-light tab-pane fade view show active pt-2" aria-labelledby="pills-about-tab" id="pills-schedule" role="tabpanel" style="width:100%;margin-bottom:30vh">
         <div class="container">
             <div class="topnav sticky-top bg-light pt-3" style="opacity: 0.8">
-        <h1 class="text-center" v-cloak>{{niceHours(hours) }}:{{doubleZero(minutes)}}:{{doubleZero(seconds)}}</h1>
-            <h1 class="text-center " ><a class="btn text-center btn-lg" style="cursor: pointer" onclick="app.focusedDate = app.focusedDate.addDays(-1)"><i class="fas fa-chevron-left"></i></a><input id="dp" style="height: 0;width: 0;opacity: 0;position:absolute" data-provide="datepicker"/><label v-cloak for="dp" class="text-primary text-center h3">{{["Sun","Mon","Tues","Wed","Thurs","Fri","Sat"][focusedDate.getDay()]}}, {{["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sept","Oct","Nov","Dec"][focusedDate.getMonth()]}} {{focusedDate.getDate()}}</label><a style="cursor: pointer" class="btn text-center btn-lg" onclick="app.focusedDate = app.focusedDate.addDays(1)"><i class="fas fa-chevron-right"></i></a></h1>
+        <h1 class="text-center"   v-cloak>{{niceHours(hours) }}:{{doubleZero(minutes)}}:{{doubleZero(seconds)}} <small>{{hours<12? "AM":"PM"}}</small></h1>
+            <h1 class="text-center " ><a class="btn text-center btn-lg" style="cursor: pointer" onclick="app.focusedDate = app.focusedDate.addDays(-1)"><i class="fas fa-chevron-left"></i></a><input id="dp" style="height: 0;width: 0;opacity: 0;position:absolute" data-provide="datepicker"/><label style="cursor: pointer" v-cloak for="dp" class="text-primary text-center h3">{{["Sun","Mon","Tues","Wed","Thurs","Fri","Sat"][focusedDate.getDay()]}}, {{["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sept","Oct","Nov","Dec"][focusedDate.getMonth()]}} {{focusedDate.getDate()}}</label><a style="cursor: pointer" class="btn text-center btn-lg" onclick="app.focusedDate = app.focusedDate.addDays(1)"><i class="fas fa-chevron-right"></i></a></h1>
             </div>
 
-
+<!--foreach period index, if the end time is less  than time and the start time of next class is more, then show a progress bar with that.-->
                         <template v-for="period in focusedSched||[]" >
                             <div class="card text-white my-2 py-0" tabindex="0" :class="'bg-'+(dclasses.filter(function(c){return c.hcname==period.name})[0] || {color:'dark'}).color" style="border-radius: 1.5rem">
                                 <div class="card-body">
@@ -148,7 +149,7 @@
 
                                     <p class="text-white">{{niceHours(period.start[0])}}:{{doubleZero(period.start[1])}} to {{niceHours(period.end[0])}}:{{doubleZero(period.end[1])}}</p>
                                     <div class="progress" v-if="((period.start[0]==(hours) && period.start[1]<=minutes)||(period.start[0]<hours)) && ((period.end[0]>hours)||(period.end[0]==(hours) && period.end[1]>=minutes)) && focusedDate.getDate()==time.getDate() && focusedDate.getMonth()==time.getMonth()">
-                                        <div class="progress-bar " :class="'progress-bar-striped progress-bar-animated list-group-item-'+(dclasses.filter(function(c){return c.hcname==period.name})[0] || {color:'dark'}).color" role="progressbar" :style="'width: '+100*(((hours-period.start[0])*60)+(minutes-period.start[1]))/(((period.end[0]-period.start[0])*60)+(period.end[1]-period.start[1]))+'%'"  aria-valuemin="0" aria-valuemax="100">{{(((period.end[0]-period.start[0])*60)+(period.end[1]-period.start[1])) - (((hours-period.start[0])*60)+(minutes-period.start[1]))}} min left</div>
+                                        <div class="progress-bar " :class="'progress-bar-striped progress-bar-animated list-group-item-'+(dclasses.filter(function(c){return c.hcname==period.name})[0] || {color:'dark'}).color" role="progressbar" :style="'width: '+100*(((hours-period.start[0])*3600)+(minutes-period.start[1])*60 + seconds+time.getMilliseconds()/10)/(((period.end[0]-period.start[0])*3600)+(period.end[1]-period.start[1])*60)+'%'"  aria-valuemin="0" aria-valuemax="100">{{(((period.end[0]-period.start[0])*60)+(period.end[1]-period.start[1])) - (((hours-period.start[0])*60)+(minutes-period.start[1]))}} min left</div>
 
                                     </div>
                                 </div>
@@ -160,7 +161,7 @@
                             <div class="row text-center my-3"><p class="text-center display-6">No Classes Today!<br/> Sleep on the couch?</p></div>
                         </div>
                         <div class="container justify-content-center mx-auto row pb-1 " style="padding-left: 1em;padding-right: 1em;margin-left:auto;margin-right:auto">
-                            <div v-for="int in [0,1,2,3,4,5,6]" class="col  text-center py-1  mini-block " tabindex="0" :onclick="'app.focusedDate = app.focusedDate.addDays('+(int-focusedDate.getDay())+')'" style="max-width:80px!important;margin-left:0.13rem;margin-right:0.13rem">
+                            <div v-for="int in [0,1,2,3,4,5,6]" class="col  text-center py-1  mini-block " tabindex="0" :onclick="'app.focusedDate = app.focusedDate.addDays('+(int-focusedDate.getDay())+')'" :class="(int==focusedDate.getDay()? 'active':'')+(int==time.getDay()? ' today':'')" style="max-width:80px!important;margin-left:0.13rem;margin-right:0.13rem">
                                 <div class="row"><span class="text-center">{{['S','M','T','W','H','F','S'][int]}}</span></div>
                                 <div style="">
                                 <div v-for="p in getSched(focusedDate.addDays(int-focusedDate.getDay()),schedule)" style="margin-top:0.1rem;margin-bottom:0.1rem" class="row card card-body p-1   text-center" :class="'bg-'+(dclasses.filter(function(c){return c.hcname==p.name})[0] || {color:'dark'}).color"></div>
@@ -468,16 +469,7 @@
         </div>
     </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-<script src="bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
-<script src="moment.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" integrity="sha512-T/tUfKSV1bihCnd+MxKD0Hm1uBBroVYBOYSk1knyvQ9VyZJpc/ALb4P0r6ubwVPSGB2GvjeoMAJJImBG12TiaQ==" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
-<script src="https://unpkg.com/vuex@3.5.1/dist/vuex.js"></script>
-<script src="index.js"></script>
-<script type="module" src="clubs/fetch.js"></script>
+
 <style>
     .nav-fill .nav-item, .nav-fill > .nav-link:hover:not(.active):not(.disabled){
         background-color: rgba(187, 214, 254,0.7);
@@ -522,10 +514,15 @@
         }
     }
 
-    .mini-block:hover, .mini-block:focus{
-        background-color: rgba(187, 214, 254,0.7);
-    }
 
+
+    .mini-block.today {
+        font-weight: 800 !important;
+        background-color: var(--grey4) ;
+    }
+    .mini-block:hover, .mini-block:focus, .mini-block.active{
+        background-color: rgba(187, 214, 254,0.7) ;
+    }
 
 
     .view{
@@ -534,6 +531,13 @@
 
     .progress{
         background-color: #ffffff;
+    }
+
+    .list-group-item-action:focus{
+        background-color: var(--grey1);
+        color:var(--grey2);
+
+        border-right-style: hidden;
     }
 
 
@@ -559,7 +563,17 @@
     firebase.initializeApp(firebaseConfig);
     const db = firebase.database()
 </script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+<script src="moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" integrity="sha512-T/tUfKSV1bihCnd+MxKD0Hm1uBBroVYBOYSk1knyvQ9VyZJpc/ALb4P0r6ubwVPSGB2GvjeoMAJJImBG12TiaQ==" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="loadSchedule.js"></script>
+
+<script src="index.js"></script>
+<script type="module" src="clubs/fetch.js"></script>
 <script>
     $('#dp').on('changeDate', function() {
         app.focusedDate = $("#dp").datepicker("getDate")

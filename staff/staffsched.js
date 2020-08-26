@@ -1,6 +1,7 @@
 export let sched = {
     "mweisman@pausd.org":{
         "lastName":"Weisman",
+        "Subject":"History",
         "semesters":{
             "S1":{
                 "6":"US Govt"
@@ -9,6 +10,7 @@ export let sched = {
     },
     "mparonable@pausd.org": {
         "lastName": "Paronable",
+        "Subject":"English",
         "semesters": {
             "S1": {
                 "1": "Contemporary Heritage",
@@ -30,6 +32,7 @@ export let sched = {
     },
     "cbissegger@pausd.org": {
         "lastName": "Bissegger",
+        "Subject":"English",
         "semesters": {
             "S1": {
                 "2": "Acad Planning",
@@ -62,6 +65,7 @@ export let sched = {
     },
     "rdion@pausd.org": {
         "lastName": "Dion",
+        "Subject":"Math",
         "semesters": {
             "S1": {
                 "1": "AP Calculus AB",
@@ -83,6 +87,7 @@ export let sched = {
     },
     "tfirenzi@pausd.org": {
         "lastName": "Firenzi",
+        "Subject":"History",
         "semesters": {
             "S1": {
                 "SELF": "SELF"
@@ -106,6 +111,7 @@ export let sched = {
     },
     "kgranlund@pausd.org": {
         "lastName": "Granlund-Moyer",
+        "Subject":"Engineering",
         "semesters": {
             "S1": {
                 "1": "Prnc Of Engr H PLTW",
@@ -125,6 +131,7 @@ export let sched = {
     },
     "mhall@pausd.org": {
         "lastName": "Hall",
+        "Subject":"Japanese",
         "semesters": {
             "S1": {
                 "2": "Japanes 2",
@@ -146,6 +153,7 @@ export let sched = {
     },
     "pholmes@pausd.org": {
         "lastName": "Holmes",
+        "Subject":"History",
         "semesters": {
             "S1": {
                 "1": "Law 1",
@@ -167,6 +175,7 @@ export let sched = {
     },
     "tkaneko@pausd.org": {
         "lastName": "Kaneko",
+        "Subject":"Math Computing",
         "semesters": {
             "S1": {
                 "1": "Funct Object Or Prog",
@@ -188,6 +197,7 @@ export let sched = {
     },
     "ckaufman@pausd.org": {
         "lastName": "Kaufman",
+        "Subject":"French",
         "semesters": {
             "S1": {
                 "1": "French 2",
@@ -207,6 +217,7 @@ export let sched = {
     },
     "flimburg@pausd.org": {
         "lastName": "Limburg",
+        "Subject":"Math",
         "semesters": {
             "S1": {
                 "2": "Alg2/TrigH",
@@ -239,6 +250,7 @@ export let sched = {
     },
     "ksaxena@pausd.org": {
         "lastName": "Saxena",
+        "Subject":"Math",
         "semesters": {
             "S1": {
                 "1": "Pre Calc",
@@ -254,6 +266,7 @@ export let sched = {
     },
     "qsims@pausd.org": {
         "lastName": "Sims",
+        "Subject":"English",
         "semesters": {
             "S1": {
                 "3": "Cont Herit",
@@ -311,6 +324,7 @@ export let sched = {
     },
     "jtucker@pausd.org": {
         "lastName": "Tucker",
+        "Subject":"Living Skills",
         "semesters": {
             "S1": {
                 "1": "Liv Skill",
@@ -347,6 +361,7 @@ export let sched = {
     },
     "eyun@pausd.org": {
         "lastName": "Yun",
+        "Subject":"Math Business",
         "semesters": {
             "S1": {
                 "1": "Geom H",
@@ -368,6 +383,7 @@ export let sched = {
     },
     "amanderson@pausd.org": {
         "lastName": "Anderson",
+        "Subject":"PE",
         "semesters": {
             "S1": {
                 "1": "PE 9",
@@ -402,6 +418,7 @@ export let sched = {
     },
     "kblackburn@pausd.org": {
         "lastName": "Blackburn",
+        "Subject":"English",
         "semesters": {
             "S1": {
                 "1": "Beginning Journalism",
@@ -432,6 +449,7 @@ export let sched = {
     },
     "ccohn@pausd.org": {
         "lastName": "Cohn",
+        "Subject":"Physics",
         "semesters": {
             "S1": {
                 "1": "Physics",
@@ -453,6 +471,7 @@ export let sched = {
     },
     "mhernandez@pausd.org": {
         "lastName": "Hernandez",
+        "Subject":"English",
         "semesters": {
             "S1": {
                 "1": "Film Lit",
@@ -474,6 +493,7 @@ export let sched = {
     },
     "tkitada@pausd.org": {
         "lastName": "Kitada",
+        "Subject":"English",
         "semesters": {
             "S1": {
                 "3": "Visual Story",
@@ -495,6 +515,7 @@ export let sched = {
     },
     "bliberatore@pausd.org": {
         "lastName": "Liberatore",
+        "Subject":"Music",
         "semesters": {
             "S1": {
                 "2": "AP Music Theory",
@@ -514,6 +535,7 @@ export let sched = {
     },
     "jlopez@pausd.org": {
         "lastName": "Lopez",
+        "Subject":"Math",
         "semesters": {
             "S1": {
                 "2": "Geom",
@@ -535,6 +557,7 @@ export let sched = {
     },
     "alorey@pausd.org": {
         "lastName": "Lorey",
+        "Subject":"Physics",
         "semesters": {
             "S1": {
                 "1": "AP Physics C: Mechanics",
@@ -556,6 +579,7 @@ export let sched = {
     },
     "jasmiller@pausd.org": {
         "lastName": "Miller",
+        "Subject":"History",
         "semesters": {
             "S1": {
                 "1": "US Govt",
@@ -579,6 +603,7 @@ export let sched = {
     },
     "lpennington@pausd.org": {
         "lastName": "Pennington",
+        "Subject":"Physics",
         "semesters": {
             "S1": {
                 "1": "Conceptual Physics",
@@ -598,6 +623,7 @@ export let sched = {
     },
     "drenazco@pausd.org": {
         "lastName": "Renazco",
+        "Subject":"Math, Computing",
         "semesters": {
             "S1": {
                 "2": "Alg2",
@@ -617,6 +643,7 @@ export let sched = {
     },
     "ksabbag@pausd.org": {
         "lastName": "Sabbag",
+        "Subject":"PE",
         "semesters": {
             "S1": {
                 "1": "PE 10",
@@ -640,6 +667,7 @@ export let sched = {
     },
     "jshelby@pausd.org": {
         "lastName": "Shelby",
+        "Subject":"Theatre",
         "semesters": {
             "S1": {
                 "1": "Theatre 2",
@@ -658,6 +686,7 @@ export let sched = {
     },
     "ltabuchi@pausd.org": {
         "lastName": "Tabuchi",
+        "Subject":"English Econ",
         "semesters": {
             "S1": {
                 "2": "Escape Lit",
@@ -679,6 +708,7 @@ export let sched = {
     },
     "dwang@pausd.org": {
         "lastName": "Wang",
+        "Subject":"Math",
         "semesters": {
             "S1": {
                 "1": "Geom A",
@@ -700,6 +730,7 @@ export let sched = {
     },
     "kzavack@pausd.org": {
         "lastName": "Zavack",
+        "Subject":"English",
         "semesters": {
             "S1": {
                 "1": "Cont Herit",
@@ -721,6 +752,7 @@ export let sched = {
     },
     "mcamicia@pausd.org": {
         "lastName": "Camicia",
+        "Subject":"Auto",
         "semesters": {
             "S1": {
                 "2": "Auto 1",
@@ -753,6 +785,7 @@ export let sched = {
     },
     "kcatalano@pausd.org": {
         "lastName": "Catalano",
+        "Subject":"Chemistry",
         "semesters": {
             "S1": {
                 "3": "Chemistry H",
@@ -774,6 +807,7 @@ export let sched = {
     },
     "ehalter@pausd.org": {
         "lastName": "Halter",
+        "Subject":"English",
         "semesters": {
             "S1": {
                 "1": "Cont Herit",
@@ -795,6 +829,7 @@ export let sched = {
     },
     "jhexsel@pausd.org": {
         "lastName": "Hexsel",
+        "Subject":"Math Computing",
         "semesters": {
             "S1": {
                 "2": "Geom",
@@ -814,6 +849,7 @@ export let sched = {
     },
     "akinyanjui@pausd.org": {
         "lastName": "Kinyanjui",
+        "Subject":"History",
         "semesters": {
             "S1": {
                 "1": "Wld Hist",
@@ -846,6 +882,7 @@ export let sched = {
     },
     "dlinsdell@pausd.org": {
         "lastName": "Linsdell",
+        "Subject":"Econ",
         "semesters": {
             "S1": {
                 "1": "Econ AP",
@@ -867,6 +904,7 @@ export let sched = {
     },
     "jlittle@pausd.org": {
         "lastName": "Little",
+        "Subject":"Biology",
         "semesters": {
             "S1": {
                 "1": "Biology H",
@@ -888,6 +926,7 @@ export let sched = {
     },
     "llizundia@pausd.org": {
         "lastName": "Lizundia",
+        "Subject":"French",
         "semesters": {
             "S1": {
                 "1": "French 3",
@@ -909,6 +948,7 @@ export let sched = {
     },
     "bmiguel@pausd.org": {
         "lastName": "Miguel",
+        "Subject":"History",
         "semesters": {
             "S1": {
                 "1": "US Govt",
@@ -930,6 +970,7 @@ export let sched = {
     },
     "coconnell@pausd.org": {
         "lastName": "O'Connell",
+        "Subject":"Chemistry",
         "semesters": {
             "S1": {
                 "1": "Chemistry H",
@@ -951,6 +992,7 @@ export let sched = {
     },
     "kowen@pausd.org": {
         "lastName": "Owen",
+        "Subject":"English",
         "semesters": {
             "S1": {
                 "2": "Contemporary Heritage SLC",
@@ -970,6 +1012,7 @@ export let sched = {
     },
     "hperkins@pausd.org": {
         "lastName": "Perkins",
+        "Subject":"Psychology History",
         "semesters": {
             "S1": {
                 "1": "AP Psychology",
@@ -991,6 +1034,7 @@ export let sched = {
     },
     "cpeters@pausd.org": {
         "lastName": "Peters",
+        "Subject":"Art",
         "semesters": {
             "S1": {
                 "2": "Fiber Arts",
@@ -1012,6 +1056,7 @@ export let sched = {
     },
     "cschroeppel@pausd.org": {
         "lastName": "Schroeppel",
+        "Subject":"German",
         "semesters": {
             "S1": {
                 "1": "GermanLangAP",
@@ -1031,6 +1076,7 @@ export let sched = {
     },
     "dtabares@pausd.org": {
         "lastName": "Tabares Ruiz",
+        "Subject":"Spanish",
         "semesters": {
             "S1": {
                 "1": "Spanish 2",
@@ -1052,6 +1098,7 @@ export let sched = {
     },
     "aaro@pausd.org": {
         "lastName": "Aro",
+        "Subject":"History",
         "semesters": {
             "S1": {
                 "1": "US Hist",
@@ -1073,6 +1120,7 @@ export let sched = {
     },
     "mbautista@pausd.org": {
         "lastName": "Bautista",
+        "Subject":"Math Computing",
         "semesters": {
             "S1": {
                 "1": "APCompSci A",
@@ -1094,6 +1142,7 @@ export let sched = {
     },
     "dbisbee@pausd.org": {
         "lastName": "Bisbee",
+        "Subject":"History",
         "semesters": {
             "S1": {
                 "1": "US Govt",
@@ -1117,6 +1166,7 @@ export let sched = {
     },
     "ccarlomagno@pausd.org": {
         "lastName": "Carlomagno",
+        "Subject":"Physics",
         "semesters": {
             "S1": {
                 "1": "Conceptual Physics",
@@ -1134,6 +1184,7 @@ export let sched = {
     },
     "rcongress@pausd.org": {
         "lastName": "Congress",
+        "Subject":"Math",
         "semesters": {
             "S1": {
                 "1": "Alg2/Trg A",
@@ -1155,6 +1206,7 @@ export let sched = {
     },
     "ggarger@pausd.org": {
         "lastName": "Garger",
+        "Subject":"Spanish",
         "semesters": {
             "S1": {
                 "2": "Spanish 2",
