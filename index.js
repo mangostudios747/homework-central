@@ -4,40 +4,7 @@ Date.prototype.addDays = function(days) {
     return date;
 }
 
-Vue.component('tsched',{
-    props:["email"],
-    template:`
-    <table class="table table-borderless">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
-</table>
-    `
-})
+
 
 Vue.component('course-block', {
     props: ["color","name","teacher","assignments","index","completed"],
@@ -52,7 +19,7 @@ Vue.component('course-block', {
                 <template>
                 <li v-for="(assignment,aIndex) in assignments" :class="'list-group-item list-group-item-'+color"><a :onclick="'app.classes['+index+'].assignments.splice('+aIndex+',1);save()'" style="text-decoration: none;cursor: pointer" class="display-6 mt-4 text-muted close float-right">&times;</a><h5 class="pt-2"><div class="">
   <button type="button" class="btn" :id="index+'-'+aIndex" :onclick="'setTimeout(()=>{app.classes['+index+'].completed.push(app.classes['+index+'].assignments['+aIndex+']);app.classes['+index+'].assignments.splice('+aIndex+',1);save();},100)'"><i class="far text-white fa-square"></i></button>
-  <label class="" :for="index+'-'+aIndex">{{assignment.name}} <i class="ml-2 fas fa-pen"></i></label>
+  <label class="" :for="index+'-'+aIndex">{{assignment.name}} <i  class="ml-2 fas fa-pen"></i></label>
 </div>  </h5><p class="text-muted">{{assignment.due.toDateString() }}</p></li>
             </template>
            <li class="list-group-item blank dropdown-toggle" style="cursor: pointer" data-toggle="collapse" :href="'#completed-'+index" aria-expanded="false" aria-controls="'completed-'+index">
@@ -89,7 +56,7 @@ Vue.component('dcourse-block', {
                 <template>
                 <li v-for="(assignment,aIndex) in assignments" :class="'list-group-item text-white bg-'+color"><a :onclick="'app.dclasses['+index+'].assignments.splice('+aIndex+',1);save()'" style="text-decoration: none;cursor: pointer" class="display-6 mt-4 text-muted close float-right">&times;</a><h5 class="pt-2"><div class="">
   <button type="button" class="btn" :id="index+'-'+aIndex" :onclick="'setTimeout(()=>{app.dclasses['+index+'].completed.push(app.dclasses['+index+'].assignments['+aIndex+']);app.dclasses['+index+'].assignments.splice('+aIndex+',1);save();},100)'"><i class="far text-white fa-square"></i></button>
-  <span><label class="" :for="index+'-'+aIndex">{{assignment.name}} </label> <a class="btn" :onclick="'app.focusedAssig = '+ aIndex+';document.getElementById(\`eATitle\`).value= \`'+assignment.name+'\`'"><i class=" text-white fas fa-pen"></i></a></span>
+  <span><label class="" :for="index+'-'+aIndex">{{assignment.name}} </label> <a class="btn" :onclick="'app.focusedAssig = '+ aIndex+';document.getElementById(\`eDATitle\`).value= \`'+assignment.name+'\`'" data-toggle="modal" data-target="#edam"><i class=" text-white fas fa-pen"></i></a></span>
 </div>  </h5><p class="text-white">{{assignment.due.toDateString() }}</p></li>
             </template>
            <li class="list-group-item blank dropdown-toggle" style="cursor: pointer" data-toggle="collapse" :href="'#dcompleted-'+index" aria-expanded="false" aria-controls="'dcompleted-'+index">Completed</li>
@@ -246,6 +213,9 @@ var app = new Vue({
         else{
             return num;
         }
+    },
+    badgeContent:function(period){
+        const l = (this.dclasses.filter(function(c){return c.hcname==period.name})[0] || {assignments:[]}).assignments.length;if (l!==0){return l} else {return ""}
     },
     getSched:function (dob,sched){
             if (sched.overrides==undefined){

@@ -45,6 +45,14 @@
 
 
 
+    </style><style>
+        @media (min-width: 992px){
+            #pills-refdesc.active ~ #pills-ref {
+                display: block !important;
+                opacity: 100;
+            }
+        }
+
     </style>
 </head>
 <body class="bg-light" data-theme="light" data-mode="ios" >
@@ -74,21 +82,13 @@
         </div>
 
     </div>
-    <style>
-        @media (min-width: 992px){
-            #pills-refdesc.active ~ #pills-ref {
-                display: block !important;
-                opacity: 100;
-            }
-        }
 
-    </style>
     <div class="bg-light tab-pane fade  view pt-5" aria-labelledby="pills-ref-tab" id="pills-ref" role="tabpanel" style="margin-bottom: 0">
 
         <div class="row">
         <div class="col">
             <div class="mb-2 d-none">
-                <input type="text" placeholder="<i class='fas fa-search'></i>Search" class="form-control form-control-sm" style="
+                <input type="text" placeholder="Search" class="form-control form-control-sm" style="
     background-color: var(--grey4);
     border-color: var(--grey4);
     color: var(--grey2);
@@ -143,7 +143,7 @@
                                 <div class="card-body">
                                     <p class="h4 ">
                                         <a class="stretched-link text-decoration-none text-light" :href="(dclasses.filter(function(c){return c.hcname==period.name})[0] || {zoom:null}).zoom">{{(dclasses.filter(function(c){return c.hcname==period.name})[0] || period).name}}</a>
-                                        <span class="badge badge-light badge-pill" :class="'text-'+(dclasses.filter(function(c){return c.hcname==period.name})[0] || {color:'dark'}).color"><script>function(){const l = (dclasses.filter(function(c){return c.hcname==period.name})[0] || {assignments:[]}).assignments.length;if (l==0){return 0} else {return ""}}}</script></span>
+                                        <span class="badge badge-light badge-pill" :class="'text-'+(dclasses.filter(function(c){return c.hcname==period.name})[0] || {color:'dark'}).color">{{badgeContent(period)}}</span>
                                     </p>
                                     {{(dclasses.filter(function(c){return c.hcname==period.name})[0] || period).teacher}}
 
@@ -194,10 +194,13 @@
 <div class="bg-light tab-pane fade view pt-5" aria-labelledby="pills-settings-tab" id="pills-settings" role="tabpanel" style="min-height:110vh;width:100%">
     <div class="container">
         <h1 class="">Information</h1>
+        <div class="alert alert-info" role="alert">
+Check out the new <a href="course-catalog" class="alert-link">Course Catalog!</a>
+</div>
         <p>Stuff that's coming soon:</p>
         <ul>
             <li>Barcode and map (stashed, since you won't need them for a while)</li>
-            <li>Clubs list - working with SEC and getting permissions to make it auto-update every time Mrs.Hall edits the spreadsheet</li>
+            <li>Dynamic club list</li>
             <li>Passing period progress bar. Don't be late to class!</li>
 
         </ul>
@@ -282,6 +285,7 @@
         </div>
     </div>
 </div>
+
 <div class="modal fade" id="ndam" tabindex="-1" aria-labelledby="ndaml" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -469,7 +473,35 @@
         </div>
     </div>
 </div>
-
+<div class="modal fade" id="edam" tabindex="-1" aria-labelledby="edaml" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="edaml">Edit Assignment</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group py-2">
+                        <label for="eDATitle">Name</label>
+                        <input id="eDATitle" class="form-control" type="text"/>
+                    </div>
+                    <div class="form-group py-2">
+                        <label for="eDDFromNow">Days from now</label>
+                        <input id="eDDFromNow" class="form-control" value="1" type="number"/>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" id="edab" onclick="const now = new Date();app.classes[app.focusedClass].assignments[app.focusedAssig]={name:document.getElementById('eDATitle').value,
+                due:now.addDays(parseInt(document.getElementById('eDDFromNow').value))};$('#edam').modal('hide');save()" class="btn btn-primary">Create Assignment</button>
+            </div>
+        </div>
+    </div>
+</div>
 <style>
     .nav-fill .nav-item, .nav-fill > .nav-link:hover:not(.active):not(.disabled){
         background-color: rgba(187, 214, 254,0.7);

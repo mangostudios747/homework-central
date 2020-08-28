@@ -1,0 +1,989 @@
+{
+    "Video Prod": [
+        [],
+        []
+    ],
+    "AdvDigiFilm": [
+        [],
+        []
+    ],
+    "Adv Video H": [
+        [],
+        [
+            "Honors"
+        ]
+    ],
+    "Audio/MusicProd": [
+        [
+            "Music"
+        ],
+        []
+    ],
+    "Adv Audio/Music Prod": [
+        [
+            "Music"
+        ],
+        []
+    ],
+    "Theatre 1": [
+        [],
+        []
+    ],
+    "Theatre 2": [
+        [],
+        []
+    ],
+    "Theatre 3": [
+        [],
+        []
+    ],
+    "Stage Tech": [
+        [],
+        []
+    ],
+    "Stg Tech11": [
+        [],
+        []
+    ],
+    "Theatre 4": [
+        [],
+        []
+    ],
+    "Philos Lit": [
+        [],
+        []
+    ],
+    "Cont Herit": [
+        [],
+        []
+    ],
+    "Contemporary Heritage": [
+        [],
+        []
+    ],
+    "Lit Style": [
+        [],
+        []
+    ],
+    "Literary Style": [
+        [],
+        []
+    ],
+    "AmerLit 11": [
+        [],
+        []
+    ],
+    "AmerLit": [
+        [],
+        []
+    ],
+    "AP English Lit & Comp": [
+        [],
+        [
+            "AP"
+        ]
+    ],
+    "Am Clas11H": [
+        [],
+        [
+            "Honors"
+        ]
+    ],
+    "Am Clas11H SJ": [
+        [],
+        []
+    ],
+    "Inter Comp": [
+        [],
+        []
+    ],
+    "Film Lit": [
+        [],
+        []
+    ],
+    "Escape Lit": [
+        [],
+        []
+    ],
+    "Adv Journ": [
+        [],
+        []
+    ],
+    "Class Myth": [
+        [],
+        []
+    ],
+    "BroadJourn": [
+        [],
+        []
+    ],
+    "BasCollSk": [
+        [],
+        []
+    ],
+    "ReadBetLines": [
+        [],
+        []
+    ],
+    "Visual Story": [
+        [],
+        []
+    ],
+    "Wld Hist": [
+        [],
+        []
+    ],
+    "ContWld 11": [
+        [],
+        []
+    ],
+    "US Hist": [
+        [],
+        []
+    ],
+    "AP US History": [
+        [],
+        [
+            "AP"
+        ]
+    ],
+    "US Govt": [
+        [],
+        []
+    ],
+    "AP Human Geography": [
+        [],
+        [
+            "AP"
+        ]
+    ],
+    "USFor Pol H": [
+        [],
+        [
+            "Honors"
+        ]
+    ],
+    "Econ AP": [
+        [],
+        [
+            "AP"
+        ]
+    ],
+    "Econ 11": [
+        [],
+        []
+    ],
+    "Psych 11": [
+        [],
+        []
+    ],
+    "Positive Psychology": [
+        [],
+        []
+    ],
+    "AP Psychology": [
+        [],
+        [
+            "AP"
+        ]
+    ],
+    "Focus on Success": [
+        [],
+        []
+    ],
+    "AP Statistics": [
+        [
+            "Math"
+        ],
+        [
+            "AP"
+        ]
+    ],
+    "Alg 1A": [
+        [
+            "Math"
+        ],
+        []
+    ],
+    "Geom": [
+        [
+            "Math"
+        ],
+        []
+    ],
+    "Geom A": [
+        [
+            "Math"
+        ],
+        []
+    ],
+    "Alg2/Trg A": [
+        [
+            "Math"
+        ],
+        []
+    ],
+    "Pre Calc": [
+        [
+            "Math"
+        ],
+        []
+    ],
+    "Alg2": [
+        [
+            "Math"
+        ],
+        []
+    ],
+    "IntrAnl/Calc": [
+        [
+            "Math"
+        ],
+        []
+    ],
+    "Analysis H": [
+        [
+            "Math"
+        ],
+        [
+            "Honors"
+        ]
+    ],
+    "Geom H": [
+        [
+            "Math"
+        ],
+        [
+            "Honors"
+        ]
+    ],
+    "Alg2/TrigH": [
+        [
+            "Math"
+        ],
+        [
+            "Honors"
+        ]
+    ],
+    "BEAM": [
+        [],
+        []
+    ],
+    "AP Calculus AB": [
+        [
+            "Math"
+        ],
+        [
+            "AP"
+        ]
+    ],
+    "Applied Math": [
+        [
+            "Math"
+        ],
+        []
+    ],
+    "AP Calculus BC": [
+        [
+            "Math"
+        ],
+        [
+            "AP"
+        ]
+    ],
+    "APCompSci A": [
+        [],
+        [
+            "AP"
+        ]
+    ],
+    "PE 9": [
+        [],
+        []
+    ],
+    "PE 10": [
+        [],
+        []
+    ],
+    "Yoga": [
+        [],
+        []
+    ],
+    "Biology": [
+        [],
+        []
+    ],
+    "Biology H": [
+        [],
+        [
+            "Honors"
+        ]
+    ],
+    "AP Biology": [
+        [],
+        [
+            "AP"
+        ]
+    ],
+    "Marine Biology": [
+        [],
+        []
+    ],
+    "Bio SLC": [
+        [],
+        [
+            "SLC"
+        ]
+    ],
+    "Conceptual Physics": [
+        [],
+        []
+    ],
+    "AP Environmental Science": [
+        [],
+        [
+            "AP"
+        ]
+    ],
+    "AP Chemistry": [
+        [
+            "Science",
+            "Chemistry"
+        ],
+        [
+            "AP"
+        ]
+    ],
+    "Chemistry": [
+        [
+            "Science",
+            "Chemistry"
+        ],
+        []
+    ],
+    "Chemistry H": [
+        [
+            "Science",
+            "Chemistry"
+        ],
+        [
+            "Honors"
+        ]
+    ],
+    "Physics": [
+        [],
+        []
+    ],
+    "AP Physics 1": [
+        [],
+        [
+            "AP"
+        ]
+    ],
+    "AP Physics C: Mechanics": [
+        [],
+        [
+            "AP"
+        ]
+    ],
+    "AP Physics C: E&M": [
+        [],
+        [
+            "AP"
+        ]
+    ],
+    "AP Physics C": [
+        [],
+        [
+            "AP"
+        ]
+    ],
+    "Bio Tech": [
+        [],
+        []
+    ],
+    "Chinese 1": [
+        [],
+        []
+    ],
+    "Chinese 2": [
+        [],
+        []
+    ],
+    "ChLangCulAP": [
+        [],
+        [
+            "AP"
+        ]
+    ],
+    "Chinese 3": [
+        [],
+        []
+    ],
+    "ChineseCiv&CultureH": [
+        [],
+        [
+            "Honors"
+        ]
+    ],
+    "French 1": [
+        [
+            "French",
+            "WorldLanguage"
+        ],
+        []
+    ],
+    "French 2": [
+        [
+            "French",
+            "WorldLanguage"
+        ],
+        []
+    ],
+    "French 3": [
+        [
+            "French",
+            "WorldLanguage"
+        ],
+        []
+    ],
+    "AP French Language": [
+        [
+            "French",
+            "WorldLanguage"
+        ],
+        [
+            "AP"
+        ]
+    ],
+    "German 1": [
+        [
+            "German",
+            "WorldLanguage"
+        ],
+        []
+    ],
+    "German 2": [
+        [
+            "German",
+            "WorldLanguage"
+        ],
+        []
+    ],
+    "German 3": [
+        [
+            "German",
+            "WorldLanguage"
+        ],
+        []
+    ],
+    "GermanLangAP": [
+        [
+            "German",
+            "WorldLanguage"
+        ],
+        [
+            "AP"
+        ]
+    ],
+    "Japanes 1": [
+        [
+            "Japanese",
+            "WorldLanguage"
+        ],
+        []
+    ],
+    "Japanes 2": [
+        [
+            "Japanese",
+            "WorldLanguage"
+        ],
+        []
+    ],
+    "Japanes 3": [
+        [
+            "Japanese",
+            "WorldLanguage"
+        ],
+        []
+    ],
+    "Japanes 4H": [
+        [
+            "Japanese",
+            "WorldLanguage"
+        ],
+        [
+            "Honors"
+        ]
+    ],
+    "JapnLangAP": [
+        [
+            "Japanese",
+            "WorldLanguage"
+        ],
+        [
+            "AP"
+        ]
+    ],
+    "Span/Span1": [
+        [
+            "Spanish",
+            "WorldLanguage"
+        ],
+        []
+    ],
+    "Span/Span2": [
+        [
+            "Spanish",
+            "WorldLanguage"
+        ],
+        []
+    ],
+    "Spanish 1": [
+        [
+            "Spanish",
+            "WorldLanguage"
+        ],
+        []
+    ],
+    "Spanish 2": [
+        [
+            "Spanish",
+            "WorldLanguage"
+        ],
+        []
+    ],
+    "Spanish 3": [
+        [
+            "Spanish",
+            "WorldLanguage"
+        ],
+        []
+    ],
+    "SpCiv/CulH": [
+        [],
+        [
+            "Honors"
+        ]
+    ],
+    "AP Spanish Language": [
+        [
+            "Spanish",
+            "WorldLanguage"
+        ],
+        [
+            "AP"
+        ]
+    ],
+    "AP Spanish Literature": [
+        [
+            "Spanish",
+            "WorldLanguage"
+        ],
+        [
+            "AP"
+        ]
+    ],
+    "Princ of Bus B": [
+        [],
+        []
+    ],
+    "CR/CivLaw": [
+        [],
+        []
+    ],
+    "Law 1": [
+        [],
+        []
+    ],
+    "Stage Tech 2": [
+        [],
+        []
+    ],
+    "Stage Tech 2D": [
+        [],
+        []
+    ],
+    "Adv Photo H": [
+        [
+            "Art"
+        ],
+        [
+            "Honors"
+        ]
+    ],
+    "Auto 1": [
+        [],
+        []
+    ],
+    "Auto 2": [
+        [],
+        []
+    ],
+    "Prnc Of Engr PLTW": [
+        [],
+        []
+    ],
+    "Prnc Of Engr H PLTW": [
+        [],
+        []
+    ],
+    "Fiber Arts": [
+        [
+            "Art"
+        ],
+        []
+    ],
+    "Culinary Arts - Introduction": [
+        [
+            "Art"
+        ],
+        []
+    ],
+    "Culinary Arts - International": [
+        [
+            "Art"
+        ],
+        []
+    ],
+    "SportsNutr": [
+        [],
+        []
+    ],
+    "Interior11": [
+        [],
+        []
+    ],
+    "Photo 1": [
+        [
+            "Art"
+        ],
+        []
+    ],
+    "Adv Photo": [
+        [
+            "Art"
+        ],
+        []
+    ],
+    "Gprd/Yrbk": [
+        [],
+        []
+    ],
+    "Art Spec 1": [
+        [
+            "Art"
+        ],
+        []
+    ],
+    "Ceramics 1": [
+        [
+            "Art"
+        ],
+        []
+    ],
+    "GraphDes": [
+        [],
+        []
+    ],
+    "Adv Gr Des": [
+        [],
+        []
+    ],
+    "Advanced Ceramics 1": [
+        [
+            "Art"
+        ],
+        []
+    ],
+    "Advanced Ceramics 2": [
+        [
+            "Art"
+        ],
+        []
+    ],
+    "Adv.Draw/Painting H": [
+        [],
+        [
+            "Honors"
+        ]
+    ],
+    "Pt/Dr 1": [
+        [],
+        []
+    ],
+    "Adv.Draw/Painting II": [
+        [],
+        []
+    ],
+    "Digital Art Spectrum": [
+        [
+            "Art"
+        ],
+        []
+    ],
+    "Astrophysics": [
+        [],
+        []
+    ],
+    "AP Stud Art": [
+        [
+            "Art"
+        ],
+        [
+            "AP"
+        ]
+    ],
+    "ArtStu3D AP": [
+        [
+            "Art"
+        ],
+        [
+            "AP"
+        ]
+    ],
+    "Wind Ens": [
+        [],
+        []
+    ],
+    "AP Studio Art - Drawing": [
+        [
+            "Art"
+        ],
+        [
+            "AP"
+        ]
+    ],
+    "Band": [
+        [
+            "Music"
+        ],
+        []
+    ],
+    "Symph Band": [
+        [
+            "Music"
+        ],
+        []
+    ],
+    "Jazz B": [
+        [
+            "Music"
+        ],
+        []
+    ],
+    "Jazz Ens": [
+        [
+            "Music"
+        ],
+        []
+    ],
+    "Orchstr": [
+        [
+            "Music"
+        ],
+        []
+    ],
+    "Therapeutic Elective": [
+        [],
+        []
+    ],
+    "Academic Math": [
+        [
+            "Math"
+        ],
+        []
+    ],
+    "Acad Enhancement SAI": [
+        [],
+        []
+    ],
+    "Conc Choir": [
+        [
+            "Music"
+        ],
+        []
+    ],
+    "Adv Vocal": [
+        [
+            "Music"
+        ],
+        []
+    ],
+    "Treb Choir": [
+        [
+            "Music"
+        ],
+        []
+    ],
+    "AP Music Theory": [
+        [
+            "Music"
+        ],
+        [
+            "AP"
+        ]
+    ],
+    "WritCr 11": [
+        [],
+        []
+    ],
+    "Beginning Journalism": [
+        [],
+        []
+    ],
+    "ERWC": [
+        [],
+        []
+    ],
+    "Academic Communications": [
+        [],
+        []
+    ],
+    "Funct Acad": [
+        [],
+        []
+    ],
+    "Voc Trng": [
+        [
+            "Music"
+        ],
+        []
+    ],
+    "Acad Planning": [
+        [],
+        []
+    ],
+    "AVID": [
+        [],
+        []
+    ],
+    "SchServ 11": [
+        [],
+        []
+    ],
+    "Stu Govt": [
+        [],
+        []
+    ],
+    "Expl Exp12": [
+        [],
+        []
+    ],
+    "ExplExp-AAR": [
+        [],
+        []
+    ],
+    "Liv Skill": [
+        [],
+        []
+    ],
+    "Gen Weep11": [
+        [],
+        []
+    ],
+    "Int Engr Des PLTW": [
+        [],
+        []
+    ],
+    "Engn Tech": [
+        [],
+        []
+    ],
+    "Funct Object Or Prog": [
+        [],
+        []
+    ],
+    "AP Comp. Sci. Princ": [
+        [],
+        [
+            "AP"
+        ]
+    ],
+    "CS Capstone": [
+        [],
+        []
+    ],
+    "MLM GraphPub": [
+        [],
+        []
+    ],
+    "MLM GraphPubH": [
+        [],
+        [
+            "Honors"
+        ]
+    ],
+    "Int Engr Des PLTW H": [
+        [],
+        [
+            "Honors"
+        ]
+    ],
+    "Eng LL 1": [
+        [],
+        []
+    ],
+    "Eng LL 2": [
+        [],
+        []
+    ],
+    "EL 28": [
+        [],
+        []
+    ],
+    "ContWld LL": [
+        [],
+        []
+    ],
+    "USGovtLL": [
+        [],
+        []
+    ],
+    "WldHist LL": [
+        [],
+        []
+    ],
+    "World History-SLC": [
+        [],
+        [
+            "SLC"
+        ]
+    ],
+    "Ind Study": [
+        [],
+        []
+    ],
+    "Contemporary Heritage SLC": [
+        [],
+        [
+            "SLC"
+        ]
+    ],
+    "Literary Style SLC": [
+        [],
+        [
+            "SLC"
+        ]
+    ],
+    "Counseling": [
+        [],
+        []
+    ],
+    "Prep": [
+        [],
+        []
+    ],
+    "Prep 11": [
+        [],
+        []
+    ],
+    "Prep 12": [
+        [],
+        []
+    ],
+    "SELF": [
+        [],
+        []
+    ]
+}

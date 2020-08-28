@@ -3,10 +3,14 @@
     <properties>
       <sourceFilesUrls>
         <item url="file://$PROJECT_DIR$/course-catalog/index.min.js" />
+        <item url="file://$PROJECT_DIR$/jqueryBBQ.min.js" />
+        <item url="file://$PROJECT_DIR$/jqueryBBQ.min.min.js" />
       </sourceFilesUrls>
     </properties>
     <CLASSES>
       <root url="file://$PROJECT_DIR$/course-catalog/index.min.js" />
+      <root url="file://$PROJECT_DIR$/jqueryBBQ.min.js" />
+      <root url="file://$PROJECT_DIR$/jqueryBBQ.min.min.js" />
     </CLASSES>
     <SOURCES />
   </library>

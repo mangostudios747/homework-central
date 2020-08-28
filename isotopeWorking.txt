@@ -1,0 +1,99 @@
+You are running Vue in development mode.
+Make sure to turn on production mode when deploying for production.
+See more tips at https://vuejs.org/guide/deployment.html vue.js:9064:47
+$("#app")
+{…}
+​
+0: <div id="app" class="container">
+​
+length: 1
+​
+<prototype>: Object { jquery: "3.5.1", constructor: S(e, t), length: 0, … }
+
+$('[data-isotope]').isotope({ filter: '.metal:not(.transition)' })
+Object { 0: div.container-fluid.my-4, length: 1, prevObject: {…} }
+
+$('[data-isotope]').isotope({ filter: '*' })
+Object { 0: div.container-fluid.my-4, length: 1, prevObject: {…} }
+
+$('[data-isotope]').isotope({ filter: function(){return $(this).find('.badge').text()=='CTE'} })
+Object { 0: div.container-fluid.my-4, length: 1, prevObject: {…} }
+
+$('[data-isotope]').isotope({ filter: function(){return $(this).find('.badge').text()=='Math'} })
+Object { 0: div.container-fluid.my-4, length: 1, prevObject: {…} }
+
+$('[data-isotope]').isotope({ filter: function(item){elems =  item.querySelectorAll('.badge'); for (i in elems){if (i.textContent()=='Math'){return true}}} })
+Uncaught TypeError: item.querySelectorAll is not a function
+    filter debugger eval code:1
+    jQuery 4
+    _getFilterTest https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.js:3219
+    _filter https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.js:3192
+    arrange https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.js:3116
+    plainCall https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.js:124
+    jQuery 2
+    plainCall https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.js:119
+    namespace https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.js:85
+    <anonymous> debugger eval code:1
+debugger eval code:1:68
+$('[data-isotope]').isotope({ filter: function(){return $(this).find('.badge:contains(Math)')} })
+Object { 0: div.container-fluid.my-4, length: 1, prevObject: {…} }
+
+$(document).find('.badge:contains(Math)')
+{…}
+​
+0: <span class="badge mx-1 badge-pill badge-info">
+​
+1: <span class="badge mx-1 badge-pill badge-info">
+​
+2: <span class="badge mx-1 badge-pill badge-info">
+​
+3: <span class="badge mx-1 badge-pill badge-info">
+​
+4: <span class="badge mx-1 badge-pill badge-info">
+​
+5: <span class="badge mx-1 badge-pill badge-info">
+​
+6: <span class="badge mx-1 badge-pill badge-info">
+​
+7: <span class="badge mx-1 badge-pill badge-info">
+​
+8: <span class="badge mx-1 badge-pill badge-info">
+​
+9: <span class="badge mx-1 badge-pill badge-info">
+​
+10: <span class="badge mx-1 badge-pill badge-info">
+​
+11: <span class="badge mx-1 badge-pill badge-info">
+​
+12: <span class="badge mx-1 badge-pill badge-info">
+​
+13: <span class="badge mx-1 badge-pill badge-info">
+​
+14: <span class="badge mx-1 badge-pill badge-info">
+​
+length: 15
+​
+prevObject: Object { 0: HTMLDocument https://homeworkcentral.web.app/course-catalog/, length: 1 }
+​
+<prototype>: Object { jquery: "3.5.1", constructor: S(e, t), length: 0, … }
+
+$(document).find('.badge:contains(Mat)')
+Object { 0: span.badge.mx-1.badge-pill.badge-info, 1: span.badge.mx-1.badge-pill.badge-info, 2: span.badge.mx-1.badge-pill.badge-info, 3: span.badge.mx-1.badge-pill.badge-info, 4: span.badge.mx-1.badge-pill.badge-info, 5: span.badge.mx-1.badge-pill.badge-info, 6: span.badge.mx-1.badge-pill.badge-info, 7: span.badge.mx-1.badge-pill.badge-info, 8: span.badge.mx-1.badge-pill.badge-info, 9: span.badge.mx-1.badge-pill.badge-info, … }
+
+$(document).find('.badge:contains(Malf)')
+Object { length: 0, prevObject: {…} }
+
+$('[data-isotope]').isotope({ filter: function(){return $(this).find('.badge:contains(Math)').length >0} })
+Object { 0: div.container-fluid.my-4, length: 1, prevObject: {…} }
+
+$('[data-isotope]').isotope({ filter: function(){return $(this).find('.badge:contains(Math)').length >0 && $(this).find('.badge:contains(AP)').length >0 } })
+Object { 0: div.container-fluid.my-4, length: 1, prevObject: {…} }
+
+$('[data-isotope]').isotope({ filter: function(){return $(this).find('.badge:contains(Math)').length >0 && $(this).find('.badge:contains(AP)').length =0 } })
+Uncaught SyntaxError: invalid assignment left-hand side debugger eval code:1:56
+$('[data-isotope]').isotope({ filter: function(){return $(this).find('.badge:contains(Math)').length >0 && $(this).find('.badge:contains(AP)').length ==0 } })
+Object { 0: div.container-fluid.my-4, length: 1, prevObject: {…} }
+
+$('[data-isotope]').isotope({ filter: function(){return $(this).find('.badge:contains(Math)').length >0 && $(this).find('.badge:contains(AP)').length ==0 && $(this).find('.badge:contains(Advanced)').length >0 } })
+Object { 0: div.container-fluid.my-4, length: 1, prevObject: {…} }
+
