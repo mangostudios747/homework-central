@@ -25,9 +25,10 @@ var vapp = new Vue({
     data: {
         classes: {},
         categories:{subjects:[],
-            benefits:[]},
+            benefits:[],length:[]},
         selectedFilters:{subjects:[],
-            benefits:[]}
+            benefits:[],length:[]},
+        isotop: {filteredItems:{length:191}}
     },
     methods:{
         filterFits(elem){
@@ -48,6 +49,7 @@ var vapp = new Vue({
         registerFilter(t){
             let bindex = indexOfCI(this.categories.benefits, t);
             let sindex = indexOfCI(this.categories.subjects, t);
+            let lindex = indexOfCI(this.categories.length, t);
 
             if (bindex && !(indexOfCI(this.selectedFilters.benefits, t))){
                 this.selectedFilters.benefits.push(bindex);
@@ -57,13 +59,17 @@ var vapp = new Vue({
                 this.selectedFilters.subjects.push(sindex);
                 return true
             }
+            else if (lindex && !(indexOfCI(this.selectedFilters.length, t))){
+                this.selectedFilters.length.push(lindex);
+                return true
+            }
             else {
                 return false
             }
         },
         registerTag(t,c){
             //t is the name, c is the type of tag.
-            if (!(['benefits','subjects'].includes(c))){
+            if (!(['benefits','subjects','length'].includes(c))){
                 return console.error('Got an invalid key, '+c+' while registering the tag '+t)
             }
             else if (!(this.categories[c].includes(t))){
@@ -110,6 +116,7 @@ var vapp = new Vue({
 
             });
 
+
     },
     ready(){
 
@@ -118,7 +125,7 @@ var vapp = new Vue({
 
 
 function getElementTags(elem){
-    return [[...elem.querySelectorAll('.badge-info')].map(function(el){return el.innerHTML}),[...elem.querySelectorAll('.badge-warning')].map(function(el){return el.innerHTML})]
+    return [[...elem.querySelectorAll('.badge-info')].map(function(el){return el.innerHTML}),[...elem.querySelectorAll('.badge-warning')].map(function(el){return el.innerHTML}),[...elem.querySelectorAll('.badge-purple')].map(function(el){return el.innerHTML})]
 }
 
 function refreshSelect() {
@@ -126,7 +133,7 @@ function refreshSelect() {
         iso.arrange({
             filter: function () {
                 tags = getElementTags(this);
-                return tags[0].filter(x=>vapp.selectedFilters.subjects.includes(x)).length>0 && tags[1].filter(x=>vapp.selectedFilters.benefits.includes(x)).length>0
+                return tags[0].filter(x=>vapp.selectedFilters.subjects.includes(x)).length>0 && tags[1].filter(x=>vapp.selectedFilters.benefits.includes(x)).length>0 && (vapp.selectedFilters.length.length==0 ||vapp.selectedFilters.length.includes(tags[2][0]) )
 
 
             }
@@ -136,7 +143,7 @@ function refreshSelect() {
         iso.arrange({
             filter: function () {
                 tags = getElementTags(this);
-                return tags[0].filter(x=>vapp.selectedFilters.subjects.includes(x)).length>0
+                return tags[0].filter(x=>vapp.selectedFilters.subjects.includes(x)).length>0 && (vapp.selectedFilters.length.length==0 ||vapp.selectedFilters.length.includes(tags[2][0]) )
 
 
             }
@@ -146,20 +153,24 @@ function refreshSelect() {
         iso.arrange({
             filter: function () {
                 tags = getElementTags(this);
-                return tags[1].filter(x=>vapp.selectedFilters.benefits.includes(x)).length>0
+                return tags[1].filter(x=>vapp.selectedFilters.benefits.includes(x)).length>0 && (vapp.selectedFilters.length.length==0 ||vapp.selectedFilters.length.includes(tags[2][0]) )
 
 
             }
         })
     }
     else{
-        iso.arrange({filter:'*'})
+        iso.arrange({filter:function(){
+            tags = getElementTags(this);
+            return (vapp.selectedFilters.length.length==0 ||vapp.selectedFilters.length.includes(tags[2][0]) )
+        }})
     }
 }
 
 function newTag(){
     if (!iso){
         iso = new Isotope(document.querySelector('[data-isotope]'),{});
+        vapp.isotop = iso
     }
     let validTag = vapp.registerFilter(inpPl.innerHTML);
     if (validTag) {

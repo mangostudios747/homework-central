@@ -56,7 +56,7 @@ Vue.component('dcourse-block', {
                 <template>
                 <li v-for="(assignment,aIndex) in assignments" :class="'list-group-item text-white bg-'+color"><a :onclick="'app.dclasses['+index+'].assignments.splice('+aIndex+',1);save()'" style="text-decoration: none;cursor: pointer" class="display-6 mt-4 text-muted close float-right">&times;</a><h5 class="pt-2"><div class="">
   <button type="button" class="btn" :id="index+'-'+aIndex" :onclick="'setTimeout(()=>{app.dclasses['+index+'].completed.push(app.dclasses['+index+'].assignments['+aIndex+']);app.dclasses['+index+'].assignments.splice('+aIndex+',1);save();},100)'"><i class="far text-white fa-square"></i></button>
-  <span><label class="" :for="index+'-'+aIndex">{{assignment.name}} </label> <a class="btn" :onclick="'app.focusedAssig = '+ aIndex+';document.getElementById(\`eDATitle\`).value= \`'+assignment.name+'\`'" data-toggle="modal" data-target="#edam"><i class=" text-white fas fa-pen"></i></a></span>
+  <span><label class="" :for="index+'-'+aIndex">{{assignment.name}} </label> <a class="btn" :onclick="'app.focusedClass= '+ index+';app.focusedAssig = '+ aIndex+';document.getElementById(\`eDATitle\`).value= \`'+assignment.name+'\`'" data-toggle="modal" data-target="#edam"><i class=" text-white fas fa-pen"></i></a></span>
 </div>  </h5><p class="text-white">{{assignment.due.toDateString() }}</p></li>
             </template>
            <li class="list-group-item blank dropdown-toggle" style="cursor: pointer" data-toggle="collapse" :href="'#dcompleted-'+index" aria-expanded="false" aria-controls="'dcompleted-'+index">Completed</li>
@@ -87,6 +87,7 @@ var app = new Vue({
         focusedClass: null,
         clubs: [],
         staff:[],
+        holidayReason:null,
         staffsched:{},
         focusedAssig:null,
         timemode: 12,
@@ -217,19 +218,27 @@ var app = new Vue({
     badgeContent:function(period){
         const l = (this.dclasses.filter(function(c){return c.hcname==period.name})[0] || {assignments:[]}).assignments.length;if (l!==0){return l} else {return ""}
     },
-    getSched:function (dob,sched){
-            if (sched.overrides==undefined){
+    getSched:function (dob,sched,mainView=true){
+            if (sched.overrides==undefined || sched.holidays==undefined){
+                if (mainView){ this.holidayReason =  null;}
                 return []
             }
-        const ref  =dob.getMonth()+ "-"+dob.getDate()+"-"+dob.getFullYear();
+        const ref = dob.getMonth()+ "-"+dob.getDate()+"-"+dob.getFullYear();
         if (ref in sched.overrides){
             //console.log("overridden");
-            return sched.overrides[ref];
 
+            return sched.overrides[ref];
+        }
+        else if (ref in sched.holidays){
+            if (mainView) {
+                this.holidayReason = sched.holidays[ref]
+            }
+            return null //empty schedule, and set the holiday reason to what it is
         }
         else{
             //console.log("default");
-            return sched.defaults[dob.getDay()];
+            if (mainView) this.holidayReason = null;
+            return sched.defaults[dob.getDay()];//regular schedule for this day of the week
         }
     },
         niceHours: function (num){

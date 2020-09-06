@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="https://unpkg.com/contenteditable-autocomplete/dist/contenteditable-autocomplete.css"/>
     <link rel="icon" href="../favicon.png"/>
+    <link rel="stylesheet" href="/colors/purple.css" />
     <title>Course Catalog</title>
 </head>
 <body class="list-group-item-info">
@@ -68,18 +69,23 @@
     <h1 class="display-3">Course Catalog</h1><hr/>
     <div v-cloak class="container-fluid">
 
-        <div><span v-for="(subj, sindex) in selectedFilters.subjects" class="badge badge-pill mx-1 badge-info">{{subj}}<span :onclick="'vapp.selectedFilters.subjects.splice('+sindex+',1);refreshSelect()'" class="pl-1 my-auto badge-close py-auto ">&times;</span></span>
+        <div class="h3"><span v-for="(subj, sindex) in selectedFilters.subjects" class="badge badge-pill mx-1 badge-info">{{subj}}<span :onclick="'vapp.selectedFilters.subjects.splice('+sindex+',1);refreshSelect()'" class="pl-1 my-auto badge-close py-auto ">&times;</span></span>
 
             <span v-for="(benf, bindex) in selectedFilters.benefits" class="badge mx-1 badge-pill badge-warning">{{benf}}<span :onclick="'vapp.selectedFilters.benefits.splice('+bindex+',1);refreshSelect()'" class="pl-1 my-auto badge-close  py-auto ">&times;</span></span>
+            <span v-for="(len, lindex) in selectedFilters.length" class="badge mx-1 badge-pill badge-purple">{{len}}<span :onclick="'vapp.selectedFilters.length.splice('+lindex+',1);refreshSelect()'" class="pl-1 my-auto badge-close  py-auto ">&times;</span></span>
             <span  class="badge  badge-pill badge-light"><span contenteditable="true" id="newTagInput" class="px-1"></span><span onclick="newTag()" class="pl-1 cursor-pointer my-auto  py-auto ">&plus;</span></span>
 
     </div>
-        <hr/>
+
 <div  data-isotope='{ "itemSelector": ".card", "layoutMode": "fitRows" }'  class="container-fluid my-4">
+    <div v-if="isotop.filteredItems.length == 0" class="pt-5 mt-5 text-center">
+        <h1>Nothing matched your search.</h1><h2>Try adding more tags.</h2>
+        <p>This typically happens when you only have one subject and one benefit.</p>
+    </div>
     <template  v-for="course in Object.keys(classes)">
         <div v-bind:key="course" class="card my-2"  >
             <div class="card-body">
-                <h5 class="card-title">{{classes[course].courseName}} <span v-for="sub in classes[course].categories[0]" class="badge mx-1 badge-pill badge-info">{{registerTag(sub,'subjects')}}</span><span v-for="ben in classes[course].categories[1]" class="badge mx-1 badge-pill badge-warning">{{registerTag(ben,'benefits')}}</span></h5>
+                <h5 class="card-title">{{classes[course].courseName}} <span v-for="sub in classes[course].categories[0]" class="badge mx-1 badge-pill badge-info">{{registerTag(sub,'subjects')}}</span><span v-for="ben in classes[course].categories[1]" class="badge mx-1 badge-pill badge-warning">{{registerTag(ben,'benefits')}}</span><span v-for="len in classes[course].categories[2]" class="badge mx-1 badge-pill badge-purple">{{registerTag(len,'length')}}</span></h5>
                 <h6 class="card-subtitle mb-2 text-muted">{{niceNames(classes[course].teacherDisplay).join(', ')}}</h6>
                 <p class="card-text" v-html="classes[course].course.description"></p>
 

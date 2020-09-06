@@ -36,17 +36,28 @@ for i in hf:
     hf[i]['teachers'] = ast.literal_eval(hf[i]['teachers'])
     for j in range(len(hf[i]['teachers'])):
         hf[i]['teachers'][j] = ast.literal_eval(hf[i]['teachers'][j])
-    hf[i]['categories'] = [[], []] # make room
+    hf[i]['categories'] = [[], [], []] # make room.
     # now we need to use regex to find out what category the course is in
-    ## Benefits
     try:
         desc = hf[i]['course']['description']
     except KeyError:
         desc = ''
+    ## length
+    lengthraw = re.search(r'(L|>)ength:?(</strong>)*:?\ ?(.*?)(<p>|<br>|</p>|</li>|&nbsp|</strong>)',desc)
+    if lengthraw != None:
+        hf[i]['categories'][2].append(lengthraw.group(3))
+        if "Semester " in lengthraw.group(3):
+            hf[i]['categories'][2].append('Semester')
+
+    else:
+        hf[i]['categories'][2].append('Year')
+
+    ## Benefits
+    
     isAP = re.search(r'^AP.*', hf[i]['courseName']) or re.search(r'.*AP$', hf[i]['courseName'])
     if isAP:
         hf[i]['categories'][1].append("AP")
-    isSJ = re.search(r'SJ$', hf[i]['courseName'])
+    isSJ = re.search(r'SJ$', hf[i]['courseName']) or re.search(r'SJ$', i)
     if isSJ:
         hf[i]['categories'][1].append("SJ")
     isHonors = re.search(r'.*H$', hf[i]['courseName'])
@@ -55,7 +66,7 @@ for i in hf:
     isSLC = re.search(r'SLC', hf[i]['courseName'])
     if isSLC:
         hf[i]['categories'][1].append("SLC")
-    isAdv = re.search(r'(A$|Advanced|Adv)', hf[i]['courseName']) or re.search(r'advanced(?!\ placement)', desc)
+    isAdv = re.search(r'(A$|Advanced|Adv)', hf[i]['courseName']) #or re.search(r'advanced(?!\ placement)', desc)
     if isAdv:
         hf[i]['categories'][1].append("Advanced")
     ##  Subjects
@@ -65,9 +76,11 @@ for i in hf:
     isMusic = re.search(r'Orchstr|Band|Music|Jazz|Choir|Voc', hf[i]['courseName'])
     if isMusic:
         hf[i]['categories'][0].append("Music")
-    isArt = re.search(r'Art|Ceramics|Photo|Design|Theatre|Painting', hf[i]['courseName'])
+        hf[i]['categories'][1].append('VPA')
+    isArt = re.search(r'Art|Ceramics|Photo|Design|Painting', hf[i]['courseName'])
     if isArt:
         hf[i]['categories'][0].append("Art")
+        hf[i]['categories'][1].append("VPA")
     isHist = re.search(r'hist|Hist|US|ContWld|Geography', hf[i]['courseName'])
     if isHist:
         hf[i]['categories'][0].append("History")
@@ -77,13 +90,16 @@ for i in hf:
     isPE = re.search(r'(^PE|Yoga)', hf[i]['courseName'])
     if isPE:
         hf[i]['categories'][0].append("PE")
+    if re.search(r'Theatre',hf[i]['courseName']):
+        hf[i]['categories'][0].append('Theatre')
+        hf[i]['categories'][1].append('VPA')
     ## CTE?
     isCS = re.search(r'CS|Prog|Comp.', hf[i]['courseName'])
     if isCS:
         hf[i]['categories'][0].append("CS")
     isCTE = re.search(r'(Tech|Video|Digi|Auto|PLTW|Law|Sports)', hf[i]['courseName']) or isCS
     if isCTE:
-        hf[i]['categories'][0].append("CTE")
+        hf[i]['categories'][1].append("CTE")
 
     ## Prep?
     isPrep = re.search(r'Prep', hf[i]['courseName'])
