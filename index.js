@@ -4,6 +4,11 @@ Date.prototype.addDays = function(days) {
     return date;
 }
 
+Date.prototype.addHours = function(hrs) {
+    let date = new Date(this.valueOf());
+    date.setHours(date.getHours() + hrs);
+    return date;
+}
 
 
 Vue.component('course-block', {
@@ -89,6 +94,7 @@ var app = new Vue({
         staff:[],
         holidayReason:null,
         staffsched:{},
+        gunnTogether:{},
         focusedAssig:null,
         timemode: 12,
         schedule:theSchedule,
@@ -117,7 +123,12 @@ var app = new Vue({
             }*/
         ],
         dclasses: importData()[1]||[
-
+            {name:"Passing",
+                hcname:"Passing",
+                color:"secondary",
+                teacher:"",
+                completed:[],
+                assignments:[]},
             {name:"Period 1",
             hcname:"Period 1",
                 color:"danger",
@@ -199,6 +210,10 @@ var app = new Vue({
         },
         prevSched: function(){
             return this.getSched(this.focusedDate.addDays(-1),this.schedule)
+        },
+        focusedGt: function () {
+            console.log(this.gunnTogether)
+            return this.gunnTogether[`${this.focusedDate.getMonth()}-${this.focusedDate.getDate()}-${this.focusedDate.getFullYear()}`]||null
         }
     },
     mounted: function () {
@@ -207,6 +222,7 @@ var app = new Vue({
         }, 1000)
     },
     methods: {
+
         doubleZero: function (num){
         if (num<10){
             return "0"+num;
@@ -222,6 +238,10 @@ var app = new Vue({
             if (sched.overrides==undefined || sched.holidays==undefined){
                 if (mainView){ this.holidayReason =  null;}
                 return []
+            }
+            if (dob>new Date("June 3 2021")) {
+                this.holidayReason = "Summer Vacation";
+                return [];
             }
         const ref = dob.getMonth()+ "-"+dob.getDate()+"-"+dob.getFullYear();
         if (ref in sched.overrides){
@@ -315,10 +335,8 @@ function importTheme(){
 }
 
 function importStyle(){
-    const style = localStorage.getItem("style");
-    if (!style){
-        return 'ios'
-    }
+    const style = localStorage.getItem("style") || 'material';
+
     document.querySelector('[value="ios"]').checked=(style=='ios');
     document.querySelector('[value="material"]').checked=(style=='material');
     document.body.setAttribute("data-mode",style);

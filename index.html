@@ -18,7 +18,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
     <link rel="icon" href="favicon.png"/>
-    <meta name="description" content="An app for keeping track of everything at Gunn High School."/>
+    <meta name="description" content="Homework Central is an app for keeping track of everything at Gunn High School created by Saumya Singhal. It's a successor of UGWA, created during the coronavirus outbreak."/>
     <link rel="apple-touch-icon" href="/favicon.png"/>
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
     <link rel="canonical" href="https://homeworkcentral.web.app"/>
@@ -139,10 +139,10 @@
 
 <!--foreach period index, if the end time is less  than time and the start time of next class is more, then show a progress bar with that.-->
                         <template v-for="period in focusedSched||[]" >
-                            <div class="card text-white my-2 py-0" tabindex="0" :class="'bg-'+(dclasses.filter(function(c){return c.hcname==period.name})[0] || {color:'dark'}).color" style="border-radius: 1.5rem">
+                            <div class="card text-white my-2 py-0" tabindex="0" :class="'bg-'+(dclasses.filter(function(c){return c.hcname==period.name})[0] || {color:'dark'}).color" style="border-radius: 10px;border-color:transparent">
                                 <div class="card-body">
                                     <p class="h4 ">
-                                        <a class="stretched-link text-decoration-none text-light" :href="(dclasses.filter(function(c){return c.hcname==period.name})[0] || {zoom:null}).zoom">{{(dclasses.filter(function(c){return c.hcname==period.name})[0] || period).name}}</a>
+                                        <a class="stretched-link text-decoration-none text-light" :href="(dclasses.filter(function(c){return c.hcname==period.name})[0] || {zoom:null}).zoom">{{(dclasses.filter(function(c){return c.hcname==period.name})[0] || period).name}}<span v-if="period.name==='Gunn Together'">: {{(dclasses.filter(function(c){return c.hcname==focusedGt})[0] || {name: focusedGt||'???'}).name}}</span></a>
                                         <span class="badge badge-light badge-pill" :class="'text-'+(dclasses.filter(function(c){return c.hcname==period.name})[0] || {color:'dark'}).color">{{badgeContent(period)}}</span>
                                     </p>
                                     {{(dclasses.filter(function(c){return c.hcname==period.name})[0] || period).teacher}}
@@ -196,9 +196,12 @@
 <div class="bg-light tab-pane fade view pt-5" aria-labelledby="pills-settings-tab" id="pills-settings" role="tabpanel" style="min-height:110vh;width:100%">
     <div class="container">
         <h1 class="">Information</h1>
-        <div class="alert alert-info" role="alert">
-Check out the new <a href="course-catalog" class="alert-link">Course Catalog!</a>
+        <div class="alert alert-info alert-dismissible" role="alert">
+Check out the <a href="course-catalog" class="alert-link">Course Catalog!</a>
 </div>
+        <div class="alert alert-info alert-warning" role="alert">
+            Homework Central will soon be replaced with a 2.0 remake. Preview the beta version <a href="https://hcbeta.web.app" class="alert-link">here!</a>
+        </div>
         <p>Stuff that's coming soon:</p>
         <ul>
             <li>Barcode and map (stashed, since you won't need them for a while)</li>
@@ -222,28 +225,29 @@ Check out the new <a href="course-catalog" class="alert-link">Course Catalog!</a
         <form id="theme-form">
             <h4>Theme</h4>
             <div class="custom-control custom-radio">
-                <input type="radio" id="customRadio1" value="dark" name="customRadio" onchange="if (this.checked) {document.body.setAttribute('data-theme','dark');app.setTheme('dark')}" class="custom-control-input">
+                <input type="radio" id="customRadio1" value="dark" name="customRadio" :checked="theme==='dark'" onchange="if (this.checked) {document.body.setAttribute('data-theme','dark');app.setTheme('dark')}" class="custom-control-input">
                 <label class="custom-control-label" for="customRadio1">Dark Mode</label>
             </div>
             <div class="custom-control custom-radio">
-                <input type="radio" id="customRadio2" value="light" name="customRadio" checked onchange="if (this.checked) {document.body.setAttribute('data-theme','light');app.setTheme('light')}" class="custom-control-input">
+                <input type="radio" id="customRadio2" value="light" name="customRadio" :checked="theme==='light'" onchange="if (this.checked) {document.body.setAttribute('data-theme','light');app.setTheme('light')}" class="custom-control-input">
                 <label class="custom-control-label"   for="customRadio2">Light Mode</label>
             </div>
         </form>
         <form id="mode-form">
             <h4>Style</h4>
             <div class="custom-control custom-radio">
-                <input type="radio" id="mode-ios" value="ios" name="customRadio" checked onchange="if (this.checked) {document.getElementById('mode').href='';document.body.setAttribute('data-mode','ios');app.setStyle('ios')}" class="custom-control-input">
+                <input type="radio" id="mode-ios" value="ios" name="customRadio" :checked="style==='ios'" onchange="if (this.checked) {document.getElementById('mode').href='';document.body.setAttribute('data-mode','ios');app.setStyle('ios')}" class="custom-control-input">
                 <label class="custom-control-label" for="mode-ios">Default</label>
             </div>
             <div class="custom-control custom-radio">
-                <input type="radio" id="mode-material" value="material" name="customRadio"  onchange="if (this.checked) {document.getElementById('mode').href='https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css';document.body.setAttribute('data-mode','material');app.setStyle('material')}" class="custom-control-input">
+                <input type="radio" id="mode-material" value="material" name="customRadio" :checked="style==='material'" onchange="if (this.checked) {document.getElementById('mode').href='https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css';document.body.setAttribute('data-mode','material');app.setStyle('material')}" class="custom-control-input">
                 <label class="custom-control-label"   for="mode-material">Material</label>
             </div>
         </form>
         <hr/>
         <h1 class="">Danger Zone</h1>
         <button class="btn btn-danger mt-3 " type="button" onclick="localStorage.setItem('classes',null);location.reload()">Reset Data</button>
+        <p>Created by Saumya Singhal, author of <a href="https://ymath.io">YMath.io.</a></p>
     </div>
 </div>
 </div>
@@ -539,7 +543,7 @@ Check out the new <a href="course-catalog" class="alert-link">Course Catalog!</a
 
     @media (max-width: 876px) {
         .mini-block{
-            border-radius: 40rem;
+            border-radius: 0.7rem;
         }
     }
     @media (min-width: 876.1px) {
@@ -604,7 +608,8 @@ Check out the new <a href="course-catalog" class="alert-link">Course Catalog!</a
 <script src="moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" integrity="sha512-T/tUfKSV1bihCnd+MxKD0Hm1uBBroVYBOYSk1knyvQ9VyZJpc/ALb4P0r6ubwVPSGB2GvjeoMAJJImBG12TiaQ==" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-
+<!--Production-->
+<!--<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>-->
 <script src="loadSchedule.js"></script>
 
 <script src="index.js"></script>

@@ -22,5 +22,10 @@
   "bugs": {
     "url": "https://github.com/saumyasinghal747/homework-central/issues"
   },
-  "homepage": "https://github.com/saumyasinghal747/homework-central#readme"
+  "homepage": "https://github.com/saumyasinghal747/homework-central#readme",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
+    "fs": "0.0.1-security",
+    "node-fetch": "^2.6.1"
+  }
 }
