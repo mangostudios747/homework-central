@@ -125,10 +125,10 @@ var app = new Vue({
         caTime:importTimePref(),
         holidayReason:null,
         staffsched:{},
-        gunnTogether:{},
+        gunnTogether: localStorage.getItem('gunnTogether') || {},
         focusedAssig:null,
         timemode: 12,
-        schedule:theSchedule,
+        schedule: localStorage.getItem('theSchedule') || theSchedule,
         focusedDate: new Date(),  // might have to tamper with this as well
         classes: importData()[0] || [
             // test data

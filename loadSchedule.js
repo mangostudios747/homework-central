@@ -3,12 +3,14 @@ scheduleRef.on('value', function(snapshot) {
     const data = snapshot.val();
     console.log(data);
     app.schedule = data;
+    localStorage.setItem('theSchedule',data); // save for offline use
 });
 
 const gtRef = firebase.database().ref('gunnTogether');
 gtRef.on('value', function(snapshot) {
     //console.log(data);
     app.gunnTogether = snapshot.val();
+    localStorage.setItem('gunnTogether',app.gunnTogether);
 });
 
 
