@@ -1,4 +1,11 @@
 const CALIFORNIA_UTC_OFFSET = 480;
+// India has a timezone offset of -330  (i think UTC time is GMT time??)
+// this is a difference of 810
+// if the actual time difference is 13:30
+// then that is 13*60 + 30 = 600 + 180 + 30 = 810, so its minutes!
+function mod(a,n){
+    return ((a%n)+n)%n
+}
 
 Date.prototype.addDays = function(days) {
     var date = new Date(this.valueOf());
@@ -12,11 +19,25 @@ Date.prototype.addHours = function(hrs) {
     return date;
 }
 
+Date.prototype.addMinutes = function(hrs) {
+    let date = new Date(this.valueOf());
+    date.setMinutes(date.getMinutes() + hrs);
+    return date;
+}
+
 function timeInCA(){
     const localTime = new Date();
-    localTime.addHours(CALIFORNIA_UTC_OFFSET - localTime.getTimezoneOffset());
-    return localTime;
+    return localTime.addMinutes(0 - CALIFORNIA_UTC_OFFSET + localTime.getTimezoneOffset());
 }
+
+
+
+function toLocalTime(when){
+    const localTime = new Date();
+    return when.addMinutes(0 - localTime.getTimezoneOffset() + CALIFORNIA_UTC_OFFSET)
+}
+
+
 
 
 Vue.component('course-block', {
@@ -96,17 +117,19 @@ var app = new Vue({
     data: {
         theme:importTheme(),
         style:importStyle(),
-        time:timeInCA(),
+        time: timeInCA(),
         focusedClass: null,
         clubs: [],
         staff:[],
+        // CA Time - whether all times should be forced into california format. Off by default.
+        caTime:importTimePref(),
         holidayReason:null,
         staffsched:{},
         gunnTogether:{},
         focusedAssig:null,
         timemode: 12,
         schedule:theSchedule,
-        focusedDate: new Date(),
+        focusedDate: new Date(),  // might have to tamper with this as well
         classes: importData()[0] || [
             // test data
             /*{
@@ -230,7 +253,26 @@ var app = new Vue({
         }, 1000)
     },
     methods: {
-
+        renderTime([hrs, mins]){
+            let when = new Date(this.focusedDate.valueOf());
+            when.setMinutes(mins);when.setHours(hrs);
+            // the input will always be in PST time, we need to convert (if we do) and then
+            if (!this.catime){
+                when = toLocalTime(when); // now its in localTime!
+            }
+            // get the hours + minutes,
+            let [h,m] = [when.getHours(),when.getMinutes()];
+            // convert to a desired format
+            if (this.timemode===12){
+                // how about - subtract one, mod 12, then add one again?
+                /**
+                 * 0 --> -1 --> 11 --> 12 that works!
+                 * however, the mod function doesn't work like that
+                 */
+                h = mod(h-1,12)+1
+            }
+            return `${h}:${this.doubleZero(m)}`
+        },
         doubleZero: function (num){
         if (num<10){
             return "0"+num;
@@ -238,7 +280,12 @@ var app = new Vue({
         else{
             return num;
         }
+
     },
+        toLocalTime(when){
+            const localTime = new Date();
+            return when.addMinutes(0 - localTime.getTimezoneOffset() + CALIFORNIA_UTC_OFFSET)
+        },
     badgeContent:function(period){
         const l = (this.dclasses.filter(function(c){return c.hcname==period.name})[0] || {assignments:[]}).assignments.length;if (l!==0){return l} else {return ""}
     },
@@ -287,13 +334,14 @@ var app = new Vue({
             localStorage.setItem('style',th)
         }
 
-    }
+    },
+
 });
 
 //save()
 function importData(){
     let raw = localStorage.getItem("classes");
-    if(raw===null){
+    if (raw===null){
         raw = undefined;
     }
     else {
@@ -327,6 +375,15 @@ function importData(){
 
     return [raw,raw2]
 }
+
+function importTimePref(){
+    const pref = localStorage.getItem('catime')
+    //console.log(pref||false)
+    // now we need a way to set this preference
+    return pref||false
+
+}
+
 
 
 function importTheme(){
