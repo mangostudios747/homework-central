@@ -1,3 +1,5 @@
+const CALIFORNIA_UTC_OFFSET = 480;
+
 Date.prototype.addDays = function(days) {
     var date = new Date(this.valueOf());
     date.setDate(date.getDate() + days);
@@ -8,6 +10,12 @@ Date.prototype.addHours = function(hrs) {
     let date = new Date(this.valueOf());
     date.setHours(date.getHours() + hrs);
     return date;
+}
+
+function timeInCA(){
+    const localTime = new Date();
+    localTime.addHours(CALIFORNIA_UTC_OFFSET - localTime.getTimezoneOffset());
+    return localTime;
 }
 
 
@@ -88,7 +96,7 @@ var app = new Vue({
     data: {
         theme:importTheme(),
         style:importStyle(),
-        time:new Date(),
+        time:timeInCA(),
         focusedClass: null,
         clubs: [],
         staff:[],
@@ -218,7 +226,7 @@ var app = new Vue({
     },
     mounted: function () {
         window.setInterval(() => {
-            this.time = new Date();
+            this.time = timeInCA();
         }, 1000)
     },
     methods: {
