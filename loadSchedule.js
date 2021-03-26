@@ -3,7 +3,8 @@ scheduleRef.on('value', function(snapshot) {
     const data = snapshot.val();
     console.log(data);
     app.schedule = data;
-    localStorage.setItem('theSchedule',data); // save for offline use
+    //theSchedule = data;
+    localStorage.setItem('theSchedule',JSON.stringify(data)); // save for offline use
 });
 
 const gtRef = firebase.database().ref('gunnTogether');
@@ -50,7 +51,7 @@ const finals = {
     ]
 }
 
-const theSchedule = {
+let theSchedule = {
     holidays:{
         "8-7-2020":"Labor Day",
         "10-11-2020":"Veteran's Day",

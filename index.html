@@ -17,8 +17,10 @@
     <meta name="apple-mobile-web-app-title" content="Homework Central"/>
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
-    <link rel="icon" href="favicon.png"/>
+    <link rel="icon" id="favicon" href="favicon.png"/>
     <meta name="description" content="Homework Central is an app for keeping track of everything at Gunn High School created by Saumya Singhal. It's a successor of UGWA, created during the coronavirus outbreak."/>
+    <meta name="og:image" content="/favicon.png"/>
+    <meta name="og:site_name" content="HomeworkCentral.Web.App"/>
     <link rel="apple-touch-icon" href="/favicon.png"/>
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
     <link rel="canonical" href="https://homeworkcentral.web.app"/>
@@ -142,7 +144,7 @@
                             <div class="card text-white my-2 py-0" tabindex="0" :class="'bg-'+(dclasses.filter(function(c){return c.hcname==period.name})[0] || {color:'dark'}).color" style="border-radius: 10px;border-color:transparent">
                                 <div class="card-body">
                                     <p class="h4 ">
-                                        <a class="stretched-link text-decoration-none text-light" :href="(dclasses.filter(function(c){return c.hcname==period.name})[0] || {zoom:null}).zoom">{{(dclasses.filter(function(c){return c.hcname==period.name})[0] || period).name}}<span v-if="period.name==='Gunn Together'">: {{(dclasses.filter(function(c){return c.hcname==focusedGt})[0] || {name: focusedGt||'???'}).name}}</span></a>
+                                        <a class="stretched-link text-decoration-none text-light" target="_blank" rel="noopener noreferrer" :href="(dclasses.filter(function(c){return c.hcname==period.name})[0] || {zoom:null}).zoom">{{(dclasses.filter(function(c){return c.hcname==period.name})[0] || period).name}}<span v-if="period.name==='Gunn Together'">: {{(dclasses.filter(function(c){return c.hcname==focusedGt})[0] || {name: focusedGt||'???'}).name}}</span></a>
                                         <span class="badge badge-light badge-pill" :class="'text-'+(dclasses.filter(function(c){return c.hcname==period.name})[0] || {color:'dark'}).color">{{badgeContent(period)}}</span>
                                     </p>
                                     {{(dclasses.filter(function(c){return c.hcname==period.name})[0] || period).teacher}}
@@ -612,9 +614,10 @@ Check out the <a href="course-catalog" class="alert-link">Course Catalog!</a>
 <!--<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>-->
 <!--no internet ;( -->
 <script src="/Vue.js"></script>
-<script src="loadSchedule.js"></script>
+<script   src="loadSchedule.js"></script>
+<script  src="updateFavicon.js"></script>
+<script  src="index.js"></script>
 
-<script src="index.js"></script>
 <script type="module" src="clubs/fetch.js"></script>
 <script>
     $('#dp').on('changeDate', function() {

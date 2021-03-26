@@ -1,10 +1,15 @@
-const CALIFORNIA_UTC_OFFSET = 480;
+
+const CALIFORNIA_UTC_OFFSET = 420;
 // India has a timezone offset of -330  (i think UTC time is GMT time??)
 // this is a difference of 810
 // if the actual time difference is 13:30
 // then that is 13*60 + 30 = 600 + 180 + 30 = 810, so its minutes!
 function mod(a,n){
     return ((a%n)+n)%n
+}
+
+function getTotalMinutes (d = new Date()) {
+    return d.getMinutes() + d.getHours() * 60
 }
 
 Date.prototype.addDays = function(days) {
@@ -115,21 +120,21 @@ Vue.component('dcourse-block', {
 var app = new Vue({
     el: '.tab-content',
     data: {
-        theme:importTheme(),
-        style:importStyle(),
+        theme: importTheme(),
+        style: importStyle(),
         time: timeInCA(),
         focusedClass: null,
         clubs: [],
-        staff:[],
+        staff: [],
         // CA Time - whether all times should be forced into california format. Off by default.
-        caTime:importTimePref(),
-        holidayReason:null,
-        staffsched:{},
+        caTime: importTimePref(),
+        holidayReason: null,
+        staffsched: {},
         gunnTogether: localStorage.getItem('gunnTogether') || {},
-        focusedAssig:null,
+        focusedAssig: null,
         timemode: 12,
         schedule: localStorage.getItem('theSchedule') || theSchedule,
-        focusedDate: new Date(),  // might have to tamper with this as well
+        focusedDate: timeInCA(),  // might have to tamper with this as well
         classes: importData()[0] || [
             // test data
             /*{
@@ -153,185 +158,232 @@ var app = new Vue({
                 ]
             }*/
         ],
-        dclasses: importData()[1]||[
-            {name:"Passing",
-                hcname:"Passing",
-                color:"secondary",
-                teacher:"",
-                completed:[],
-                assignments:[]},
-            {name:"Period 1",
-            hcname:"Period 1",
-                color:"danger",
-                teacher:"",
-                completed:[],
-            assignments:[]},
-            {name:"Period 2",
-                hcname:"Period 2",
-                color:"orange",
-                teacher:"",
-                completed:[],
-                assignments:[]},
-            {name:"Period 3",
-                hcname:"Period 3",
-                color:"warning",
-                teacher:"",
-                completed:[],
-                assignments:[]},
-            {name:"Period 4",
-                hcname:"Period 4",
-                color:"success",
-                teacher:"",
-                completed:[],
-                assignments:[]},
-            {name:"Period 5",
-                hcname:"Period 5",
-                color:"primary",
-                teacher:"",
-                completed:[],
-                assignments:[]},
-            {name:"Period 6",
-                hcname:"Period 6",
-                color:"purple",
-                teacher:"",
-                completed:[],
-                assignments:[]},
-            {name:"Period 7",
-                hcname:"Period 7",
-                color:"pink",
-                teacher:"",
-                completed:[],
-                assignments:[]},
-            {name:"Period 8",
-                hcname:"Period 8",
-                color:"info",
-                teacher:"",
-                completed:[],
-                assignments:[]},
-            {name:"Lunch",
-                hcname:"Lunch",
-                color:"dark",
-                teacher:"",
-                completed:[],
-                assignments:[]},
-            {name:"SELF",
-                hcname:"SELF",
-                color:"dark",
-                teacher:"",
-                completed:[],
-                assignments:[]}
+        dclasses: importData()[1] || [
+            {
+                name: "Passing",
+                hcname: "Passing",
+                color: "secondary",
+                teacher: "",
+                completed: [],
+                assignments: []
+            },
+            {
+                name: "Period 1",
+                hcname: "Period 1",
+                color: "danger",
+                teacher: "",
+                completed: [],
+                assignments: []
+            },
+            {
+                name: "Period 2",
+                hcname: "Period 2",
+                color: "orange",
+                teacher: "",
+                completed: [],
+                assignments: []
+            },
+            {
+                name: "Period 3",
+                hcname: "Period 3",
+                color: "warning",
+                teacher: "",
+                completed: [],
+                assignments: []
+            },
+            {
+                name: "Period 4",
+                hcname: "Period 4",
+                color: "success",
+                teacher: "",
+                completed: [],
+                assignments: []
+            },
+            {
+                name: "Period 5",
+                hcname: "Period 5",
+                color: "primary",
+                teacher: "",
+                completed: [],
+                assignments: []
+            },
+            {
+                name: "Period 6",
+                hcname: "Period 6",
+                color: "purple",
+                teacher: "",
+                completed: [],
+                assignments: []
+            },
+            {
+                name: "Period 7",
+                hcname: "Period 7",
+                color: "pink",
+                teacher: "",
+                completed: [],
+                assignments: []
+            },
+            {
+                name: "Period 8",
+                hcname: "Period 8",
+                color: "info",
+                teacher: "",
+                completed: [],
+                assignments: []
+            },
+            {
+                name: "Lunch",
+                hcname: "Lunch",
+                color: "dark",
+                teacher: "",
+                completed: [],
+                assignments: []
+            },
+            {
+                name: "SELF",
+                hcname: "SELF",
+                color: "dark",
+                teacher: "",
+                completed: [],
+                assignments: []
+            }
         ]
     },
-    computed:{
-        hours: function(){
+    computed: {
+        hours: function () {
             return this.time.getHours()
         },
-        minutes: function(){
+        minutes: function () {
             return this.time.getMinutes()
         },
-        seconds: function(){
+        seconds: function () {
 
             return this.time.getSeconds()
         },
-        focusedSched: function(){
-            return this.getSched(this.focusedDate.addDays(0),this.schedule)
+        focusedSched: function () {
+            return this.getSched(this.focusedDate.addDays(0), this.schedule)
         },
-        nextSched: function(){
-            return this.getSched(this.focusedDate.addDays(1),this.schedule)
+        nextSched: function () {
+            return this.getSched(this.focusedDate.addDays(1), this.schedule)
         },
-        prevSched: function(){
-            return this.getSched(this.focusedDate.addDays(-1),this.schedule)
+        prevSched: function () {
+            return this.getSched(this.focusedDate.addDays(-1), this.schedule)
         },
         focusedGt: function () {
             console.log(this.gunnTogether)
-            return this.gunnTogether[`${this.focusedDate.getMonth()}-${this.focusedDate.getDate()}-${this.focusedDate.getFullYear()}`]||null
+            return this.gunnTogether[`${this.focusedDate.getMonth()}-${this.focusedDate.getDate()}-${this.focusedDate.getFullYear()}`] || null
+        },
+        currentPeriod: function () {
+            const todaySched = this.getSched(this.time, this.schedule);
+            const period = todaySched.filter(function ({start, end}) {
+                const mins = getTotalMinutes(this.time);
+                return mins >= (start[0] * 60 + start[1]) && mins <= (end[0] * 60 + end[1])
+            })[0];
+            if (!period) return null;
+            const settings = this.dclasses.filter(function (dclass) {
+                return period.name === dclass.hcname;
+            })[0];
+
+            return {
+                ...period,
+                ...settings
+            }
+
         }
+
     },
     mounted: function () {
         window.setInterval(() => {
             this.time = timeInCA();
+            setFavicon(this)
         }, 1000)
     },
     methods: {
-        renderTime([hrs, mins]){
+        renderTime([hrs, mins]) {
             let when = new Date(this.focusedDate.valueOf());
-            when.setMinutes(mins);when.setHours(hrs);
+            when.setMinutes(mins);
+            when.setHours(hrs);
             // the input will always be in PST time, we need to convert (if we do) and then
-            if (!this.catime){
+            if (!this.catime) {
                 when = toLocalTime(when); // now its in localTime!
             }
             // get the hours + minutes,
-            let [h,m] = [when.getHours(),when.getMinutes()];
+            let [h, m] = [when.getHours(), when.getMinutes()];
             // convert to a desired format
-            if (this.timemode===12){
+            if (this.timemode === 12) {
                 // how about - subtract one, mod 12, then add one again?
                 /**
                  * 0 --> -1 --> 11 --> 12 that works!
                  * however, the mod function doesn't work like that
                  */
-                h = mod(h-1,12)+1
+                h = mod(h - 1, 12) + 1
             }
             return `${h}:${this.doubleZero(m)}`
         },
-        doubleZero: function (num){
-        if (num<10){
-            return "0"+num;
-        }
-        else{
-            return num;
-        }
+        doubleZero: function (num) {
+            if (num < 10) {
+                return "0" + num;
+            } else {
+                return num;
+            }
 
-    },
-        toLocalTime(when){
+        },
+        toLocalTime(when) {
             const localTime = new Date();
             return when.addMinutes(0 - localTime.getTimezoneOffset() + CALIFORNIA_UTC_OFFSET)
         },
-    badgeContent:function(period){
-        const l = (this.dclasses.filter(function(c){return c.hcname==period.name})[0] || {assignments:[]}).assignments.length;if (l!==0){return l} else {return ""}
-    },
-    getSched:function (dob,sched,mainView=true){
-            if (sched.overrides==undefined || sched.holidays==undefined){
-                if (mainView){ this.holidayReason =  null;}
+        badgeContent: function (period) {
+            const l = (this.dclasses.filter(function (c) {
+                return c.hcname == period.name
+            })[0] || {assignments: []}).assignments.length;
+            if (l !== 0) {
+                return l
+            } else {
+                return ""
+            }
+        },
+        getSched: function (dob, sched, mainView = true) {
+            if (sched.overrides == undefined || sched.holidays == undefined) {
+                if (mainView) {
+                    this.holidayReason = null;
+                }
                 return []
             }
-            if (dob>new Date("June 3 2021")) {
+            if (dob > new Date("June 3 2021")) {
                 this.holidayReason = "Summer Vacation";
                 return [];
             }
-        const ref = dob.getMonth()+ "-"+dob.getDate()+"-"+dob.getFullYear();
-        if (ref in sched.overrides){
-            //console.log("overridden");
+            const ref = dob.getMonth() + "-" + dob.getDate() + "-" + dob.getFullYear();
+            if (ref in sched.overrides) {
+                //console.log("overridden");
 
-            return sched.overrides[ref];
-        }
-        else if (ref in sched.holidays){
-            if (mainView) {
-                this.holidayReason = sched.holidays[ref]
+                return sched.overrides[ref];
+            } else if (ref in sched.holidays) {
+                if (mainView) {
+                    this.holidayReason = sched.holidays[ref]
+                }
+                return null //empty schedule, and set the holiday reason to what it is
+            } else {
+                //console.log("default");
+                if (mainView) this.holidayReason = null;
+                return sched.defaults[dob.getDay()];//regular schedule for this day of the week
             }
-            return null //empty schedule, and set the holiday reason to what it is
-        }
-        else{
-            //console.log("default");
-            if (mainView) this.holidayReason = null;
-            return sched.defaults[dob.getDay()];//regular schedule for this day of the week
-        }
-    },
-        niceHours: function (num){
+        },
+        niceHours: function (num) {
             let raw = num % this.timemode;
-            if (raw==0 && num==12){
+            if (raw == 0 && num == 12) {
                 return num
-            }
-            else {
+            } else {
                 return raw
             }
         },
         setTheme: function (th) {
             this.theme = th;
-            localStorage.setItem('theme',th)
+            localStorage.setItem('theme', th)
         },
         setStyle: function (th) {
             this.style = th;
-            localStorage.setItem('style',th)
+            localStorage.setItem('style', th)
         }
 
     },

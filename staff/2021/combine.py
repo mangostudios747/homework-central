@@ -10,44 +10,43 @@ pd.set_option('display.max_rows', 500)
 pd.set_option('display.max_columns', 9)
 pd.set_option('display.width', 1000)
 df = pd.read_json('classes.json').T.drop(
-    ['calendarName', 'isMilkCount', 'courseAttendance', 'endYear', 'isActive', 'isAdultCount', 'isHomeroomSection',
-     'isLunchCount'], axis=1)
-ef = df.astype(str).groupby('courseNumber')
+    ['active'], axis=1)
+ef = df.astype(str).groupby('courseMasterID')
 # print(ef.first()['course'])
 gf = ef.agg(lambda x: list(set(list(x))))
-
-hf = gf.astype(str).T.to_dict()  # combine, transpose, w/o
+hf = gf.astype(str).T.to_dict()
 courseNames = []
 for i in hf:
     # convert everything to dictionary since we parsed to string earlier
-    hf[i]['id'] = ast.literal_eval(hf[i]['id'])
-    hf[i]['room'] = (ast.literal_eval(hf[i]['room'])[0])
-    if hf[i]['room']=='nan':
-        hf[i]['room'] = None
-    hf[i]['courseName'] = ast.literal_eval(hf[i]['courseName'])[0]
+    hf[i]['id'] = ast.literal_eval(hf[i]['courseID'])
+    hf[i]['room'] = None  # (ast.literal_eval(hf[i]['room'])[0])
+    # if hf[i]['room'] == 'nan':
+    #   hf[i]['room'] = None
+    hf[i]['courseName'] = ast.literal_eval(hf[i]['name'])[0]
     courseNames.append(hf[i]['courseName'])
-    hf[i]['teacherDisplay'] = ast.literal_eval(hf[i]['teacherDisplay'])
-    if hf[i]['teacherDisplay']==['nan']:
-        hf[i]['teacherDisplay']= [] # meaning we have no teacher data
+    # hf[i]['teacherDisplay'] = ast.literal_eval(hf[i]['teacherDisplay'])
+    # if hf[i]['teacherDisplay'] == ['nan']:
+    hf[i]['teacherDisplay'] = []  # meaning we have no teacher data - TODO: map from the old data
+    # print(hf[i])
     hf[i]['number'] = ast.literal_eval(hf[i]['number'])
-    hf[i]['course'] =ast.literal_eval(ast.literal_eval(hf[i]['course'])[0])
-    hf[i]['periods'] = ast.literal_eval(hf[i]['periods'])
-    for j in range(len( hf[i]['periods'])):
-        hf[i]['periods'][j] = ast.literal_eval(hf[i]['periods'][j])
-    hf[i]['terms'] = ast.literal_eval(hf[i]['terms'])
-    for j in range(len(hf[i]['terms'])):
-        hf[i]['terms'][j] = ast.literal_eval(hf[i]['terms'][j])
-    hf[i]['teachers'] = ast.literal_eval(hf[i]['teachers'])
-    for j in range(len(hf[i]['teachers'])):
-        hf[i]['teachers'][j] = ast.literal_eval(hf[i]['teachers'][j])
-    hf[i]['categories'] = [[], [], []] # make room.
+    # hf[i]['course'] = ast.literal_eval(ast.literal_eval(hf[i]['course'])[0])
+    # hf[i]['periods'] = ast.literal_eval(hf[i]['periods'])
+    # for j in range(len(hf[i]['periods'])):
+    #     hf[i]['periods'][j] = ast.literal_eval(hf[i]['periods'][j])
+    # hf[i]['terms'] = ast.literal_eval(hf[i]['terms'])
+    # for j in range(len(hf[i]['terms'])):
+    #     hf[i]['terms'][j] = ast.literal_eval(hf[i]['terms'][j])
+    # hf[i]['teachers'] = ast.literal_eval(hf[i]['teachers'])
+    # for j in range(len(hf[i]['teachers'])):
+    #     hf[i]['teachers'][j] = ast.literal_eval(hf[i]['teachers'][j])
+    hf[i]['categories'] = [[], [], []]  # make room.
     # now we need to use regex to find out what category the course is in
     try:
-        desc = hf[i]['course']['description']
+        desc = ast.literal_eval(hf[i]['description'])[0]
     except KeyError:
         desc = ''
     ## length
-    lengthraw = re.search(r'(L|>)ength:?(</strong>)*:?\ ?(.*?)(<p>|<br>|</p>|</li>|&nbsp|</strong>)',desc)
+    lengthraw = re.search(r'(L|>)ength:?(</strong>)*:?\ ?(.*?)(<p>|<br>|</p>|</li>|&nbsp|</strong>)', desc)
     if lengthraw != None:
         hf[i]['categories'][2].append(lengthraw.group(3))
         if "Semester " in lengthraw.group(3):
@@ -57,7 +56,7 @@ for i in hf:
         hf[i]['categories'][2].append('Year')
 
     ## Benefits
-    
+
     isAP = re.search(r'^AP.*', hf[i]['courseName']) or re.search(r'.*AP$', hf[i]['courseName'])
     if isAP:
         hf[i]['categories'][1].append("AP")
@@ -70,7 +69,7 @@ for i in hf:
     isSLC = re.search(r'SLC', hf[i]['courseName'])
     if isSLC:
         hf[i]['categories'][1].append("SLC")
-    isAdv = re.search(r'(A$|Advanced|Adv)', hf[i]['courseName']) #or re.search(r'advanced(?!\ placement)', desc)
+    isAdv = re.search(r'(A$|Advanced|Adv)', hf[i]['courseName'])  # or re.search(r'advanced(?!\ placement)', desc)
     if isAdv:
         hf[i]['categories'][1].append("Advanced")
     ##  Subjects
@@ -94,7 +93,7 @@ for i in hf:
     isPE = re.search(r'(^PE|Yoga)', hf[i]['courseName'])
     if isPE:
         hf[i]['categories'][0].append("PE")
-    if re.search(r'Theatre',hf[i]['courseName']):
+    if re.search(r'Theatre', hf[i]['courseName']):
         hf[i]['categories'][0].append('Theatre')
         hf[i]['categories'][1].append('VPA')
     ## CTE?
@@ -148,4 +147,4 @@ for i in hf:
 
 with open('courses.json', 'w') as f:
     f.write(json.dumps(hf, indent=4))
-#print(courseNames)
+# print(courseNames)
