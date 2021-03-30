@@ -22,11 +22,22 @@ export default new Vuex.Store({
   },
   mutations: {
     ...vuexfireMutations,
+    setFocusedDate: function (state, date) {
+      state.focusedDate = date;
+    },
   },
   actions: {
     bindSchedule: firebaseAction(({ bindFirebaseRef }) => {
       return bindFirebaseRef("theSchedule", db.ref("theSchedule"));
     }),
+    nextDay: function ({ state, commit }) {
+      const date = state.focusedDate.addDays(1);
+      commit("setFocusedDate", date);
+    },
+    previousDay: function ({ state, commit }) {
+      const date = state.focusedDate.addDays(-1);
+      commit("setFocusedDate", date);
+    },
   },
   modules: {},
   getters: {

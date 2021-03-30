@@ -8,7 +8,7 @@
         <a
           class="btn text-center btn-lg"
           style="cursor: pointer"
-          @click="() => {}"
+          @click="$store.dispatch('previousDay')"
           ><b-icon-chevron-left /></a
         ><input
           id="dp"
@@ -19,11 +19,11 @@
           v-cloak
           for="dp"
           class="text-primary text-center h3"
-          >{{ $store.state.time | moment("ddd, MMM D") }}</label
+          >{{ $store.state.focusedDate | moment("ddd, MMM D") }}</label
         ><a
           style="cursor: pointer"
           class="btn text-center btn-lg"
-          @click="() => {}"
+          @click="$store.dispatch('nextDay')"
           ><b-icon-chevron-right
         /></a>
       </h1>
