@@ -351,7 +351,7 @@ var app = new Vue({
                 if (mainView) {
                     this.holidayReason = null;
                 }
-                return []
+                return [] // the db hasnt loaded yet?
             }
             if (dob > new Date("June 3 2021")) {
                 this.holidayReason = "Summer Vacation";
@@ -364,7 +364,9 @@ var app = new Vue({
                 return sched.overrides[ref];
             } else if (ref in sched.holidays) {
                 if (mainView) {
+
                     this.holidayReason = sched.holidays[ref]
+                    this.holidayReason;
                 }
                 return null //empty schedule, and set the holiday reason to what it is
             } else {
