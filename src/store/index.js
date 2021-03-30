@@ -42,7 +42,7 @@ export default new Vuex.Store({
     getFocusedSched: function (state, getters) {
       return getters.getSched(state.focusedDate, state.theSchedule);
     },
-
+    getCurrPeriod() {},
     getSched: () =>
       function (dob, sched, mainView = true) {
         const returnValue = {};
@@ -74,23 +74,37 @@ export default new Vuex.Store({
         }
 
         if (returnValue.schedule) {
-          returnValue.schedule = returnValue.schedule.map(function ({
-            name,
-            start,
-            end,
-          }) {
+          returnValue.schedule = returnValue.schedule.map(function (
+            { name, start, end },
+            index,
+            array
+          ) {
             const startDate = new Date(dob);
             startDate.setHours(start[0]);
             startDate.setMinutes(start[1]);
+            startDate.clearSeconds();
             const endDate = new Date(dob);
             endDate.setHours(end[0]);
             endDate.setMinutes(end[1]);
+            endDate.clearSeconds();
+            let isUpNext = false;
+            if (index === 0) {
+              // this is the first period
+              if (dob < startDate) isUpNext = true;
+            } else {
+              const previous = array[index - 1];
+              const prevEnd = new Date(dob);
+              prevEnd.setHours(previous.end[0]);
+              prevEnd.setMinutes(previous.end[1]);
+              prevEnd.clearSeconds();
+              if (dob > prevEnd && dob < startDate) isUpNext = true;
+            }
             return {
               name,
-              start,
-              end,
               startDate,
               endDate,
+              isCurrent: startDate < dob && dob < endDate,
+              isUpNext,
             };
           });
         }

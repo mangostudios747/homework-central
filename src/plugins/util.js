@@ -553,6 +553,11 @@ Date.prototype.addMinutes = function (hrs) {
   return date;
 };
 
+Date.prototype.clearSeconds = function () {
+  this.setSeconds(0);
+  this.setMilliseconds(0);
+};
+
 export function timeInCA() {
   const localTime = new Date();
   return localTime.addMinutes(
