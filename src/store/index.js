@@ -28,7 +28,7 @@ export default new Vuex.Store({
   },
   actions: {
     bindSchedule: firebaseAction(({ bindFirebaseRef }) => {
-      return bindFirebaseRef("theSchedule", db.ref("theSchedule"));
+      return bindFirebaseRef("theSchedule", db.ref("schedule"));
     }),
     nextDay: function ({ state, commit }) {
       const date = state.focusedDate.addDays(1);
