@@ -289,6 +289,10 @@ var app = new Vue({
                 ...settings
             }
 
+        },
+        nextPeriod(){
+            const todaySched = this.getSched(this.time, this.schedule);
+
         }
 
     },

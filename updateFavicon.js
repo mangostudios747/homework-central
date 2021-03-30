@@ -44,7 +44,7 @@ function setFavicon(app) {
     const numToShow = isSeconds? (60-app.seconds): minutesLeft;
     if (isSeconds) {
         fc.fillStyle = color;
-        fc.strokeStyle = 'white';
+        fc.strokeStyle = color;
         fc.beginPath();
         fc.moveTo(FAVICON_SIZE / 2 + sRadius, FAVICON_SIZE / 2)
         fc.arc(FAVICON_SIZE / 2, FAVICON_SIZE / 2, sRadius, 0, 2 * Math.PI)
