@@ -1,32 +1,37 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <router-view />
+    <div
+      class="bg-light container-fluid py-2"
+      style="
+        min-height: 6vh;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        left: 0;
+        z-index: 3;
+      "
+    >
+      <b-nav pills fill>
+        <b-nav-item exact-active-class="active" to="/"
+          ><b-icon-calendar-fill
+        /></b-nav-item>
+        <b-nav-item exact-active-class="active" to="/people"
+          ><b-icon-people-fill
+        /></b-nav-item>
+        <b-nav-item exact-active-class="active" to="/settings"
+          ><b-icon-gear-fill
+        /></b-nav-item>
+        <b-nav-item exact-active-class="active" to="/utilities"
+          ><b-icon-tools
+        /></b-nav-item>
+      </b-nav>
     </div>
-    <router-view/>
   </div>
 </template>
-
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
-</style>
+<script>
+export default {
+  name: "App",
+};
+</script>
+<style></style>
