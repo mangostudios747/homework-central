@@ -28,13 +28,15 @@
         /></a>
       </h1>
     </div>
-    {{ $store.getters.getFocusedSched }}
+    <sched-list />
   </b-container>
 </template>
 
 <script>
+import SchedList from "@/components/schedList";
 export default {
   name: "Schedule",
+  components: { SchedList },
 };
 </script>
 

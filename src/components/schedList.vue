@@ -1,5 +1,5 @@
 <template>
-  <div></div>
+  <div>{{ $store.getters.getFocusedSched }}</div>
 </template>
 
 <script>
