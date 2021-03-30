@@ -13,6 +13,25 @@ fc.lineJoin = 'round'
 fc.lineCap = 'round'
 const sRadius = FAVICON_SIZE * 0.45 // radius for last seconds
 
+const colourtoy = document.createElement('div')
+function isLight (colour) {
+    colourtoy.style.backgroundColor = colour
+    colour = colourtoy.style.backgroundColor
+    colour = colour
+        .slice(colour.indexOf('(') + 1, colour.indexOf(')'))
+        .split(/,\s*/)
+        .map(a => +a)
+    // https://stackoverflow.com/questions/11867545/change-text-color-based-on-brightness-of-the-covered-background-area
+    return (
+        Math.round(
+            (parseInt(colour[0]) * 299 +
+                parseInt(colour[1]) * 587 +
+                parseInt(colour[2]) * 114) /
+            1000
+        ) > 150
+    )
+}
+
 const colors =  {
     blue: '#007bff',
     indigo: '#6610f2',
@@ -67,7 +86,7 @@ function setFavicon(app) {
         fc.stroke()
 
 
-        fc.fillStyle = 'white'
+        fc.fillStyle = isLight(color)? 'black' : 'white';
         fc.font = `bold ${FAVICON_SIZE * 0.6}px "Roboto", sans-serif`
         fc.fillText(
             Math.round(numToShow)
@@ -112,7 +131,7 @@ function setFavicon(app) {
         fc.closePath()
         fc.fill()
 
-        fc.fillStyle = 'white'
+        fc.fillStyle = isLight(color)? 'black' : 'white';
         fc.font = `bold ${FAVICON_SIZE * 0.8}px "Roboto", sans-serif`
         fc.fillText(numToShow, FAVICON_SIZE / 2, FAVICON_SIZE * 0.575)
     }
