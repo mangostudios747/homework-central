@@ -433,14 +433,6 @@ export const theSchedule = {
 
 export const dclasses = [
   {
-    name: "Passing",
-    hcname: "Passing",
-    color: "secondary",
-    teacher: "",
-    completed: [],
-    assignments: [],
-  },
-  {
     name: "Period 1",
     hcname: "Period 1",
     color: "danger",

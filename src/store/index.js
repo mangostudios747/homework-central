@@ -1,5 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
+//import { vuexLocal } from "@/plugins/vuex-persist";
 import { vuexfireMutations, firebaseAction } from "vuexfire";
 import { db } from "@/plugins/db";
 import { theSchedule, dclasses } from "@/plugins/util";
@@ -15,7 +16,7 @@ export default new Vuex.Store({
       catime: false, // CA Time - whether all times should be forced into california format. Off by default.
       timeMode: 12,
       classes: [],
-      dclasses,
+      dclasses, // default class mappings
     },
     time: new Date(),
     focusedDate: new Date(),
@@ -54,8 +55,9 @@ export default new Vuex.Store({
       return getters.getSched(state.focusedDate, state.theSchedule);
     },
     getCurrPeriod() {},
-    getSched: () =>
+    getSched: (state) =>
       function (dob, sched, mainView = true) {
+        dob = new Date(dob);
         const returnValue = {};
         if (sched.overrides == undefined || sched.holidays == undefined) {
           if (mainView) {
@@ -110,12 +112,17 @@ export default new Vuex.Store({
               prevEnd.clearSeconds();
               if (dob > prevEnd && dob < startDate) isUpNext = true;
             }
+            const prefs = state.settings.dclasses.filter(
+              ({ hcname }) => hcname === name
+            )[0];
             return {
               name,
               startDate,
               endDate,
               isCurrent: startDate < dob && dob < endDate,
               isUpNext,
+              ...prefs,
+              color: prefs ? prefs.color : "dark",
             };
           });
         }
@@ -123,4 +130,5 @@ export default new Vuex.Store({
         return returnValue;
       },
   },
+  //plugins: [vuexLocal.plugin],
 });
