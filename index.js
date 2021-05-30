@@ -353,9 +353,12 @@ var app = new Vue({
                 }
                 return [] // the db hasnt loaded yet?
             }
-            if (dob > new Date("June 3 2021")) {
-                this.holidayReason = "Summer Vacation";
-                return [];
+            if (dob > new Date("June 4 2021")) {
+                if (mainView) {
+                    this.holidayReason = "Summer Vacation";
+                    this.holidayReason;
+                }
+                return null;
             }
             const ref = dob.getMonth() + "-" + dob.getDate() + "-" + dob.getFullYear();
             if (ref in sched.overrides) {
