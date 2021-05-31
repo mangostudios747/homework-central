@@ -1,9 +1,15 @@
 <template>
-  <div
+  <b-card
+    no-body
     class="card text-white my-2 py-0"
     tabindex="0"
-    :class="'bg-' + course.color"
     style="border-radius: 10px; border-color: transparent"
+    :style="{
+      backgroundColor:
+        course.color.hex ||
+        $store.state.settings.colors[course.hcname] ||
+        $store.state.settings.colors['Other'],
+    }"
   >
     <div class="card-body">
       <p class="h4">
@@ -40,7 +46,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </b-card>
 </template>
 
 <script>

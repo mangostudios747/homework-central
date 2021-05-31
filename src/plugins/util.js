@@ -431,6 +431,22 @@ export const theSchedule = {
   ],
 };
 
+export const colors = {
+  blue: "#007bff",
+  indigo: "#6610f2",
+  purple: "#6f42c1",
+  pink: "#e83e8c",
+  orange: "#fd7e14",
+  primary: "#007bff",
+  secondary: "#707b85",
+  success: "#28a745",
+  info: "#17a2b8",
+  warning: "#ffc107",
+  danger: "#dc3545",
+  light: "#f8f9fa",
+  dark: "#343a40",
+};
+
 export const dclasses = [
   {
     name: "Period 1",

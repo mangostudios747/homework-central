@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Schedule from "@/views/Schedule";
+import store from "@/store";
 
 Vue.use(VueRouter);
 
@@ -44,5 +45,11 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes,
 });
+
+const waitForStorageToBeReady = async (to, from, next) => {
+  await store.restored;
+  next();
+};
+router.beforeEach(waitForStorageToBeReady);
 
 export default router;

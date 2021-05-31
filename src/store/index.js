@@ -3,21 +3,15 @@ import Vuex from "vuex";
 //import { vuexLocal } from "@/plugins/vuex-persist";
 import { vuexfireMutations, firebaseAction } from "vuexfire";
 import { db } from "@/plugins/db";
-import { theSchedule, dclasses } from "@/plugins/util";
+import { settings } from "./settings";
+import { theSchedule, colors } from "@/plugins/util";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
     theSchedule,
-    settings: {
-      theme: "light",
-      style: "default",
-      catime: false, // CA Time - whether all times should be forced into california format. Off by default.
-      timeMode: 12,
-      classes: [],
-      dclasses, // default class mappings
-    },
+    colors,
     time: new Date(),
     focusedDate: new Date("June 2 2021"),
   },
@@ -25,6 +19,9 @@ export default new Vuex.Store({
     ...vuexfireMutations,
     setFocusedDate: function (state, date) {
       state.focusedDate = date;
+    },
+    setOptions: function (state, options) {
+      state.settings = options;
     },
   },
   actions: {
@@ -40,7 +37,9 @@ export default new Vuex.Store({
       commit("setFocusedDate", date);
     },
   },
-  modules: {},
+  modules: {
+    settings,
+  },
   getters: {
     hours: function (state) {
       return state.time.getHours();
