@@ -17,7 +17,7 @@ new Vue({
   mounted() {
     store.dispatch("bindSchedule");
     setInterval(function () {
-      const time = new Date("June 2 2021 13:10:15");
+      const time = new Date(); //("June 2 2021 13:10:15");
       if (store.state.time == store.state.focusedDate)
         store.state.focusedDate = time;
       store.state.time = time;
