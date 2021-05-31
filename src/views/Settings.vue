@@ -14,7 +14,6 @@
         <b-form-group label-size="lg" label="Time Formatting">
           <template #label>
             <span class="h5">Time Formatting</span>
-            <span class="small"><b-badge class="mx-2">ignored</b-badge></span>
           </template>
           <b-form-radio v-model="options.timeMode" :value="12"
             >12-hour</b-form-radio
@@ -26,7 +25,6 @@
       </div>
       <div class="my-3">
         <span class="h5">Periods</span>
-        <span class="mx-2"><b-badge>ignored</b-badge></span>
 
         <b-row
           class="my-2"

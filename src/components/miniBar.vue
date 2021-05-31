@@ -54,7 +54,12 @@
             margin-right: -0.5em;
           "
           class="row card card-body p-1 text-center"
-          :class="'bg-' + p.color"
+          :style="{
+            backgroundColor:
+              p.color.hex ||
+              $store.state.settings.colors[p.hcname] ||
+              $store.state.settings.colors['Other'],
+          }"
         ></div>
       </div>
     </div>

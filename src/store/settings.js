@@ -1,6 +1,7 @@
 import { dclasses, colors } from "@/plugins/util";
-import { vuexLocal } from "@/plugins/vuex-persist";
+
 export const settings = {
+  namespaced: true,
   state: () => ({
     theme: "light",
     style: "default",
@@ -19,5 +20,10 @@ export const settings = {
     classes: [],
     dclasses, // default class mappings
   }),
-  plugins: [vuexLocal.plugin],
+  mutations: {
+    setOptions: function (state, options) {
+      state = options;
+    },
+  },
+  //plugins: [vuexLocal.plugin],
 };

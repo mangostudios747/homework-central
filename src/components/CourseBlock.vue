@@ -30,8 +30,19 @@
       {{ course.teacher }}
 
       <p class="text-white">
-        {{ course.startDate | moment("h:mm A") }} to
-        {{ course.endDate | moment("h:mm A") }}
+        {{
+          course.startDate
+            | moment(
+              `${$store.state.settings.timeMode === 24 ? "H" : "h"}:mm A`
+            )
+        }}
+        to
+        {{
+          course.endDate
+            | moment(
+              `${$store.state.settings.timeMode === 24 ? "H" : "h"}:mm A`
+            )
+        }}
       </p>
       <div class="progress" v-if="course.isCurrent">
         <div

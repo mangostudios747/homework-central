@@ -1,10 +1,10 @@
 import Vue from "vue";
 import Vuex from "vuex";
-//import { vuexLocal } from "@/plugins/vuex-persist";
+import { vuexLocal } from "@/plugins/vuex-persist";
 import { vuexfireMutations, firebaseAction } from "vuexfire";
 import { db } from "@/plugins/db";
-import { settings } from "./settings";
-import { theSchedule, colors } from "@/plugins/util";
+//import { settings } from "./settings";
+import { theSchedule, dclasses, colors } from "@/plugins/util";
 
 Vue.use(Vuex);
 
@@ -12,6 +12,24 @@ export default new Vuex.Store({
   state: {
     theSchedule,
     colors,
+    settings: {
+      theme: "light",
+      style: "default",
+      colors: {
+        "Period 1": colors.danger,
+        "Period 2": colors.orange,
+        "Period 3": colors.warning,
+        "Period 4": colors.success,
+        "Period 5": colors.info,
+        "Period 6": colors.blue,
+        "Period 7": colors.indigo,
+        Other: colors.secondary,
+      },
+      catime: false, // CA Time - whether all times should be forced into california format. Off by default.
+      timeMode: 12,
+      classes: [],
+      dclasses, // default class mappings
+    },
     time: new Date(),
     focusedDate: new Date("June 2 2021"),
   },
@@ -22,6 +40,7 @@ export default new Vuex.Store({
     },
     setOptions: function (state, options) {
       state.settings = options;
+      //console.warn('pls dont use me')
     },
   },
   actions: {
@@ -38,7 +57,7 @@ export default new Vuex.Store({
     },
   },
   modules: {
-    settings,
+    //settings,
   },
   getters: {
     hours: function (state) {
@@ -130,5 +149,5 @@ export default new Vuex.Store({
         return returnValue;
       },
   },
-  //plugins: [vuexLocal.plugin],
+  plugins: [vuexLocal.plugin],
 });
