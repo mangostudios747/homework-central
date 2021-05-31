@@ -9,6 +9,12 @@
     "
   >
     <div
+      @click="
+        $store.commit(
+          'setFocusedDate',
+          focusedDate.addDays(int - focusedDate.getDay())
+        )
+      "
       v-for="int in [0, 1, 2, 3, 4, 5, 6]"
       :key="int"
       class="col text-center py-1 mini-block"

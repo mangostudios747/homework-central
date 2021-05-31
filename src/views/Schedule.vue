@@ -13,7 +13,7 @@
         ><input
           id="dp"
           style="height: 0; width: 0; opacity: 0; position: absolute"
-          data-provide="datepicker"
+          type="date"
         /><label
           style="cursor: pointer"
           v-cloak

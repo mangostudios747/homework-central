@@ -10,12 +10,12 @@
         :key="course.name"
       >
       </course-block>
-      <mini-bar
-        :focused-date="$store.state.focusedDate"
-        :schedule="getFocusedSched.schedule"
-        :time="$store.state.time"
-      ></mini-bar>
     </div>
+    <mini-bar
+      :focused-date="$store.state.focusedDate"
+      :schedule="getFocusedSched.schedule"
+      :time="$store.state.time"
+    ></mini-bar>
   </div>
 </template>
 
