@@ -65,13 +65,14 @@ export default new Vuex.Store({
           }
           returnValue.schedule = [];
         }
-        if (dob > new Date("June 3 2021")) {
-          returnValue.holidayReason = "Summer Vacation";
-          returnValue.schedule = [];
-        }
         const ref =
           dob.getMonth() + "-" + dob.getDate() + "-" + dob.getFullYear();
-        if (ref in sched.overrides) {
+        if (dob > new Date("June 4 2021")) {
+          if (mainView) {
+            returnValue.holidayReason = "Summer Vacation";
+          }
+          returnValue.schedule = [];
+        } else if (ref in sched.overrides) {
           //console.log("overridden");
 
           returnValue.schedule = sched.overrides[ref];
