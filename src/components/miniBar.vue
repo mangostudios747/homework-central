@@ -17,7 +17,7 @@
       "
       v-for="int in [0, 1, 2, 3, 4, 5, 6]"
       :key="int"
-      class="col text-center py-1 mini-block"
+      class="col text-center py-1 pb-2 mini-block"
       tabindex="0"
       :class="
         (int === focusedDate.getDay() ? 'active' : '') +
@@ -47,7 +47,12 @@
             false
           ).schedule"
           :key="p.name"
-          style="margin-top: 0.1rem; margin-bottom: 0.1rem"
+          style="
+            margin-top: 0.1rem;
+            margin-bottom: 0.1rem;
+            margin-left: -0.5em;
+            margin-right: -0.5em;
+          "
           class="row card card-body p-1 text-center"
           :class="'bg-' + p.color"
         ></div>

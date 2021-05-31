@@ -19,7 +19,7 @@ export default new Vuex.Store({
       dclasses, // default class mappings
     },
     time: new Date(),
-    focusedDate: new Date(),
+    focusedDate: new Date("June 2 2021"),
   },
   mutations: {
     ...vuexfireMutations,
