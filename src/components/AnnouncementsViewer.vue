@@ -25,6 +25,17 @@
           style="width: 100%"
         >
           <div v-html="announcement.body"></div>
+
+          <template #footer>
+            <span class="text-muted">{{
+              new Date(announcement.timestamp)
+                | moment(
+                  `MMMM Do YYYY, ${
+                    $store.state.settings.timeMode === 24 ? "H" : "h"
+                  }:mm A`
+                )
+            }}</span>
+          </template>
         </b-card>
       </b-row>
     </b-col>
@@ -32,12 +43,7 @@
 </template>
 
 <script>
-const announcements = [
-  {
-    title: "Happy Birthday!",
-    body: `<p>Homework Central grew up!</p>`,
-  },
-];
+const announcements = require("@/plugins/PSA.json");
 
 export default {
   name: "AnnouncementsViewer",
