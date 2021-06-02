@@ -13,7 +13,7 @@
   >
     <div class="card-body">
       <p class="h4">
-        <a
+        <span
           class="stretched-link text-decoration-none"
           :class="
             isLight(
@@ -22,11 +22,8 @@
               ? 'text-dark ignore-theme'
               : 'text-light ignore-theme'
           "
-          target="_blank"
-          rel="noopener noreferrer"
-          :href="course.zoom"
           >{{ course.name
-          }}<span v-if="course.name === 'Gunn Together'">: Period 5</span></a
+          }}<span v-if="course.name === 'Gunn Together'">: Period 5</span></span
         >
         <span
           class="badge badge-light badge-pill"
