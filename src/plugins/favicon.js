@@ -8,6 +8,7 @@ faviconCanvas.height = FAVICON_SIZE;
 const fc = faviconCanvas.getContext("2d");
 fc.textAlign = "center";
 fc.textBaseline = "middle";
+
 fc.lineWidth = FAVICON_SIZE * 0.1;
 fc.lineJoin = "round";
 fc.lineCap = "round";
@@ -51,7 +52,7 @@ export function setFavicon({
     fc.stroke();
 
     fc.fillStyle = isLight(color) ? "black" : "white";
-    fc.font = `bold ${FAVICON_SIZE * 0.6}px "Roboto", sans-serif`;
+    fc.font = `${FAVICON_SIZE * 0.6}px "Roboto", sans-serif`;
     fc.fillText(
       Math.round(numToShow).toString().padStart(2, "0"),
       FAVICON_SIZE / 2,
@@ -93,7 +94,7 @@ export function setFavicon({
     fc.fill();
 
     fc.fillStyle = isLight(color) ? "black" : "white";
-    fc.font = `bold ${FAVICON_SIZE * 0.8}px "Roboto", sans-serif`;
+    fc.font = `400 ${FAVICON_SIZE * 0.8}px "Roboto", sans-serif`;
     fc.fillText(numToShow, FAVICON_SIZE / 2, FAVICON_SIZE * 0.575);
   }
   document.title = `${numToShow} ${isSeconds ? "seconds" : "minutes"} ${
