@@ -1,6 +1,9 @@
 <template>
   <b-container style="padding-bottom: 5rem">
-    <div class="topnav sticky-top bg-light pt-3" style="opacity: 0.8">
+    <div
+      class="topnav sticky-top bg-light pt-3"
+      style="opacity: 0.8; backdrop-filter: blur(5px)"
+    >
       <h1 class="text-center" v-cloak>
         {{
           $store.state.time

@@ -16,7 +16,9 @@
         <a
           class="stretched-link text-decoration-none"
           :class="
-            isLight(course.color.hex)
+            isLight(
+              course.color.hex || $store.state.settings.colors[course.hcname]
+            )
               ? 'text-dark ignore-theme'
               : 'text-light ignore-theme'
           "
