@@ -8,9 +8,16 @@
     <div class="mx-1 my-2">
       <b-badge
         variant="none"
-        :style="{ backgroundColor: currentPeriod.color.hex }"
+        :style="{
+          backgroundColor:
+            currentPeriod.color.hex ||
+            $store.state.settings.colors[currentPeriod.hcname],
+        }"
         :class="
-          isLight(currentPeriod.color.hex)
+          isLight(
+            currentPeriod.color.hex ||
+              $store.state.settings.colors[currentPeriod.hcname]
+          )
             ? 'text-dark ignore-theme'
             : 'text-light ignore-theme'
         "
@@ -29,7 +36,11 @@
       <b-progress-bar
         variant="none"
         :value="currentPeriod.percentToShow"
-        :style="{ backgroundColor: currentPeriod.color.hex }"
+        :style="{
+          backgroundColor:
+            currentPeriod.color.hex ||
+            $store.state.settings.colors[currentPeriod.hcname],
+        }"
       >
       </b-progress-bar>
     </b-progress>
