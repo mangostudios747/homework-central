@@ -14,7 +14,12 @@
     <div class="card-body">
       <p class="h4">
         <a
-          class="stretched-link text-decoration-none text-light"
+          class="stretched-link text-decoration-none"
+          :class="
+            isLight(course.color.hex)
+              ? 'text-dark ignore-theme'
+              : 'text-light ignore-theme'
+          "
           target="_blank"
           rel="noopener noreferrer"
           :href="course.zoom"
@@ -27,9 +32,14 @@
           >{{ null }}</span
         >
       </p>
-      {{ course.teacher }}
 
-      <p class="text-white">
+      <p
+        :class="
+          isLight(course.color.hex)
+            ? 'text-dark ignore-theme'
+            : 'text-light ignore-theme'
+        "
+      >
         {{
           course.startDate
             | moment(
@@ -70,10 +80,14 @@
 </template>
 
 <script>
+import { isLight } from "@/plugins/util";
+
 export default {
   name: "CourseBlock",
+
   props: ["course"],
   methods: {
+    isLight,
     pSBC(p, c0, c1, l) {
       let r,
         g,

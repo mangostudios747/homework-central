@@ -8,7 +8,11 @@
     <div class="mx-1 my-2">
       <b-badge
         :style="{ backgroundColor: currentPeriod.color.hex }"
-        :class="isLight(currentPeriod.color.hex) ? 'text-dark' : 'text-light'"
+        :class="
+          isLight(currentPeriod.color.hex)
+            ? 'text-dark ignore-theme'
+            : 'text-light ignore-theme'
+        "
         >AP CS A</b-badge
       >
       {{ currentPeriod.notStarted ? "starting" : "ending" }} in

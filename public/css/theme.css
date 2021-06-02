@@ -37,11 +37,11 @@
     color: var(--grey2)
 }
 
-.text-dark {
+.text-dark:not(.ignore-theme) {
     color: var(--grey2)!important;
 }
 
-.text-light , .text-white {
+.text-light:not(.ignore-theme) , .text-white:not(.ignore-theme) {
     color: var(--grey1)!important;
 }
 

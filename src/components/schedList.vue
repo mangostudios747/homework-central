@@ -1,7 +1,14 @@
 <template>
   <div>
     <div class="text-center" v-if="getFocusedSched.holidayReason">
-      <h1 class="mt-5 text-black-50">{{ getFocusedSched.holidayReason }}</h1>
+      <h1
+        class="mt-5"
+        :class="`text-${
+          $store.state.settings.theme === 'dark' ? 'white' : 'black'
+        }-50`"
+      >
+        {{ getFocusedSched.holidayReason }}
+      </h1>
     </div>
     <div v-else>
       <course-block
@@ -15,7 +22,13 @@
       class="text-center"
       v-if="!getFocusedSched.schedule || !getFocusedSched.schedule.length"
     >
-      <h4 class="text-black-50">No school today!</h4>
+      <h4
+        :class="`text-${
+          $store.state.settings.theme === 'dark' ? 'white' : 'black'
+        }-50`"
+      >
+        No school today!
+      </h4>
     </div>
     <mini-bar
       class="mt-5"
