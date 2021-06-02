@@ -21,7 +21,7 @@
             ? 'text-dark ignore-theme'
             : 'text-light ignore-theme'
         "
-        >AP CS A</b-badge
+        >{{ currentPeriod.name }}</b-badge
       >
       {{ currentPeriod.notStarted ? "starting" : "ending" }} in
       {{ currentPeriod.minutesRemaining }} minutes.
