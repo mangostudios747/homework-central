@@ -3,6 +3,7 @@ import { dclasses, colors } from "@/plugins/util";
 export const settings = {
   namespaced: true,
   state: () => ({
+    lastUpdated: null,
     theme: "light",
     style: "default",
     colors: {
@@ -22,7 +23,8 @@ export const settings = {
   }),
   mutations: {
     setOptions: function (state, options) {
-      state = options;
+      console.log("i actually ran");
+      Object.assign(state, options);
     },
   },
   //plugins: [vuexLocal.plugin],

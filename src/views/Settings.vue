@@ -77,10 +77,14 @@ export default {
     this.options = this.$store.state.settings;
   },
   watch: {
-    options() {
-      if (this.options) {
-        this.$store.commit("setOptions", this.options);
-      }
+    options: {
+      handler() {
+        if (this.options) {
+          console.log("i did it?");
+          this.$store.commit("settings/setOptions", this.options);
+        }
+      },
+      deep: true,
     },
   },
 };
