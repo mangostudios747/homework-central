@@ -471,7 +471,7 @@ export const dclasses = [
   {
     name: "Period 1",
     hcname: "Period 1",
-    color: "danger",
+    color: colors.danger,
     teacher: "",
     completed: [],
     assignments: [],
@@ -479,7 +479,7 @@ export const dclasses = [
   {
     name: "Period 2",
     hcname: "Period 2",
-    color: "orange",
+    color: colors.orange,
     teacher: "",
     completed: [],
     assignments: [],
@@ -487,7 +487,7 @@ export const dclasses = [
   {
     name: "Period 3",
     hcname: "Period 3",
-    color: "warning",
+    color: colors.warning,
     teacher: "",
     completed: [],
     assignments: [],
@@ -495,7 +495,7 @@ export const dclasses = [
   {
     name: "Period 4",
     hcname: "Period 4",
-    color: "success",
+    color: colors.success,
     teacher: "",
     completed: [],
     assignments: [],
@@ -503,7 +503,7 @@ export const dclasses = [
   {
     name: "Period 5",
     hcname: "Period 5",
-    color: "primary",
+    color: colors.primary,
     teacher: "",
     completed: [],
     assignments: [],
@@ -511,7 +511,7 @@ export const dclasses = [
   {
     name: "Period 6",
     hcname: "Period 6",
-    color: "purple",
+    color: colors.purple,
     teacher: "",
     completed: [],
     assignments: [],
@@ -519,7 +519,7 @@ export const dclasses = [
   {
     name: "Period 7",
     hcname: "Period 7",
-    color: "pink",
+    color: colors.pink,
     teacher: "",
     completed: [],
     assignments: [],
@@ -527,7 +527,7 @@ export const dclasses = [
   {
     name: "Period 8",
     hcname: "Period 8",
-    color: "info",
+    color: colors.info,
     teacher: "",
     completed: [],
     assignments: [],
@@ -535,7 +535,7 @@ export const dclasses = [
   {
     name: "Lunch",
     hcname: "Lunch",
-    color: "dark",
+    color: colors.dark,
     teacher: "",
     completed: [],
     assignments: [],
@@ -543,7 +543,7 @@ export const dclasses = [
   {
     name: "SELF",
     hcname: "SELF",
-    color: "dark",
+    color: colors.dark,
     teacher: "",
     completed: [],
     assignments: [],
