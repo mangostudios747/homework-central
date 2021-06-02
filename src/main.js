@@ -40,6 +40,7 @@ new Vue({
           name: period.name,
           color: period.color.hex || colors[period.color],
           favicon: faviconElement,
+          notStarted: period.notStarted,
         });
       }
     }, 100);

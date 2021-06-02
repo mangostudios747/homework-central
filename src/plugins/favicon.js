@@ -12,6 +12,7 @@ fc.lineCap = "round";
 const sRadius = FAVICON_SIZE * 0.45; // radius for last seconds
 
 const colourtoy = document.createElement("div");
+
 function isLight(colour) {
   colourtoy.style.backgroundColor = colour;
   colour = colourtoy.style.backgroundColor;
@@ -37,6 +38,7 @@ export function setFavicon({
   name,
   color,
   favicon,
+  notStarted,
 }) {
   if (invalid === true) {
     favicon.href = "/favicon.png";
@@ -112,9 +114,9 @@ export function setFavicon({
     fc.font = `bold ${FAVICON_SIZE * 0.8}px "Roboto", sans-serif`;
     fc.fillText(numToShow, FAVICON_SIZE / 2, FAVICON_SIZE * 0.575);
   }
-  document.title = `${numToShow} ${
-    isSeconds ? "seconds" : "minutes"
-  } left in ${name} • Homework Central`;
+  document.title = `${numToShow} ${isSeconds ? "seconds" : "minutes"} ${
+    notStarted ? "until" : "left in"
+  } ${name} • Homework Central`;
   return (favicon.href = faviconCanvas.toDataURL());
 }
 

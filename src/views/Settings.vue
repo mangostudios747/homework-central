@@ -60,16 +60,20 @@
       </div>
     </div>
     <div v-else>Loading . . .</div>
+    <About />
+    <Credits />
   </b-container>
 </template>
 
 <script>
+import Credits from "@/components/Credits";
 const { Chrome } = require("vue-color");
 
 import AnnouncementsViewer from "@/components/AnnouncementsViewer";
+import About from "@/components/About";
 export default {
   name: "Settings",
-  components: { AnnouncementsViewer, "chrome-picker": Chrome },
+  components: { About, Credits, AnnouncementsViewer, "chrome-picker": Chrome },
   data: () => ({
     options: null,
   }),
