@@ -1,3 +1,5 @@
+import { isLight } from "@/plugins/util";
+
 const FAVICON_SIZE = 32;
 const borderRadius = FAVICON_SIZE * 0.15;
 const faviconCanvas = document.createElement("canvas");
@@ -10,26 +12,6 @@ fc.lineWidth = FAVICON_SIZE * 0.1;
 fc.lineJoin = "round";
 fc.lineCap = "round";
 const sRadius = FAVICON_SIZE * 0.45; // radius for last seconds
-
-const colourtoy = document.createElement("div");
-
-function isLight(colour) {
-  colourtoy.style.backgroundColor = colour;
-  colour = colourtoy.style.backgroundColor;
-  colour = colour
-    .slice(colour.indexOf("(") + 1, colour.indexOf(")"))
-    .split(/,\s*/)
-    .map((a) => +a);
-  // https://stackoverflow.com/questions/11867545/change-text-color-based-on-brightness-of-the-covered-background-area
-  return (
-    Math.round(
-      (parseInt(colour[0]) * 299 +
-        parseInt(colour[1]) * 587 +
-        parseInt(colour[2]) * 114) /
-        1000
-    ) > 150
-  );
-}
 
 export function setFavicon({
   invalid,

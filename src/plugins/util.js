@@ -447,6 +447,26 @@ export const colors = {
   dark: "#343a40",
 };
 
+const colourtoy = document.createElement("div");
+
+export function isLight(colour) {
+  colourtoy.style.backgroundColor = colour;
+  colour = colourtoy.style.backgroundColor;
+  colour = colour
+    .slice(colour.indexOf("(") + 1, colour.indexOf(")"))
+    .split(/,\s*/)
+    .map((a) => +a);
+  // https://stackoverflow.com/questions/11867545/change-text-color-based-on-brightness-of-the-covered-background-area
+  return (
+    Math.round(
+      (parseInt(colour[0]) * 299 +
+        parseInt(colour[1]) * 587 +
+        parseInt(colour[2]) * 114) /
+        1000
+    ) > 150
+  );
+}
+
 export const dclasses = [
   {
     name: "Period 1",

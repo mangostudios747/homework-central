@@ -33,15 +33,17 @@
         /></a>
       </h1>
     </div>
+    <status-quo />
     <sched-list />
   </b-container>
 </template>
 
 <script>
 import SchedList from "@/components/schedList";
+import StatusQuo from "@/components/statusQuo";
 export default {
   name: "Schedule",
-  components: { SchedList },
+  components: { StatusQuo, SchedList },
 };
 </script>
 

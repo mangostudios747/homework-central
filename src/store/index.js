@@ -82,6 +82,7 @@ export default new Vuex.Store({
       const timeRemaining = notStarted
         ? period.startDate - state.time
         : period.endDate - state.time;
+      const duration = (period.endDate - period.startDate) / 60000;
       return {
         ...period,
         ...settings,
@@ -89,6 +90,8 @@ export default new Vuex.Store({
         timeRemaining,
         lessThanAMinute: timeRemaining < 60000,
         minutesRemaining: Math.round(timeRemaining / 60000),
+        percentToShow:
+          100 * (1 - timeRemaining / 60000 / (notStarted ? 10 : duration)),
       };
     },
     getSched: (state) =>
@@ -152,14 +155,19 @@ export default new Vuex.Store({
             const prefs = state.settings.dclasses.filter(
               ({ hcname }) => hcname === name
             )[0];
+            const isCurrent = startDate < state.time && state.time < endDate;
             return {
               name,
               startDate,
               endDate,
-              isCurrent: startDate < dob && dob < endDate,
+              isCurrent,
               isUpNext,
               ...prefs,
               color: prefs ? prefs.color : "dark",
+              percentDone: isCurrent
+                ? (100 * (state.time - startDate)) / (endDate - startDate)
+                : 0,
+              endingIn: Math.round((endDate - state.time) / 60000),
             };
           });
         }
