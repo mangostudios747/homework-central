@@ -40,6 +40,7 @@
               :style="{
                 backgroundColor:
                   dclass.color.hex ||
+                  dclass.color ||
                   $store.state.settings.colors[dclass.hcname] ||
                   $store.state.settings.colors.Other,
                 height: '40px',
@@ -62,6 +63,7 @@
     <div v-else>Loading . . .</div>
     <About />
     <Credits />
+    <Debug />
   </b-container>
 </template>
 
@@ -71,9 +73,16 @@ const { Chrome } = require("vue-color");
 
 import AnnouncementsViewer from "@/components/AnnouncementsViewer";
 import About from "@/components/About";
+import Debug from "@/views/Debug";
 export default {
   name: "Settings",
-  components: { About, Credits, AnnouncementsViewer, "chrome-picker": Chrome },
+  components: {
+    Debug,
+    About,
+    Credits,
+    AnnouncementsViewer,
+    "chrome-picker": Chrome,
+  },
   data: () => ({
     options: null,
   }),

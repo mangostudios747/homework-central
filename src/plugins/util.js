@@ -535,7 +535,7 @@ export const dclasses = [
   {
     name: "Lunch",
     hcname: "Lunch",
-    color: colors.dark,
+    color: colors.secondary,
     teacher: "",
     completed: [],
     assignments: [],
@@ -543,7 +543,7 @@ export const dclasses = [
   {
     name: "SELF",
     hcname: "SELF",
-    color: colors.dark,
+    color: colors.secondary,
     teacher: "",
     completed: [],
     assignments: [],
