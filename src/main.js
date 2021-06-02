@@ -11,6 +11,7 @@ import "../public/css/colors.css";
 Vue.config.productionTip = false;
 Vue.use(require("vue-moment"));
 import { setFavicon } from "@/plugins/favicon";
+import { colors } from "@/plugins/util";
 new Vue({
   router,
   store,
@@ -37,7 +38,7 @@ new Vue({
           numToShow: period.minutesRemaining,
           isSeconds: period.lessThanAMinute,
           name: period.name,
-          color: period.color.hex,
+          color: period.color.hex || colors[period.color],
           favicon: faviconElement,
         });
       }
