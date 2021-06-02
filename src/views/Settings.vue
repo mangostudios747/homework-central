@@ -80,7 +80,6 @@ export default {
     options: {
       handler() {
         if (this.options) {
-          console.log("i did it?");
           this.$store.commit("settings/setOptions", this.options);
         }
       },

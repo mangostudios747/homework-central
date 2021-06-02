@@ -8,6 +8,10 @@ import { theSchedule, colors } from "@/plugins/util";
 
 Vue.use(Vuex);
 
+function getTotalMinutes(d = new Date()) {
+  return d.getMinutes() + d.getHours() * 60;
+}
+
 export default new Vuex.Store({
   state: {
     theSchedule,
@@ -19,11 +23,6 @@ export default new Vuex.Store({
     ...vuexfireMutations,
     setFocusedDate: function (state, date) {
       state.focusedDate = date;
-    },
-    setOptions: function (state, options) {
-      state.settings = options;
-      state.settings.lastUpdated = options;
-      console.warn("pls dont use me");
     },
   },
   actions: {
@@ -55,7 +54,43 @@ export default new Vuex.Store({
     getFocusedSched: function (state, getters) {
       return getters.getSched(state.focusedDate, state.theSchedule);
     },
-    getCurrPeriod() {},
+    currentPeriod: function (state, getters) {
+      const todaySched = getters.getSched(state.time, state.theSchedule)
+        .schedule;
+      const mins = getTotalMinutes(state.time);
+      let period = todaySched.filter(function ({ startDate, endDate }) {
+        return (
+          mins >= getTotalMinutes(startDate) && mins <= getTotalMinutes(endDate)
+        );
+      })[0];
+      if (!period) {
+        period = todaySched.filter(function ({ startDate }, index) {
+          return (
+            // hasn't started yet
+            mins <= getTotalMinutes(startDate) &&
+            // is indeed up next
+            (index === 0 ||
+              mins >= getTotalMinutes(todaySched[index - 1].endDate))
+          );
+        })[0];
+        if (!period) return { invalid: true, color: {} };
+      }
+      const settings = state.settings.dclasses.filter(function (dclass) {
+        return period.name === dclass.hcname;
+      })[0];
+      const notStarted = state.time < period.startDate;
+      const timeRemaining = notStarted
+        ? period.startDate - state.time
+        : period.endDate - state.time;
+      return {
+        ...period,
+        ...settings,
+        notStarted,
+        timeRemaining,
+        lessThanAMinute: timeRemaining < 60000,
+        minutesRemaining: Math.round(timeRemaining / 60000),
+      };
+    },
     getSched: (state) =>
       function (dob, sched, mainView = true) {
         dob = new Date(dob);

@@ -23,7 +23,6 @@ export const settings = {
   }),
   mutations: {
     setOptions: function (state, options) {
-      console.log("i actually ran");
       Object.assign(state, options);
     },
   },
