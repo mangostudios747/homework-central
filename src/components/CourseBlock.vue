@@ -35,7 +35,9 @@
 
       <p
         :class="
-          isLight(course.color.hex)
+          isLight(
+            course.color.hex || $store.state.settings.colors[course.hcname]
+          )
             ? 'text-dark ignore-theme'
             : 'text-light ignore-theme'
         "
@@ -64,9 +66,10 @@
           class="progress-bar progress-bar-striped progress-bar-animated"
           role="progressbar"
           :style="{
-            background: course.color.hex
-              ? `${pSBC(-0.2, course.color.hex)}`
-              : $store.state.settings.colors[course.name],
+            background: `${pSBC(
+              -0.2,
+              course.color.hex || $store.state.settings.colors[course.name]
+            )}`,
             width: `${course.percentDone}%`,
           }"
           aria-valuemin="0"
