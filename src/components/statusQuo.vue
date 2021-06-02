@@ -7,6 +7,7 @@
   >
     <div class="mx-1 my-2">
       <b-badge
+        variant="none"
         :style="{ backgroundColor: currentPeriod.color.hex }"
         :class="
           isLight(currentPeriod.color.hex)
@@ -23,8 +24,10 @@
       height="7px"
       style="background-color: rgba(0, 0, 0, 0.2)"
       class="mb-3"
+      variant="none"
     >
       <b-progress-bar
+        variant="none"
         :value="currentPeriod.percentToShow"
         :style="{ backgroundColor: currentPeriod.color.hex }"
       >
