@@ -1,5 +1,10 @@
 [
   {
+    "title": "Never be late again!",
+    "body": "Now, whenever school is ongoing, Homework Central will display the time remaining in the tab title!",
+    "timestamp": 1622604410061
+  },
+  {
     "title": "New Features",
     "body": "<p>Homework Central now has . . .</p>\n<ul><li>Settings that save</li><li>24-hour time</li><li>Custom names and colors for each class</li><li>Dark mode!</li></ul>",
     "timestamp": 1622498738586
