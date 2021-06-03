@@ -31,7 +31,7 @@
       </h4>
     </div>
     <mini-bar
-      class="mt-5"
+      class="mt-3"
       :focused-date="$store.state.focusedDate"
       :schedule="getFocusedSched.schedule"
       :time="$store.state.time"
