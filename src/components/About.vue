@@ -2,10 +2,16 @@
   <div class="my-4">
     <h5>About</h5>
     <p>
+      This app was originally made as a successor to
+      <a target="_blank" href="https://orbiit.github.io/gunn-web-app">UGWA</a>
+      when it graduated in 2021.
       <br />
-      <a href="https://github.com/sheeptester">Sean Yen</a> provided code
-      snippets, insight, and
-      <a href="https://orbiit.github.io/gunn-web-app">inspiration.</a>
+      Homework Central is open-sourced on
+      <a
+        target="_blank"
+        href="https://github.com/saumyasinghal747/homework-central"
+        >Github.</a
+      >
     </p>
   </div>
 </template>
