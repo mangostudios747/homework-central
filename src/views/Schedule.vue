@@ -23,7 +23,7 @@
           style="height: 0; width: 0; opacity: 0; position: absolute"
           type="date"
         /><label
-          style="cursor: pointer"
+          style="cursor: pointer; min-width: 160px"
           v-cloak
           for="dp"
           class="text-primary text-center h3"
@@ -64,7 +64,7 @@ export default {
     async focusedDate() {
       this.events = (await eventsForDay(this.$store.state.focusedDate)).map(
         (e) => {
-          e.description = e.description.trim();
+          if (e.description) e.description = e.description.trim();
           return e;
         }
       );
