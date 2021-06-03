@@ -38,15 +38,41 @@
     </div>
     <status-quo />
     <sched-list />
+    <h5 class="my-3">Events</h5>
+    <div :key="idx" v-for="(event, idx) in events">
+      <h6>{{ event.summary }}</h6>
+      <p style="white-space: pre-wrap">{{ event.description }}</p>
+    </div>
   </b-container>
 </template>
 
 <script>
 import SchedList from "@/components/schedList";
 import StatusQuo from "@/components/statusQuo";
+import { eventsForDay } from "@/plugins/fetchGCalendar";
+
 export default {
   name: "Schedule",
   components: { StatusQuo, SchedList },
+  data: () => ({ events: [] }),
+  async mounted() {
+    this.events = await eventsForDay(this.$store.state.focusedDate);
+  },
+  watch: {
+    async focusedDate() {
+      this.events = (await eventsForDay(this.$store.state.focusedDate)).map(
+        (e) => {
+          e.description = e.description.trim();
+          return e;
+        }
+      );
+    },
+  },
+  computed: {
+    focusedDate() {
+      return this.$store.state.focusedDate;
+    },
+  },
 };
 </script>
 

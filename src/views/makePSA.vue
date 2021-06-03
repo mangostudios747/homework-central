@@ -5,7 +5,10 @@
       <vue-editor v-model="body" />
     </b-col>
     <b-col cols="4">
-      <b-textarea :value="{ title, body, time }" rows="10"></b-textarea>
+      <b-textarea
+        :value="{ title, body, timestamp: time }"
+        rows="10"
+      ></b-textarea>
       <b-btn @click="updateTime">update time</b-btn>
     </b-col>
   </b-row>

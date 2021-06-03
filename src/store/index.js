@@ -163,7 +163,7 @@ export default new Vuex.Store({
               isCurrent,
               isUpNext,
               ...prefs,
-              color: prefs ? prefs.color : { hex: colors.dark },
+              color: prefs ? prefs.color : { hex: colors.secondary },
               percentDone: isCurrent
                 ? (100 * (state.time - startDate)) / (endDate - startDate)
                 : 0,
