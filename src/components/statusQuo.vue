@@ -2,7 +2,7 @@
   <div
     v-if="
       $store.state.focusedDate.toDateString() ===
-      $store.state.time.toDateString()
+        $store.state.time.toDateString() && !currentPeriod.invalid
     "
   >
     <div class="mx-1 my-2">
