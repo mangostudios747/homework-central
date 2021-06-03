@@ -51,6 +51,7 @@
               <template #button-content>
                 <i class="bi bi-eyedropper text-white-50"></i>
               </template>
+
               <chrome-picker v-model="dclass.color" />
             </b-dropdown>
           </b-col>

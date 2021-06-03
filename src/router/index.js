@@ -2,7 +2,6 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Schedule from "@/views/Schedule";
 import store from "@/store";
-
 Vue.use(VueRouter);
 
 const routes = [
@@ -37,6 +36,15 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "util" */ "../views/Utilities"),
+  },
+  {
+    path: "/make-psa",
+    name: "PSA Maker",
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "util" */ "../views/makePSA.vue"),
   },
 ];
 

@@ -7,6 +7,7 @@
     :style="{
       backgroundColor:
         course.color.hex ||
+        course.color ||
         $store.state.settings.colors[course.hcname] ||
         $store.state.settings.colors['Other'],
     }"
