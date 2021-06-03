@@ -38,10 +38,12 @@
     </div>
     <status-quo />
     <sched-list />
-    <h5 class="my-3">Events</h5>
+    <h5 class="my-3 font-weight-bold">Events</h5>
     <div :key="idx" v-for="(event, idx) in events">
       <h6>{{ event.summary }}</h6>
-      <p style="white-space: pre-wrap">{{ event.description }}</p>
+      <p style="white-space: pre-wrap; opacity: 0.5">
+        {{ event.description ? event.description.trim() : null }}
+      </p>
     </div>
   </b-container>
 </template>
