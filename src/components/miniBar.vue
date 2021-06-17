@@ -1,6 +1,6 @@
 <template>
   <div
-    class="container justify-content-center mx-auto row pb-1"
+    class="container justify-content-center mx-auto row pb-1 mt-1"
     style="
       padding-left: 1em;
       padding-right: 1em;
@@ -9,6 +9,17 @@
     "
   >
     <div
+      v-b-tooltip.hover.top="
+        [
+          'Sunday',
+          'Monday',
+          'Tuesday',
+          'Wednesday',
+          'Thursday',
+          'Friday',
+          'Saturday',
+        ][int]
+      "
       @click="
         $store.commit(
           'setFocusedDate',
@@ -31,6 +42,7 @@
         max-width: 80px !important;
         margin-left: 0.13rem;
         margin-right: 0.13rem;
+        cursor: pointer;
       "
     >
       <!-- clicking should take one to the thing -->
@@ -57,6 +69,7 @@
           :style="{
             backgroundColor:
               p.color.hex ||
+              p.color ||
               $store.state.settings.colors[p.hcname] ||
               $store.state.settings.colors['Other'],
           }"

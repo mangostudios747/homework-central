@@ -42,11 +42,14 @@
         </b-nav-item>
       </b-nav>
     </div>
+    <new-assignment-dialog />
   </div>
 </template>
 <script>
+import NewAssignmentDialog from "@/components/newAssignmentDialog";
 export default {
   name: "App",
+  components: { NewAssignmentDialog },
   data: () => ({
     navigation: [
       {

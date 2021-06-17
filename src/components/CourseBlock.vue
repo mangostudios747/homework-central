@@ -12,36 +12,45 @@
         $store.state.settings.colors['Other'],
     }"
   >
-    <div class="card-body">
-      <p class="h4">
+    <div
+      class="card-body"
+      :class="
+        isLight(course.color.hex || $store.state.settings.colors[course.hcname])
+          ? 'text-dark ignore-theme'
+          : 'text-light ignore-theme'
+      "
+    >
+      <div class="h4" style="display: flex; justify-content: space-between">
         <span
-          class="stretched-link text-decoration-none"
+          class="text-decoration-none"
           :class="
             isLight(
-              course.color.hex || $store.state.settings.colors[course.hcname]
+              course.color.hex ||
+                course.color ||
+                $store.state.settings.colors[course.hcname]
             )
               ? 'text-dark ignore-theme'
               : 'text-light ignore-theme'
           "
-          >{{ course.name
-          }}<span v-if="course.name === 'Gunn Together'">: Period 5</span></span
-        >
-        <span
-          class="badge badge-light badge-pill"
-          :class="'text-' + course.color"
-          >{{ null }}</span
-        >
-      </p>
+          >{{ course.name }}
+          <span
+            v-if="course.assignments && course.assignments.length"
+            class="badge badge-light badge-pill"
+            :class="'text-' + course.color"
+            >{{ course.assignments.length }}
+          </span>
+        </span>
 
-      <p
-        :class="
-          isLight(
-            course.color.hex || $store.state.settings.colors[course.hcname]
-          )
-            ? 'text-dark ignore-theme'
-            : 'text-light ignore-theme'
-        "
-      >
+        <b-btn
+          @click="
+            () => $store.dispatch('promptCreateNewAssignment', course.hcname)
+          "
+          variant="link"
+          ><b-icon-file-plus
+        /></b-btn>
+      </div>
+
+      <p>
         {{
           course.startDate
             | moment(

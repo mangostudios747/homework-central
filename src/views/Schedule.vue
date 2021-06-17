@@ -1,8 +1,8 @@
 <template>
   <b-container style="padding-bottom: 5rem">
     <div
-      class="topnav sticky-top bg-light pt-3"
-      style="opacity: 0.8; backdrop-filter: blur(10px)"
+      class="topnav sticky-top pt-3"
+      style="background-color: var(--grey1-50); backdrop-filter: blur(10px)"
     >
       <h1 class="text-center" v-cloak>
         {{
@@ -14,21 +14,35 @@
       </h1>
       <h1 class="text-center">
         <a
+          v-b-tooltip.hover.left
+          :title="focusedDate.addDays(-1).toDateString()"
           class="btn text-center btn-lg"
           style="cursor: pointer"
           @click="$store.dispatch('previousDay')"
-          ><b-icon-chevron-left /></a
-        ><input
-          id="dp"
-          style="height: 0; width: 0; opacity: 0; position: absolute"
-          type="date"
-        /><label
-          style="cursor: pointer; min-width: 160px"
-          v-cloak
-          for="dp"
-          class="text-primary text-center h3"
-          >{{ $store.state.focusedDate | moment("ddd, MMM D") }}</label
-        ><a
+          ><b-icon-chevron-left
+        /></a>
+        <b-form-datepicker
+          no-close-on-select
+          nav-button-variant="primary text-light"
+          button-variant="none"
+          value-as-date
+          button-only
+          v-model="focusedDate"
+        >
+          <template #button-content>
+            <label
+              v-b-tooltip.hover.bottom
+              title="Pick date"
+              style="cursor: pointer; min-width: 160px"
+              v-cloak
+              class="text-primary text-center h3"
+              >{{ $store.state.focusedDate | moment("ddd, MMM D") }}</label
+            >
+          </template>
+        </b-form-datepicker>
+        <a
+          v-b-tooltip.hover.right
+          :title="focusedDate.addDays(1).toDateString()"
           style="cursor: pointer"
           class="btn text-center btn-lg"
           @click="$store.dispatch('nextDay')"
@@ -41,7 +55,7 @@
     <h5 class="my-3 font-weight-bold">Events</h5>
     <div :key="idx" v-for="(event, idx) in events">
       <h6>{{ event.summary }}</h6>
-      <p style="white-space: pre-wrap; opacity: 0.5">
+      <p class="ml-3" style="white-space: pre-wrap; opacity: 0.5">
         {{ event.description ? event.description.trim() : null }}
       </p>
     </div>
@@ -51,7 +65,10 @@
 <script>
 import SchedList from "@/components/schedList";
 import StatusQuo from "@/components/statusQuo";
-import { eventsForDay } from "@/plugins/fetchGCalendar";
+import {
+  eventsForDay,
+  detectAltSchedFromEvents,
+} from "@/plugins/fetchGCalendar";
 
 export default {
   name: "Schedule",
@@ -71,8 +88,16 @@ export default {
     },
   },
   computed: {
-    focusedDate() {
-      return this.$store.state.focusedDate;
+    /*altScheds(){
+      return detectAltSchedFromEvents(this.events, this.focusedDate)
+    },*/
+    focusedDate: {
+      get() {
+        return this.$store.state.focusedDate;
+      },
+      set(val) {
+        this.$store.commit("setFocusedDate", val);
+      },
     },
   },
 };

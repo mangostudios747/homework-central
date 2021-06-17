@@ -35,6 +35,8 @@
         >
           <b-col cols="2">
             <b-dropdown
+              v-b-tooltip.hover
+              title="Choose color"
               variant="none"
               class="rounded-circle"
               :style="{

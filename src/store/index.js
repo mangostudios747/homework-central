@@ -14,8 +14,13 @@ function getTotalMinutes(d = new Date()) {
 
 export default new Vuex.Store({
   state: {
+    dialogs: {
+      newAssignment: false,
+      editAssignment: false,
+    },
     theSchedule,
     colors,
+
     time: new Date(),
     focusedDate: new Date(), //("June 2 2021"),
   },
@@ -26,6 +31,12 @@ export default new Vuex.Store({
     },
   },
   actions: {
+    promptCreateNewAssignment({ state }, pid) {
+      state.dialogs.newAssignment = true; //pid;
+    },
+    cancelCreateNewAssignment({ state }) {
+      state.dialogs.newAssignment = false;
+    },
     bindSchedule: firebaseAction(({ bindFirebaseRef }) => {
       return bindFirebaseRef("theSchedule", db.ref("schedule"));
     }),

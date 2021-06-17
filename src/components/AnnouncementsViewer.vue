@@ -5,13 +5,21 @@
         ><h5 class="mt-1">Announcements</h5>
         <b-btn-group size="sm">
           <b-btn
+            v-b-tooltip.hover
+            title="Previous"
             @click="focIndex++"
             :disabled="focIndex === announcements.length - 1"
             variant="white"
           >
             <b-icon icon="chevron-left"></b-icon>
           </b-btn>
-          <b-btn @click="focIndex--" :disabled="focIndex === 0" variant="white">
+          <b-btn
+            v-b-tooltip.hover="focIndex !== 0"
+            :title="focIndex !== 0 ? 'Next' : null"
+            @click="focIndex--"
+            :disabled="focIndex === 0"
+            variant="white"
+          >
             <b-icon icon="chevron-right"></b-icon>
           </b-btn>
         </b-btn-group>
@@ -27,14 +35,21 @@
           <div v-html="announcement.body"></div>
 
           <template #footer>
-            <span class="text-muted">{{
-              new Date(announcement.timestamp)
-                | moment(
-                  `MMMM Do YYYY, ${
-                    $store.state.settings.timeMode === 24 ? "H" : "h"
-                  }:mm A`
-                )
-            }}</span>
+            <span
+              v-b-tooltip.left.hover
+              :title="
+                new Date(announcement.timestamp)
+                  | moment(
+                    `dddd, MMMM D,  YYYY ${
+                      $store.state.settings.timeMode === 24 ? 'H' : 'h'
+                    }:mm A`
+                  )
+              "
+              class="text-muted p-1"
+              >{{
+                new Date(announcement.timestamp) | moment(`MMMM Do YYYY`)
+              }}</span
+            >
           </template>
         </b-card>
       </b-row>
