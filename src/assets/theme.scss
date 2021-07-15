@@ -1,0 +1,14 @@
+$theme-colors: (
+        "primary":#05CCE4,
+        "purple":#a612e0,
+        "pink":#cf2b6d,
+        "orange":#e69112,
+        "primary-dull":rgba(5, 204, 228, 0.26)
+);
+
+@import '~bootstrap/scss/bootstrap.scss';
+@import '~bootstrap-vue/src/index.scss';
+
+::selection {
+  background-color:rgba(5, 204, 228, 0.2);
+}

@@ -57,6 +57,19 @@
     border-bottom-color: rgba(0, 0, 0, 0.125);
     color: var(--grey2);
 }
+.dropdown-menu {
+
+    color: var(--grey2);
+
+    background-color: var(--grey1);
+
+}
+
+.form-control:focus {
+    color: var(--grey2);
+    background-color: var(--grey4);
+
+}
 
 .bg-dark{
     background-color: var(--grey2) !important;
@@ -176,11 +189,11 @@
 **/
 
 .nav-fill .nav-item, .nav-fill > .nav-link:hover:not(.active):not(.disabled){
-    background-color: rgba(187, 214, 254,0.7);
+    background-color:  var(--primary-dull);
 }
 
 .nav-fill .nav-item, .nav-fill > .nav-link:focus:not(.active):not(.disabled){
-    background-color: rgba(187, 214, 254,0.7);
+    background-color:  var(--primary-dull);
 }
 .nav-fill .nav-item, .nav-fill > .nav-link:hover.active{
     background-color: #085ad4;
@@ -225,7 +238,7 @@
     background-color: var(--grey4) ;
 }
 .mini-block:hover, .mini-block:focus, .mini-block.active{
-    background-color: rgba(187, 214, 254,0.7) ;
+    background-color:  var(--primary-dull) ;
 }
 
 

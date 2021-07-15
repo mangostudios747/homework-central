@@ -81,21 +81,22 @@ export default {
   }),
 };
 </script>
-<style>
+<style lang="scss">
 @import "../public/css/theme.css";
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css");
+
 .nav-fill .nav-item,
 .nav-fill > .nav-link:hover:not(.active):not(.disabled) {
-  background-color: rgba(187, 214, 254, 0.7) !important;
+  background-color: var(--primary-dull) !important;
 }
 
 .nav-link:not(.active):hover {
-  background-color: rgba(187, 214, 254, 0.7) !important;
+  background-color: var(--primary-dull) !important;
 }
 
 .nav-fill .nav-item,
 .nav-fill > .nav-link:hover.active {
-  background-color: #085ad4;
+  background-color: var(--primary);
 }
 
 .nav-fill .nav-item,
@@ -112,7 +113,7 @@ export default {
 
 .nav-fill .nav-item,
 .nav-fill > .nav-link:hover:not(.active):not(.disabled) {
-  background-color: rgba(187, 214, 254, 0.7);
+  background-color: var(--primary-dull);
 }
 
 .datepicker table tr td.active,
@@ -149,7 +150,8 @@ export default {
 .mini-block:hover,
 .mini-block:focus,
 .mini-block.active {
-  background-color: rgba(187, 214, 254, 0.7);
+  //@apply list-group-item-primary; // !important;
+  background-color: var(--primary-dull);
 }
 
 .view {
