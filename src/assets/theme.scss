@@ -12,3 +12,8 @@ $theme-colors: (
 ::selection {
   background-color:rgba(5, 204, 228, 0.2);
 }
+.colored .custom-control-input:checked ~ .custom-control-label::before {
+  color: #fff;
+  border-color: var(--cb-color);
+  background-color: var(--cb-color);
+}

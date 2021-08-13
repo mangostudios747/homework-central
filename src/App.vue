@@ -68,9 +68,9 @@ export default {
         title: "Schedule",
       },
       {
-        to: "/people",
-        icon: "people-fill",
-        title: "Staff",
+        to: "/todo",
+        icon: "list-check",
+        title: "Todo",
       },
       {
         to: "/settings",

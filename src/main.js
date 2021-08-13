@@ -8,6 +8,8 @@ import router from "./router";
 import store from "./store";
 import "../public/css/theme.css";
 import "../public/css/colors.css";
+import VueMeta from "vue-meta";
+Vue.use(VueMeta);
 Vue.config.productionTip = false;
 Vue.use(require("vue-moment"));
 import { setFavicon } from "@/plugins/favicon";

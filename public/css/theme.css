@@ -3,7 +3,7 @@
     --grey1: var(--light);
     --bs-light: var(--light);
     --grey3 : rgb(227,232,237);
-    --mute : rgb(77,82,87);
+    --mute : #6c757d;
     --grey4 : rgb(207, 212, 217);
 }
 
