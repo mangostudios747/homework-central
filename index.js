@@ -353,7 +353,7 @@ var app = new Vue({
                 }
                 return [] // the db hasnt loaded yet?
             }
-            if (dob > new Date("June 4 2021")) {
+            if (dob > new Date("June 2 2022")) {
                 if (mainView) {
                     this.holidayReason = "Summer Vacation";
                     this.holidayReason;
