@@ -117,7 +117,7 @@ export default new Vuex.Store({
         }
         const ref =
           dob.getMonth() + "-" + dob.getDate() + "-" + dob.getFullYear();
-        if (dob > new Date("June 4 2021")) {
+        if (dob > new Date("June 2 2022")) {
           if (mainView) {
             returnValue.holidayReason = "Summer Vacation";
           }

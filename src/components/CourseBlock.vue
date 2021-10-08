@@ -77,7 +77,7 @@
           :style="{
             background: `${pSBC(
               -0.2,
-              course.color.hex || $store.state.settings.colors[course.name]
+              course.color.hex || $store.state.settings.colors[course.hcname]
             )}`,
             width: `${course.percentDone}%`,
           }"
