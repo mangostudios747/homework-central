@@ -9,18 +9,19 @@
         <b-list-group-item
           :style="{
             backgroundColor: chroma(dclass.color.hex || dclass.color)
-              .desaturate(4)
-              .darken(2)
+              .desaturate(2)
+              .alpha(0.5)
               .hex(),
           }"
           variant="none"
           >{{ dclass.name }}</b-list-group-item
         >
         <todo-item
-          :key="idx"
+          :key="'todo' + idx"
           :completed="false"
           v-for="(asg, idx) of dclass.assignments"
           :item="{
+            hcname: dclass.hcname,
             title: asg.title,
             dueDate: asg.dueDate,
             color: dclass.color.hex || dclass.color,
@@ -28,10 +29,11 @@
           }"
         ></todo-item>
         <todo-item
-          :key="idx"
+          :key="'completed-' + idx"
           :completed="true"
           v-for="(asg, idx) of dclass.completed"
           :item="{
+            hcname: dclass.hcname,
             title: asg.title,
             dueDate: asg.dueDate,
             color: dclass.color.hex || dclass.color,

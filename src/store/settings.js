@@ -25,8 +25,18 @@ export const settings = {
     setOptions: function (state, options) {
       Object.assign(state, options);
     },
-    addAssignment: function (state, { idx, asg }) {
-      state.dclasses.find((e) => e.hcname === idx).assignments.push(asg);
+    addAssignment: function (state, { hcname, asg, completed }) {
+      console.log(hcname);
+      state.dclasses
+        .find((e) => e.hcname === hcname)
+        [completed ? "completed" : "assignments"].push(asg);
+    },
+    deleteAssignment: function (state, { idx, hcname, completed }) {
+      const arr = state.dclasses.find((e) => e.hcname === hcname)[
+        completed ? "completed" : "assignments"
+      ];
+      arr.splice(idx, 1);
+      return true;
     },
   },
   getters: {

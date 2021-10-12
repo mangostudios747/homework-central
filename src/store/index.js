@@ -43,8 +43,9 @@ export default new Vuex.Store({
     },
     createNewAssignment({ state, commit }, asg) {
       commit("settings/addAssignment", {
-        idx: state.dialogs.newAssignmentType,
+        hcname: state.dialogs.newAssignmentType,
         asg,
+        completed: false,
       });
       state.dialogs.newAssignment = false;
       state.dialogs.newAssignmentType = false;

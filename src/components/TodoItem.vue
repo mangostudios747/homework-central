@@ -2,8 +2,8 @@
   <b-list-group-item
     :style="{
       backgroundColor: chroma(item.color)
-        [{ dark: 'darken', light: 'brighten' }[$store.state.settings.theme]](1)
-        .desaturate()
+        .alpha({ dark: 0.4, light: 0.3 }[$store.state.settings.theme])
+        .brighten(1)
         .hex(),
     }"
     class="d-flex"
@@ -80,12 +80,33 @@ export default {
         title: "Vestibulum at eros",
         dueDate: new Date("July 21 2021 4:00 PM"),
         type: "hw",
+        hcname: null,
       }),
     },
   },
   methods: {
-    toggleCompletion() {},
-    deleteItem() {},
+    toggleCompletion() {
+      // add the item to the other list
+      this.$store.commit("settings/addAssignment", {
+        hcname: this.item.hcname,
+        asg: {
+          title: this.item.title,
+          dueDate: this.item.dueDate,
+          type: this.item.type,
+        },
+        completed: !this.completed,
+      });
+      // delete the item from the current list
+      this.deleteItem();
+    },
+    deleteItem() {
+      // we have idx and hcname
+      this.$store.commit("settings/deleteAssignment", {
+        idx: this.idx,
+        hcname: this.item.hcname,
+        completed: this.completed,
+      });
+    },
   },
 };
 </script>
