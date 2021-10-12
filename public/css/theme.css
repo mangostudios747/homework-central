@@ -10,6 +10,7 @@
 [data-theme="dark"]{
     --grey2: var(--light);
     --grey1: var(--dark);
+    --listg: #252a2d;
     --grey1-50: rgba(52, 58, 63, 0.5);
     --bs-light: var(--dark);
     --grey3 : rgb(77,82,87);
@@ -20,6 +21,7 @@
 [data-theme="light"]{
     --grey2: var(--dark);
     --grey1: var(--light);
+    --listg: #fff;
     --grey1-50: rgba(248, 249, 250, 0.5);
     --bs-light: var(--light);
     --grey3 : rgb(227,232,237);
@@ -33,6 +35,9 @@
     }
 }
 
+.list-group-item {
+    background-color: var(--listg);
+}
 
 .bg-light{
     background-color: var(--grey1) !important;

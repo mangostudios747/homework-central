@@ -25,6 +25,14 @@ export const settings = {
     setOptions: function (state, options) {
       Object.assign(state, options);
     },
+    addAssignment: function (state, { idx, asg }) {
+      state.dclasses.find((e) => e.hcname === idx).assignments.push(asg);
+    },
+  },
+  getters: {
+    classByHCName: (state) => (hcname) => {
+      return state.dclasses.find((c) => c.hcname === hcname) || {};
+    },
   },
   //plugins: [vuexLocal.plugin],
 };

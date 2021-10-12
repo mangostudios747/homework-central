@@ -97,7 +97,7 @@ import { isLight } from "@/plugins/util";
 export default {
   name: "CourseBlock",
 
-  props: ["course"],
+  props: ["course", "idx"],
   methods: {
     isLight,
     pSBC(p, c0, c1, l) {

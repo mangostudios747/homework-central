@@ -4,7 +4,7 @@ import { vuexLocal } from "@/plugins/vuex-persist";
 import { vuexfireMutations, firebaseAction } from "vuexfire";
 import { db } from "@/plugins/db";
 import { settings } from "./settings";
-import { theSchedule, colors } from "@/plugins/util";
+import { theSchedule, colors, tags } from "@/plugins/util";
 
 Vue.use(Vuex);
 
@@ -16,11 +16,12 @@ export default new Vuex.Store({
   state: {
     dialogs: {
       newAssignment: false,
+      newAssignmentType: false,
       editAssignment: false,
     },
     theSchedule,
     colors,
-
+    tags,
     time: new Date(),
     focusedDate: new Date(), //("June 2 2021"),
   },
@@ -31,11 +32,22 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    promptCreateNewAssignment({ state }, pid) {
-      state.dialogs.newAssignment = true; //pid;
+    promptCreateNewAssignment({ state }, hcname) {
+      state.dialogs.newAssignmentType = hcname;
+      console.log(hcname);
+      state.dialogs.newAssignment = true;
     },
     cancelCreateNewAssignment({ state }) {
       state.dialogs.newAssignment = false;
+      state.dialogs.newAssignmentType = false;
+    },
+    createNewAssignment({ state, commit }, asg) {
+      commit("settings/addAssignment", {
+        idx: state.dialogs.newAssignmentType,
+        asg,
+      });
+      state.dialogs.newAssignment = false;
+      state.dialogs.newAssignmentType = false;
     },
     bindSchedule: firebaseAction(({ bindFirebaseRef }) => {
       return bindFirebaseRef("theSchedule", db.ref("schedule"));
@@ -134,7 +146,7 @@ export default new Vuex.Store({
         } else {
           //console.log("default");
           if (mainView) returnValue.holidayReason = null;
-          returnValue.schedule = sched.defaults[dob.getDay()]; //regular schedule for this day of the week
+          returnValue.schedule = sched.defaults[dob.getDay()] || []; //regular schedule for this day of the week
         }
 
         if (returnValue.schedule) {

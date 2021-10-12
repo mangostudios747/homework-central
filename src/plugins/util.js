@@ -1,3 +1,26 @@
+export const tags = {
+  hw: {
+    name: "Homework",
+    color: {
+      dark: "#1297a3",
+      light: "#66d9e3",
+    },
+  },
+  tst: {
+    name: "Test",
+    color: {
+      dark: "#bd493e",
+      light: "#e37166",
+    },
+  },
+  lab: {
+    name: "Lab",
+    color: {
+      dark: "#5c8723",
+      light: "#aad66f",
+    },
+  },
+};
 export const theSchedule = {
   holidays: {
     "8-7-2020": "Labor Day",

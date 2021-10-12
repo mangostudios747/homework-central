@@ -12,8 +12,9 @@
     </div>
     <div v-else>
       <course-block
-        v-for="course of getFocusedSched.schedule"
+        v-for="(course, idx) of getFocusedSched.schedule"
         :course="course"
+        :idx="idx"
         :key="course.name"
       >
       </course-block>

@@ -55,8 +55,12 @@
     <h5 class="my-3 font-weight-bold">Events</h5>
     <div :key="idx" v-for="(event, idx) in events">
       <h6>{{ event.summary }}</h6>
-      <p class="ml-3" style="white-space: pre-wrap; opacity: 0.5">
-        {{ event.description ? event.description.trim() : null }}
+      <p
+        v-if="event.description"
+        class="ml-3"
+        style="white-space: pre-wrap; opacity: 0.5"
+      >
+        {{ event.description.trim() }}
       </p>
     </div>
   </b-container>
