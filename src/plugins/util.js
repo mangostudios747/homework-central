@@ -556,6 +556,14 @@ export const dclasses = [
     assignments: [],
   },
   {
+    name: "PRIME",
+    hcname: "Period 9",
+    color: colors.dark,
+    teacher: "",
+    completed: [],
+    assignments: [],
+  },
+  {
     name: "Lunch",
     hcname: "Lunch",
     color: colors.secondary,

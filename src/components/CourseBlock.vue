@@ -75,16 +75,13 @@
           class="progress-bar progress-bar-striped progress-bar-animated"
           role="progressbar"
           :style="{
-            background: `${pSBC(
-              -0.2,
-              course.color.hex || $store.state.settings.colors[course.hcname]
-            )}`,
+            backgroundColor: course.color.hex || course.color,
             width: `${course.percentDone}%`,
           }"
           aria-valuemin="0"
           aria-valuemax="100"
         >
-          {{ course.endingIn }} min left
+          {{ course.endingIn }} min left {{ course.color }}
         </div>
       </div>
     </div>

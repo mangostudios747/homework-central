@@ -9,15 +9,10 @@
       <b-badge
         variant="none"
         :style="{
-          backgroundColor:
-            currentPeriod.color.hex ||
-            $store.state.settings.colors[currentPeriod.hcname],
+          backgroundColor: currentPeriod.color.hex || currentPeriod.color,
         }"
         :class="
-          isLight(
-            currentPeriod.color.hex ||
-              $store.state.settings.colors[currentPeriod.hcname]
-          )
+          isLight(currentPeriod.color.hex || currentPeriod.color)
             ? 'text-dark ignore-theme'
             : 'text-light ignore-theme'
         "
@@ -37,9 +32,7 @@
         variant="none"
         :value="currentPeriod.percentToShow"
         :style="{
-          backgroundColor:
-            currentPeriod.color.hex ||
-            $store.state.settings.colors[currentPeriod.hcname],
+          backgroundColor: currentPeriod.color.hex || currentPeriod.color,
         }"
       >
       </b-progress-bar>
