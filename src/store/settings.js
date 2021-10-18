@@ -6,6 +6,7 @@ export const settings = {
     lastUpdated: null,
     theme: "light",
     style: "default",
+    idNumber: "95000000",
     colors: {
       "Period 1": colors.danger,
       "Period 2": colors.orange,
@@ -22,11 +23,16 @@ export const settings = {
     dclasses, // default class mappings
   }),
   mutations: {
+    setIdNumber: function (state, idNumber) {
+      alert("hi");
+      state.idNumber = idNumber;
+      alert(idNumber);
+    },
     setOptions: function (state, options) {
       Object.assign(state, options);
     },
     addAssignment: function (state, { hcname, asg, completed }) {
-      console.log(hcname);
+      //console.log(hcname);
       state.dclasses
         .find((e) => e.hcname === hcname)
         [completed ? "completed" : "assignments"].push(asg);
