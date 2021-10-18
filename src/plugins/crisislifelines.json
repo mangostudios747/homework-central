@@ -1,0 +1,33 @@
+[
+    {
+        "name": "Crisis Text Line",
+        "phoneNumber":"741-741",
+        "description":"For everyone in crisis; text \"Help\", Text \"LGBTQ\" for LGBTQQ-specific support"
+
+    },
+    {
+        "name": "Suicide Prevention Hotline",
+        "phoneNumber":"800-273-8256",
+        "description":"Prevention and crisis resources (national)"
+    },
+    {
+        "name": "Suicide & Crisis Line",
+        "phoneNumber":"855-278-4204",
+        "description":"For individuals in crisis (Santa Clara County)"
+    },
+    {
+        "name": "Star Vista",
+        "phoneNumber":"650-579-0350",
+        "description":"Crisis intervention (San Mateo County)"
+    },
+    {
+        "name": "Uplift",
+        "phoneNumber":"408-379-9085",
+        "description":"Mobile crisis intervention and safety planning"
+    },
+    {
+        "name": "Trevor Lifeline",
+        "phoneNumber":"866-488-7386",
+        "description":"LGBTQ crisis intervention and suicide prevention"
+    }
+]
