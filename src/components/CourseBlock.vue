@@ -42,6 +42,8 @@
         </span>
 
         <b-btn
+          v-b-tooltip.hover
+          title="Add Assignment"
           @click="
             () => $store.dispatch('promptCreateNewAssignment', course.hcname)
           "

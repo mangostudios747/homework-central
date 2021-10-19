@@ -16,6 +16,8 @@
           variant="none"
           >{{ dclass.name }}
           <b-icon-plus-circle
+            v-b-tooltip.hover
+            title="Add new"
             @click="
               () => $store.dispatch('promptCreateNewAssignment', dclass.hcname)
             "
