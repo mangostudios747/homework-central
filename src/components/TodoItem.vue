@@ -1,11 +1,12 @@
 <template>
   <b-list-group-item
-    :style="{
+    estyle="{
       backgroundColor: chroma(item.color)
         .alpha({ dark: 0.4, light: 0.3 }[$store.state.settings.theme])
         .brighten(1)
         .hex(),
     }"
+    style="background-color: var(--grey3)"
     class="d-flex"
   >
     <b-form-checkbox
