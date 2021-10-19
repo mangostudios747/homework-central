@@ -1,5 +1,10 @@
 [
   {
+    "title": "Major Upgrades",
+    "body": "<p>Homework Central Beta is nearing the end of Betahood! This PSA brings to you:</p><ul><li>A functioning to-do list</li><li>A barcode generator! Woooo!</li><li>Crisis lifelines, copied over from UGWA</li></ul>",
+    "timestamp": 1634621143414
+  },
+  {
     "title": "Congratulations, Seniors! (and some updates)",
     "body": "<p>It's been a long, hard year - but we finally made it to the end!</p><p>Here's a few things HC has learned how to do today:</p><ul><li>display the time remaining until class begins or ends in both the tab title and home view</li><li>properly manipulate colors so you don't strain your eyes</li></ul>",
     "timestamp": 1622686620235
