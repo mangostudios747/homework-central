@@ -1,8 +1,7 @@
 <template>
-  <b-container style="padding-bottom: 5rem" class="pt-3">
+  <b-container style="padding-bottom: 5rem" class="pt-3 d-flex flex-column">
     <Barcode />
-    <Lifelines />
-    <!-- crisis lifelines --->
+    <Lifelines class="mx-auto" />
   </b-container>
 </template>
 

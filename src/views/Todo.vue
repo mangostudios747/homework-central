@@ -10,12 +10,20 @@
           :style="{
             backgroundColor: chroma(dclass.color.hex || dclass.color)
               .desaturate(2)
-              .alpha(0.5)
+              .alpha(0.4)
               .hex(),
           }"
           variant="none"
-          >{{ dclass.name }}</b-list-group-item
-        >
+          >{{ dclass.name }}
+          <b-icon-plus-circle
+            @click="
+              () => $store.dispatch('promptCreateNewAssignment', dclass.hcname)
+            "
+            style="cursor: pointer"
+            class="bi-type-bold float-right mt-1"
+            scale="1.2"
+          />
+        </b-list-group-item>
         <todo-item
           :key="'todo' + idx"
           :completed="false"

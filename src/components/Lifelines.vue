@@ -2,16 +2,22 @@
   <div
     style="
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(auto-fill, 22rem);
       gap: 10px;
-      grid-auto-rows: minmax(100px, auto);
     "
+    class="container mt-5"
   >
-    <div style="" :key="c.phoneNumber" v-for="c of lifelines">
-      <h5>{{ c.name }}</h5>
+    <b-card
+      text-variant="dark"
+      title-tag="h5"
+      :title="c.name"
+      style=""
+      :key="c.phoneNumber"
+      v-for="c of lifelines"
+    >
       <a :href="'tel:' + c.phoneNumber">{{ c.phoneNumber }}</a>
       <p>{{ c.description }}</p>
-    </div>
+    </b-card>
   </div>
 </template>
 

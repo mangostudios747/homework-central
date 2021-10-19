@@ -6,6 +6,13 @@ export const tags = {
       light: "#66d9e3",
     },
   },
+  reading: {
+    name: "Reading",
+    color: {
+      dark: "#5b33cb",
+      light: "#4a11d7",
+    },
+  },
   tst: {
     name: "Test",
     color: {
@@ -18,6 +25,13 @@ export const tags = {
     color: {
       dark: "#5c8723",
       light: "#aad66f",
+    },
+  },
+  project: {
+    name: "Project",
+    color: {
+      dark: "#e54fa6",
+      light: "#9d075e",
     },
   },
 };
