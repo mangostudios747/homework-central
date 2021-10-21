@@ -1,6 +1,7 @@
 {
   "hosting": {
     "public": "dist",
+    "site":"hcbeta",
     "ignore": [
       "firebase.json",
       "**/.*",
