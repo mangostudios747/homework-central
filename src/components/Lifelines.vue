@@ -2,14 +2,15 @@
   <div
     style="
       display: grid;
-      grid-template-columns: repeat(auto-fill, 22rem);
+      grid-template-columns: repeat(auto-fill, 18rem);
       gap: 10px;
+      justify-content: center;
     "
     class="container mt-5"
   >
     <b-card
       text-variant="dark"
-      title-tag="h5"
+      title-tag="h6"
       :title="c.name"
       style=""
       :key="c.phoneNumber"
