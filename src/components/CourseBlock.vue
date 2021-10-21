@@ -40,16 +40,24 @@
             >{{ course.assignments.length }}
           </span>
         </span>
-
-        <b-btn
-          v-b-tooltip.hover
-          title="Add Assignment"
-          @click="
-            () => $store.dispatch('promptCreateNewAssignment', course.hcname)
-          "
-          variant="link"
-          ><b-icon-file-plus
-        /></b-btn>
+        <span>
+          <b-btn
+            target="_blank"
+            href="https://pausdca.infinitecampus.org/campus/nav-wrapper/student/portal/student/responsive-schedule"
+            v-if="course.hcname === 'Period 9'"
+            variant="outline-light"
+            >Make Appt
+          </b-btn>
+          <b-btn
+            v-b-tooltip.hover
+            title="Add Assignment"
+            @click="
+              () => $store.dispatch('promptCreateNewAssignment', course.hcname)
+            "
+            variant="link"
+            ><b-icon-clipboard-plus variant="light"
+          /></b-btn>
+        </span>
       </div>
 
       <p>
