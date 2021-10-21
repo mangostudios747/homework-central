@@ -83,7 +83,7 @@
           aria-valuemin="0"
           aria-valuemax="100"
         >
-          {{ course.endingIn }} min left {{ course.color }}
+          {{ course.endingIn }} min left
         </div>
       </div>
     </div>
