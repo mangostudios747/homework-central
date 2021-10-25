@@ -9,7 +9,7 @@
       Homework Central is open-sourced on
       <a
         target="_blank"
-        href="https://github.com/saumyasinghal747/homework-central"
+        href="https://github.com/mangostudios747/homework-central"
         >Github.</a
       >
     </p>
