@@ -7,6 +7,7 @@ module.exports = {
     name: "Homework Central",
     themeColor: "#05CCE4",
     msTileColor: "#05CCE4",
+    backgroundColor: "#05CCE4",
     appleMobileWebAppCapable: "yes",
     appleMobileWebAppStatusBarStyle: "black",
   },
