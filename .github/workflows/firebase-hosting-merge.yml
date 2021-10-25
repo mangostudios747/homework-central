@@ -13,6 +13,7 @@ jobs:
       - uses: actions/checkout@v2
       - run: yarn # install dependencies
       - run: yarn run build
+      - run: npx pwa-asset-generator src/assets/logo.png dist --manifest dist/manifest.json
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
