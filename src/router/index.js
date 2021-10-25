@@ -20,6 +20,13 @@ const routes = [
       import(/* webpackChunkName: "people" */ "../views/People.vue"),
     children: [
       {
+        path: "starred",
+        component: () =>
+          import(
+            /* webpackChunkName: "placeholder" */ "../views/People/placeholder.vue"
+          ),
+      },
+      {
         path: "clubs",
         component: () =>
           import(/* webpackChunkName: "clubs" */ "../views/People/Clubs.vue"),

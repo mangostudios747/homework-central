@@ -1,5 +1,10 @@
 [
   {
+    "title": "2.0 Release",
+    "body": "<p>If you haven't been beta testing, this is probably your first PSA. Yes, Homework Central has PSAs now! </p><p>This major new release of your favorite schedule app brings to you:</p><ul><li>PSAs (like this one!)</li><li>Removal of zoom links </li><li>Compacted task manager</li><li>Fully customizable course colors</li><li>Barcode generator</li><li>Crisis lifelines</li><li>Gunn calendar events</li><li>Updated club and staff list, along with a starring system (try it.)</li><li>24 hour time mode</li></ul><p><br></p><p>If anything seems wonky to you, please shoot me an email at <a href=\"mailto:ss44523@pausd.us\" rel=\"noopener noreferrer\" target=\"_blank\">ss44523@pausd.us</a> and I will get back to you as soon as possible. This goes for feature requests, too!</p>",
+    "timestamp": 1635130727536
+  },
+  {
     "title": "Major Upgrades",
     "body": "<p>Homework Central Beta is nearing the end of Betahood! This PSA brings to you:</p><ul><li>A functioning to-do list</li><li>A barcode generator! Woooo!</li><li>Crisis lifelines, copied over from UGWA</li></ul>",
     "timestamp": 1634621143414

@@ -28,12 +28,10 @@ export const settings = {
   }),
   mutations: {
     starPerson(state, { type, b, id }) {
-      Vue.set(state.starredPeople[type], id, b);
+      Vue.set(state.starredPeople[type], id, b ? true : undefined);
     },
     setIdNumber: function (state, idNumber) {
-      alert("hi");
       state.idNumber = idNumber;
-      alert(idNumber);
     },
     setOptions: function (state, options) {
       Object.assign(state, options);
