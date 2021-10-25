@@ -29,6 +29,8 @@
           :key="n.to"
           v-for="n of navigation"
           exact-active-class="active"
+          :active-class="n.inexact ? 'active' : null"
+          :exact="!n.inexact"
           :to="n.to"
         >
           <b-col class="text-center">
@@ -58,9 +60,10 @@ export default {
         title: "Utilities",
       },
       {
-        to: "/clubs",
+        to: "/people",
         icon: "signpost-split-fill",
-        title: "Clubs",
+        title: "People",
+        inexact: true,
       },
       {
         to: "/",

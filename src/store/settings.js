@@ -1,5 +1,5 @@
 import { dclasses, colors } from "@/plugins/util";
-
+import Vue from "vue";
 export const settings = {
   namespaced: true,
   state: () => ({
@@ -7,6 +7,10 @@ export const settings = {
     theme: "light",
     style: "default",
     idNumber: "95000000",
+    starredPeople: {
+      staff: {},
+      clubs: {},
+    },
     colors: {
       "Period 1": colors.danger,
       "Period 2": colors.orange,
@@ -23,6 +27,9 @@ export const settings = {
     dclasses, // default class mappings
   }),
   mutations: {
+    starPerson(state, { type, b, id }) {
+      Vue.set(state.starredPeople[type], id, b);
+    },
     setIdNumber: function (state, idNumber) {
       alert("hi");
       state.idNumber = idNumber;

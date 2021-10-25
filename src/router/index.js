@@ -18,6 +18,57 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "people" */ "../views/People.vue"),
+    children: [
+      {
+        path: "clubs",
+        component: () =>
+          import(/* webpackChunkName: "clubs" */ "../views/People/Clubs.vue"),
+        children: [
+          {
+            path: ":id",
+            component: () =>
+              import(
+                /* webpackChunkName: "clubs" */ "../views/People/Clubs/club.vue"
+              ),
+          },
+          {
+            path: "",
+            component: () =>
+              import(
+                /* webpackChunkName: "clubs" */ "../views/People/placeholder.vue"
+              ),
+          },
+        ],
+      },
+      {
+        path: "staff",
+        component: () =>
+          import(/* webpackChunkName: "staff" */ "../views/People/Staff.vue"),
+        children: [
+          {
+            path: ":id",
+            component: () =>
+              import(
+                /* webpackChunkName: "staff" */ "../views/People/Staff/staff.vue"
+              ),
+          },
+          {
+            path: "",
+            component: () =>
+              import(
+                /* webpackChunkName: "clubs" */ "../views/People/placeholder.vue"
+              ),
+          },
+        ],
+      },
+      {
+        path: "",
+        component: () =>
+          import(
+            /* webpackChunkName: "clubs" */ "../views/People/placeholder.vue"
+          ),
+      },
+    ],
   },
   {
     path: "/todo",
