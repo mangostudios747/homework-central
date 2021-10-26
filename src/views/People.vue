@@ -100,10 +100,19 @@
         </div>
       </div>
       <div
-        style="height: 94vh; overflow: scroll"
+        style="height: 92vh; overflow-y: scroll; overflow-x: hidden"
         :class="$route.path.split('/')[3] ? 'd-block' : 'd-none d-md-block'"
-        class="col-8"
+        class="col-md-8 position-relative"
       >
+        <router-link
+          to="../"
+          tag="div"
+          style="background: var(--grey4); cursor: pointer"
+          class="py-2 d-block px-3"
+        >
+          <b-icon-chevron-left class="mr-2 sticky-top" />
+          <span class="h6">People</span>
+        </router-link>
         <div class="container">
           <router-view />
         </div>
