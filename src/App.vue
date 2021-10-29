@@ -7,7 +7,7 @@
   >
     <router-view />
     <div
-      class="bg-light py-2"
+      class="py-2"
       style="
         min-height: 6vh;
         position: fixed;
@@ -15,6 +15,8 @@
         width: 100%;
         left: 0;
         z-index: 3;
+        background-color: var(--grey1-80);
+        backdrop-filter: blur(10px);
       "
     >
       <b-nav

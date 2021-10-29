@@ -12,6 +12,7 @@
     --grey1: var(--dark);
     --listg: #252a2d;
     --grey1-50: rgba(52, 58, 63, 0.5);
+    --grey1-80: rgba(52, 58, 63, 0.8);
     --bs-light: var(--dark);
     --grey3 : rgb(77,82,87);
     --mute: rgb(187,192,197);
@@ -23,6 +24,7 @@
     --grey1: var(--light);
     --listg: #fff;
     --grey1-50: rgba(248, 249, 250, 0.5);
+    --grey1-80: rgba(248, 249, 250, 0.8);
     --bs-light: var(--light);
     --grey3 : rgb(227,232,237);
     --mute : rgb(77,82,87);
