@@ -27,14 +27,12 @@ export default {
     VueBarcode,
   },
   mounted() {
-    this.idNumber = this.$state.settings.idNumber || "95000000";
+    this.idNumber = this.$store.state.settings.idNumber || "95000000";
   },
   watch: {
     async idNumber(val) {
       // set the idNumber in settings to this value
-      this.$store.commit("settings/setIdNumber", this.idNumber);
-      //alert(val)
-      //alert(JSON.parse(localStorage.getItem('hcSettings')).idNumber)
+      this.$store.commit("settings/setIdNumber", val);
     },
   },
 };

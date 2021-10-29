@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-5" style="overflow: scroll">
+  <div class="mt-5">
     <p>
       <b-icon
         class="mr-2 mb-1"
@@ -23,13 +23,21 @@
     <a class="d-block" v-if="s.phone" :href="`tel:650-${s.phone}`"
       >(650)-{{ s.phone }}</a
     >
-    <table class="table b-table">
-      <t-head></t-head>
-      <t-body>
-        <tr :key="pid" v-for="(period, pid) of periods"></tr>
-      </t-body>
+    <table v-if="s.periods" class="table mt-5 b-table">
+      <thead>
+        <tr>
+          <th :key="e" v-for="e of ['Period', 'S1', 'S2']">{{ e }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr :key="pid" v-for="(period, pid) of periods">
+          <td>{{ period }}</td>
+          <td :key="x" v-for="(p, x) of s.periods[pid] || [, ,]">
+            {{ (p || [])[0] }}
+          </td>
+        </tr>
+      </tbody>
     </table>
-    <p>{{ Object.keys(s.periods) }}</p>
   </div>
 </template>
 
@@ -58,7 +66,7 @@ export default {
         return (
           this.$store.state.settings.starredPeople.staff[
             this.$route.params.id
-          ] == true
+          ] === true
         );
       },
       set(v) {
@@ -68,7 +76,6 @@ export default {
           id: this.$route.params.id,
           b: v,
         });
-        console.log(this.$store.state.settings.starredPeople);
       },
     },
   },
