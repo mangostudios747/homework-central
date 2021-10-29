@@ -1,24 +1,17 @@
 <template>
   <b-card
     no-body
-    class="card text-white my-2 py-0"
+    class="card text-white my-3 py-0"
     tabindex="0"
     style="border-radius: 10px; border-color: transparent"
     :style="{
-      backgroundColor:
-        course.color.hex ||
-        course.color ||
-        $store.state.settings.colors[course.hcname] ||
-        $store.state.settings.colors['Other'],
+      backgroundColor: color,
+      boxShadow: `0 0 5px 2px ${chroma(color).darken().hex()}`,
     }"
   >
     <div
       class="card-body"
-      :class="
-        isLight(course.color.hex || $store.state.settings.colors[course.hcname])
-          ? 'text-dark ignore-theme'
-          : 'text-light ignore-theme'
-      "
+      :style="{ color: isLight(color) ? '#1b263b' : '#fff' }"
     >
       <div class="h4" style="display: flex; justify-content: space-between">
         <span
@@ -100,13 +93,27 @@
 
 <script>
 import { isLight } from "@/plugins/util";
-
+import chroma from "chroma-js";
 export default {
   name: "CourseBlock",
-
+  data() {
+    return {
+      chroma,
+    };
+  },
   props: ["course", "idx"],
   methods: {
     isLight,
+  },
+  computed: {
+    color() {
+      return (
+        this.course.color.hex ||
+        this.course.color ||
+        this.$store.state.settings.colors[this.course.hcname] ||
+        this.$store.state.settings.colors["Other"]
+      );
+    },
   },
 };
 </script>

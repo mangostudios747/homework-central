@@ -1,7 +1,7 @@
 <template>
   <b-container style="padding-bottom: 5rem">
     <div
-      class="topnav sticky-top pt-3"
+      class="topnav sticky-top pt-3 px-5 -mx-5"
       style="background-color: var(--grey1-50); backdrop-filter: blur(10px)"
     >
       <h1 class="text-center" v-cloak>
@@ -71,7 +71,7 @@ import SchedList from "@/components/schedList";
 import StatusQuo from "@/components/statusQuo";
 import {
   eventsForDay,
-  detectAltSchedFromEvents,
+  //detectAltSchedFromEvents,
 } from "@/plugins/fetchGCalendar";
 
 export default {
