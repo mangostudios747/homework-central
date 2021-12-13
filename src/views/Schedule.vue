@@ -16,13 +16,14 @@
         <a
           v-b-tooltip.hover.left
           :title="focusedDate.addDays(-1).toDateString()"
-          class="btn text-center btn-lg"
+          class="btn px-1 text-center btn-lg"
           style="cursor: pointer"
           @click="$store.dispatch('previousDay')"
           ><b-icon-chevron-left
         /></a>
         <b-form-datepicker
           no-close-on-select
+          class=""
           nav-button-variant="primary text-light"
           button-variant="none"
           value-as-date
@@ -33,7 +34,7 @@
             <label
               v-b-tooltip.hover.bottom
               title="Pick date"
-              style="cursor: pointer; min-width: 160px"
+              style="cursor: pointer; min-width: 150px"
               v-cloak
               class="text-primary text-center h3"
               >{{ $store.state.focusedDate | moment("ddd, MMM D") }}</label
@@ -44,7 +45,7 @@
           v-b-tooltip.hover.right
           :title="focusedDate.addDays(1).toDateString()"
           style="cursor: pointer"
-          class="btn text-center btn-lg"
+          class="btn px-1 text-center btn-lg"
           @click="$store.dispatch('nextDay')"
           ><b-icon-chevron-right
         /></a>
